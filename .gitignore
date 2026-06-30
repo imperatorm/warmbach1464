@@ -1,0 +1,14 @@
+node_modules
+.next
+.env*
+!.env.example
+.DS_Store
+*.log
+.vercel
+
+# build artifacts
+next-env.d.ts
+*.tsbuildinfo
+
+# Lighthouse: keep the self-contained HTML reports, drop the bulky JSON
+docs/*.report.json
