@@ -1,18 +1,37 @@
-import { HeroSection } from "@/components/sections/HeroSection";
-import { PortalGateway } from "@/components/sections/PortalGateway";
+import { HeroEditorial } from "@/components/v2/HeroEditorial";
+import { Manifesto } from "@/components/v2/Manifesto";
+import { MaterialPalette } from "@/components/v2/MaterialPalette";
+import { WordmarkMarquee } from "@/components/v2/WordmarkMarquee";
+import { PillarIndex } from "@/components/v2/PillarIndex";
+import { EditorialSpread } from "@/components/v2/EditorialSpread";
 import { ChronicleSection } from "@/components/sections/ChronicleSection";
+import { ThresholdCTA } from "@/components/v2/ThresholdCTA";
 
 /**
- * Home = Portal. The bottle, one statement, a quiet doorway into the house,
- * and — at the very bottom — the interactive Hofchronik (1464–today) with the
- * holographic chronometer pair.
+ * Home v2 — the brand book as a website. An editorial sheet in numbered
+ * chapters, alternating night-green and kalk bands (grid & composition
+ * after the EcoWood reference):
+ *
+ *   Title sheet   → alpine film with the folio data strip
+ *   01 Manifest   → statement spread + counting facts (kalk)
+ *   02 Material   → palette cards with copyable swatches (night)
+ *   —             → giant scroll-velocity wordmark (cream)
+ *   03 Säulen     → index with cursor-trailing previews (cream)
+ *   04 Der Hof    → asymmetric parallax spread (kalk)
+ *   05 Chronik    → the interactive 562-year timeline (night)
+ *   Schwelle      → Club 1464 with magnetic CTA (night)
  */
 export default function HomePage() {
   return (
     <>
-      <HeroSection />
-      <PortalGateway />
+      <HeroEditorial />
+      <Manifesto />
+      <MaterialPalette />
+      <WordmarkMarquee />
+      <PillarIndex />
+      <EditorialSpread />
       <ChronicleSection />
+      <ThresholdCTA />
     </>
   );
 }

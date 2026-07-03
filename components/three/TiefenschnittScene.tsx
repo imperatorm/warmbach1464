@@ -143,7 +143,7 @@ function CoreEnvironment() {
       <color attach="background" args={["#0c120e"]} />
       <Lightformer form="rect" intensity={2.0} color="#f3f6ee" position={[-6, 5, 2]} scale={[14, 14, 1]} target={[0, 0, 0]} />
       <Lightformer form="rect" intensity={1.4} color="#2f7d4f" position={[0, 1, -7]} scale={[12, 10, 1]} target={[0, 0, 0]} />
-      <Lightformer form="rect" intensity={1.0} color="#c0916a" position={[6, 0, 3]} scale={[10, 10, 1]} target={[0, 0, 0]} />
+      <Lightformer form="rect" intensity={1.0} color="#c57e5b" position={[6, 0, 3]} scale={[10, 10, 1]} target={[0, 0, 0]} />
     </Environment>
   );
 }
@@ -159,7 +159,7 @@ export default function TiefenschnittScene({ progressRef }: { progressRef: Mutab
       onCreated={({ camera }) => camera.lookAt(0, 0, 0)}
     >
       <directionalLight position={[-4, 5, 3]} intensity={2.6} color="#fff1d6" />
-      <spotLight position={[0, 2.5, -5]} angle={0.5} penumbra={0.7} decay={0} intensity={1.6} color="#c0916a" />
+      <spotLight position={[0, 2.5, -5]} angle={0.5} penumbra={0.7} decay={0} intensity={1.6} color="#c57e5b" />
       <ambientLight intensity={0.22} />
       <Suspense fallback={null}>
         <CoreEnvironment />

@@ -36,7 +36,7 @@ export function HeroSection() {
 
       {/* Darkening — keeps the centred wordmark legible over the dusk film */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-night/70 via-night/45 to-night" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(27,38,31,0.85)_94%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(29,41,29,0.85)_94%)]" />
 
       {/* Centred brand wordmark — 1464 by W// · distilled in Kitzbühel */}
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center">

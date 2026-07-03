@@ -5,16 +5,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // v2 "Natur" palette — deep forest green + copper/bronze + warm cream
-        night:   "#1b261f",
-        soot:    "#232f26",
-        copper:  "#6f4f34",
-        gold:    "#c0916a",
-        cream:   "#ece4d2",
-        stone:   "#8f9a84",
-        hairline:"#9aa78e",
-        kalk:       "#c6ccb9",
-        terrakotta: "#a8473a",
+        // v3 Pantone palette (Figma board): Cloud Dancer / Light Gray page,
+        // Copper + Mocha Bisque accents, Oxblood Red, Bronze Green ground.
+        night:   "#1d291d", // bronze green 900
+        soot:    "#2b3b2b", // bronze green 800
+        copper:  "#8c5438", // Mocha Bisque 18-1140
+        gold:    "#c57e5b", // Copper 16-1325
+        cream:   "#f0efeb", // Cloud Dancer 11-4201
+        stone:   "#a8a59b",
+        hairline:"#9b988e",
+        kalk:       "#d9d7cf", // Light Gray 12-0404
+        terrakotta: "#713940", // Oxblood Red 19-1524
+        oxblood:    "#713940",
+        merlot:     "#422628", // oxblood 900 — dark red band
       },
       fontFamily: {
         display: ["var(--font-display)", "Georgia", "serif"],

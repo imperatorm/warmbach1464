@@ -47,7 +47,7 @@ export function DioramaSection({
           {/* seat glow behind the canvas */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(192,145,106,0.07),_transparent_68%)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(197,126,91,0.07),_transparent_68%)]"
           />
           {inView ? (
             <ElementalDiorama animate={!reduce} />

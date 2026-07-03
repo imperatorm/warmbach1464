@@ -7,7 +7,7 @@ import { formatInt } from "@/lib/time";
 import type { ReleasePipeline } from "@/lib/founders/types";
 
 const ARC =
-  "conic-gradient(from 0deg, transparent 0deg, rgba(192,145,106,0.5) 40deg, transparent 95deg, transparent 200deg, rgba(192,145,106,0.22) 235deg, transparent 280deg)";
+  "conic-gradient(from 0deg, transparent 0deg, rgba(197,126,91,0.5) 40deg, transparent 95deg, transparent 200deg, rgba(197,126,91,0.22) 235deg, transparent 280deg)";
 
 export function ReleaseTimeline({ pipeline }: { pipeline: ReleasePipeline }) {
   const reduce = useReducedMotion();
@@ -30,7 +30,7 @@ export function ReleaseTimeline({ pipeline }: { pipeline: ReleasePipeline }) {
                 p.status === "done"
                   ? "border-gold bg-gold"
                   : p.status === "current"
-                  ? "border-gold bg-night shadow-[0_0_10px_2px_rgba(192,145,106,0.6)]"
+                  ? "border-gold bg-night shadow-[0_0_10px_2px_rgba(197,126,91,0.6)]"
                   : "border-hairline/40 bg-night"
               }`}
             />
@@ -43,7 +43,7 @@ export function ReleaseTimeline({ pipeline }: { pipeline: ReleasePipeline }) {
 
       {/* Holo countdown panel */}
       <div className="relative flex min-h-[20rem] flex-col items-center justify-center overflow-hidden rounded-[2px] border border-hairline/15 bg-soot/30 px-6 py-14 backdrop-blur-sm">
-        <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,_rgba(192,145,106,0.12),_transparent_62%)]" />
+        <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,_rgba(197,126,91,0.12),_transparent_62%)]" />
         <div
           aria-hidden
           className={`pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full ${reduce ? "" : "holo-ring"}`}

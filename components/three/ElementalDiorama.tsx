@@ -20,11 +20,11 @@ import * as THREE from "three";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { generateAppleTree, type Limb } from "@/lib/three/tree";
 
-const GOLD = "#c0916a";
-const COPPER = "#6f4f34";
-const CREAM = "#ece4d2";
-const NIGHT = "#1b261f";
-const SOOT = "#232f26";
+const GOLD = "#c57e5b";
+const COPPER = "#8c5438";
+const CREAM = "#f0efeb";
+const NIGHT = "#1d291d";
+const SOOT = "#2b3b2b";
 const STEEL = "#9C9489";
 
 type Vec3 = [number, number, number];
@@ -426,9 +426,9 @@ function KotheStill({ animate }: { animate: boolean }) {
   const fireGlow = useMemo(
     () =>
       radialTexture([
-        [0, "rgba(192,145,106,0.95)"],
-        [0.45, "rgba(111,79,52,0.4)"],
-        [1, "rgba(111,79,52,0)"],
+        [0, "rgba(197,126,91,0.95)"],
+        [0.45, "rgba(140,84,56,0.4)"],
+        [1, "rgba(140,84,56,0)"],
       ]),
     [],
   );
@@ -608,9 +608,9 @@ function GroundGlow() {
   const tex = useMemo(
     () =>
       radialTexture([
-        [0, "rgba(192,145,106,0.3)"],
-        [0.5, "rgba(192,145,106,0.08)"],
-        [1, "rgba(192,145,106,0)"],
+        [0, "rgba(197,126,91,0.3)"],
+        [0.5, "rgba(197,126,91,0.08)"],
+        [1, "rgba(197,126,91,0)"],
       ]),
     [],
   );
@@ -658,7 +658,7 @@ function Hotspot({
         className="pointer-events-auto relative grid h-7 w-7 place-items-center"
       >
         <span className="absolute inline-flex h-6 w-6 animate-ping rounded-full bg-gold/30" />
-        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold shadow-[0_0_10px_2px_rgba(192,145,106,0.7)]" />
+        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold shadow-[0_0_10px_2px_rgba(197,126,91,0.7)]" />
         <span
           className={`t-label pointer-events-none absolute left-1/2 top-8 -translate-x-1/2 whitespace-nowrap transition-opacity duration-200 ${
             hover ? "opacity-100" : "opacity-0"

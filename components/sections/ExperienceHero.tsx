@@ -57,7 +57,7 @@ export function ExperienceHero() {
 
       {/* Cinematic darkening — keeps the dark bottle legible over the landscape */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-night/55 via-night/35 to-night" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_24%,_rgba(27,38,31,0.8)_94%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_24%,_rgba(29,41,29,0.8)_94%)]" />
 
       {/* Onyx bottle floating in the alpine night; hover to spin */}
       {mount && (

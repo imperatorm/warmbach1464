@@ -19,7 +19,7 @@ export default function EnterPage({
   return (
     <div className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden bg-night px-6">
       {/* atmosphere */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(192,145,106,0.10),_transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(197,126,91,0.10),_transparent_60%)]" />
 
       <div className="relative w-full max-w-sm text-center">
         <Monogram className="mx-auto mb-9 h-14 w-14" />

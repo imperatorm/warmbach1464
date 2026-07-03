@@ -30,7 +30,7 @@ export function SceneLighting() {
         penumbra={0.6}
         decay={0}
         intensity={1.8}
-        color="#c0916a"
+        color="#c57e5b"
       />
 
       {/* Floor of light so the deepest shadows aren't pure void */}

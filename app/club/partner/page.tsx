@@ -56,7 +56,7 @@ export default function PartnerPage() {
     <div>
       {/* Hero */}
       <section className="relative flex min-h-[80vh] items-end overflow-hidden px-6 pb-20 pt-40 lg:px-10">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_28%_22%,_rgba(58,74,60,0.5)_0%,_rgba(27,38,31,0.95)_62%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_28%_22%,_rgba(57,77,58,0.5)_0%,_rgba(29,41,29,0.95)_62%)]" />
         <div className="relative mx-auto w-full max-w-[1400px]">
           <Reveal>
             <Link href="/club" data-cursor className="t-label text-gold/80 hover:text-gold">&larr; Club · Der Zugang</Link>

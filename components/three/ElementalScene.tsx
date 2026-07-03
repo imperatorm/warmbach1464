@@ -13,10 +13,10 @@ import { ToneMappingMode } from "postprocessing";
 import * as THREE from "three";
 import { createAppleTree } from "./createAppleTree";
 
-const GOLD = "#c0916a";
-const COPPER = "#6f4f34";
-const CREAM = "#ece4d2";
-const NIGHT = "#1b261f";
+const GOLD = "#c57e5b";
+const COPPER = "#8c5438";
+const CREAM = "#f0efeb";
+const NIGHT = "#1d291d";
 const STEEL = "#cdd2d8";
 
 const TREE_X = 0;
@@ -344,9 +344,9 @@ function GroundGlow() {
   const tex = useMemo(
     () =>
       radialTexture([
-        [0, "rgba(192,145,106,0.28)"],
-        [0.5, "rgba(192,145,106,0.07)"],
-        [1, "rgba(192,145,106,0)"],
+        [0, "rgba(197,126,91,0.28)"],
+        [0.5, "rgba(197,126,91,0.07)"],
+        [1, "rgba(197,126,91,0)"],
       ]),
     [],
   );
@@ -436,9 +436,9 @@ function CopperStill() {
   const fireGlow = useMemo(
     () =>
       radialTexture([
-        [0, "rgba(192,145,106,0.95)"],
-        [0.45, "rgba(111,79,52,0.4)"],
-        [1, "rgba(111,79,52,0)"],
+        [0, "rgba(197,126,91,0.95)"],
+        [0.45, "rgba(140,84,56,0.4)"],
+        [1, "rgba(140,84,56,0)"],
       ]),
     [],
   );
@@ -537,7 +537,7 @@ function Hotspot({
         <span
           className={`absolute inline-flex h-6 w-6 rounded-full bg-gold/40 ${active ? "animate-ping" : ""}`}
         />
-        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold shadow-[0_0_10px_2px_rgba(192,145,106,0.7)]" />
+        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold shadow-[0_0_10px_2px_rgba(197,126,91,0.7)]" />
         <span
           className={`pointer-events-none absolute left-1/2 top-8 -translate-x-1/2 whitespace-nowrap rounded bg-night/80 px-2 py-0.5 text-[0.6rem] uppercase tracking-[0.18em] text-cream transition-opacity duration-200 ${
             hover && !active ? "opacity-100" : "opacity-0"

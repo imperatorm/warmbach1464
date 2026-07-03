@@ -3,16 +3,22 @@
 @tailwind utilities;
 
 :root {
-  /* v2 "Natur" palette — deep forest green + copper/bronze + warm cream */
-  --color-night: #1b261f;
-  --color-soot: #232f26;
-  --color-copper: #6f4f34;
-  --color-gold: #c0916a;
-  --color-cream: #ece4d2;
-  --color-stone: #8f9a84;
-  --color-hairline: #9aa78e;
-  --color-kalk: #c6ccb9;
-  --color-terrakotta: #a8473a;
+  /* v3 Pantone palette (Figma "Panton & RGB Color Scheme"):
+     Page = Cloud Dancer 11-4201 / Light Gray 12-0404
+     Akzent 1 = Copper 16-1325 / Mocha Bisque 18-1140
+     Akzent 2 = Oxblood Red 19-1524
+     Warmbach Green = Bronze Green 18-0317 */
+  --color-night: #1d291d;      /* bronze green 900 — dark ground */
+  --color-soot: #2b3b2b;       /* bronze green 800 — dark cards */
+  --color-copper: #8c5438;     /* Mocha Bisque — warm accent on light */
+  --color-gold: #c57e5b;       /* Copper — warm accent on dark */
+  --color-cream: #f0efeb;      /* Cloud Dancer — page color */
+  --color-stone: #a8a59b;      /* cloud dancer 400 — meta on dark */
+  --color-hairline: #9b988e;   /* cloud dancer 500 — rules */
+  --color-kalk: #d9d7cf;       /* Light Gray — secondary light band */
+  --color-terrakotta: #713940; /* Oxblood Red — accent 2 */
+  --color-oxblood: #713940;
+  --color-merlot: #422628;     /* oxblood 900 — dark red band */
 
   /* Fluid editorial type scale */
   --t-display: clamp(2.75rem, 7.5vw, 6.75rem);
@@ -107,11 +113,11 @@ html.cursor-hover .cursor-ring { width: 46px; height: 46px; margin: -23px 0 0 -2
   font-family: var(--font-body);
   font-variant-numeric: tabular-nums lining-nums;
   letter-spacing: 0.01em;
-  background: linear-gradient(180deg, #f3ead4 0%, #dcb88a 36%, #c0916a 68%, #8a6a44 100%);
+  background: linear-gradient(180deg, #f5e2d9 0%, #dfaf98 36%, #c57e5b 68%, #8c5438 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 22px rgba(192, 145, 106, 0.4), 0 0 64px rgba(111, 79, 52, 0.22);
+  text-shadow: 0 0 22px rgba(197, 126, 91, 0.4), 0 0 64px rgba(140, 84, 56, 0.22);
 }
 .scanlines::after {
   content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;

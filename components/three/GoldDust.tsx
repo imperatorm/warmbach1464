@@ -33,7 +33,7 @@ export function GoldDust({ count = 800 }: { count?: number }) {
       </bufferGeometry>
       <pointsMaterial
         size={0.022}
-        color="#c0916a"
+        color="#c57e5b"
         transparent
         opacity={0.3}
         sizeAttenuation

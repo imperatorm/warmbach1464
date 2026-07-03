@@ -51,7 +51,7 @@ function HoloRing({
 }
 
 const ARC_OUTER =
-  "conic-gradient(from 0deg, transparent 0deg, rgba(192,145,106,0.5) 38deg, transparent 92deg, transparent 188deg, rgba(192,145,106,0.22) 224deg, transparent 268deg, transparent 360deg)";
+  "conic-gradient(from 0deg, transparent 0deg, rgba(197,126,91,0.5) 38deg, transparent 92deg, transparent 188deg, rgba(197,126,91,0.22) 224deg, transparent 268deg, transparent 360deg)";
 const ARC_INNER =
   "conic-gradient(from 120deg, transparent 0deg, rgba(237,230,212,0.34) 30deg, transparent 78deg, transparent 360deg)";
 
@@ -92,7 +92,7 @@ const HoloPanel = forwardRef<HTMLDivElement, PanelProps>(function HoloPanel(
       {/* radial glow seat */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,_rgba(192,145,106,0.12),_transparent_62%)]"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,_rgba(197,126,91,0.12),_transparent_62%)]"
       />
       {/* rotating rings */}
       <div className="pointer-events-none absolute inset-0">

@@ -31,7 +31,7 @@ export default function ClubPage() {
     <div>
       {/* GATEWAY — die Schwelle, zwei Türen */}
       <section className="relative flex min-h-[92vh] flex-col items-center justify-center overflow-hidden px-6 py-32 text-center lg:px-10">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_30%,_rgba(58,74,60,0.55)_0%,_rgba(27,38,31,0.9)_60%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_30%,_rgba(57,77,58,0.55)_0%,_rgba(29,41,29,0.9)_60%)]" />
         <div className="relative w-full max-w-[1100px]">
           <Reveal>
             <p className="t-label mb-8 text-gold">Club · Der Zugang</p>

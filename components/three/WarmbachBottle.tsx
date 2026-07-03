@@ -68,7 +68,7 @@ export function WarmbachBottle({
       {/* Copper collar at the neck base — major radius clears the glass surface (~0.30) */}
       <mesh position={[0, NECK_BASE_Y, 0]} rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[0.34, 0.024, 16, 100]} />
-        <meshStandardMaterial color="#6f4f34" metalness={1} roughness={0.34} />
+        <meshStandardMaterial color="#8c5438" metalness={1} roughness={0.34} />
       </mesh>
 
       {/* Ringed disc stopper (single-sided transmission — backside off for perf) */}

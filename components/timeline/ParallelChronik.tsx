@@ -234,7 +234,7 @@ export function ParallelChronik() {
             const cx = dims.w / 2;
             const d = `M ${s.x1} ${s.y1} C ${cx} ${s.y1}, ${cx} ${s.y2}, ${s.x2} ${s.y2}`;
             const on = active === s.id;
-            const stroke = s.theme === "kupfer" ? "#6f4f34" : "#c0916a";
+            const stroke = s.theme === "kupfer" ? "#8c5438" : "#c57e5b";
             return (
               <g key={s.id}>
                 {/* immer sichtbarer, zarter Faden — lädt zum Erkunden ein */}
@@ -251,7 +251,7 @@ export function ParallelChronik() {
                       initial={reduce ? { opacity: 0.95 } : { pathLength: 0, opacity: 0 }}
                       animate={reduce ? { opacity: 0.95 } : { pathLength: 1, opacity: 0.95 }}
                       transition={{ duration: 0.85, ease: EASE }}
-                      style={{ filter: "drop-shadow(0 0 6px rgba(111,79,52,0.55))" }}
+                      style={{ filter: "drop-shadow(0 0 6px rgba(140,84,56,0.55))" }}
                     />
                     <circle cx={s.x1} cy={s.y1} r={4} fill={stroke} />
                     <circle cx={s.x2} cy={s.y2} r={4} fill={stroke} />

@@ -18,7 +18,7 @@ export function StudioEnvironment() {
       {/* Large soft fill, right */}
       <Lightformer form="rect" intensity={1.1} color="#cdbb9a" position={[7, 0, 3]} scale={[12, 12, 1]} target={[0, 0, 0]} />
       {/* Wide warm back-glow for an even gold rim (no streak) */}
-      <Lightformer form="rect" intensity={1.4} color="#c0916a" position={[0, 2, -7]} scale={[11, 9, 1]} target={[0, 0, 0]} />
+      <Lightformer form="rect" intensity={1.4} color="#c57e5b" position={[0, 2, -7]} scale={[11, 9, 1]} target={[0, 0, 0]} />
       {/* Gentle top */}
       <Lightformer form="rect" intensity={0.7} color="#e8e2d2" position={[0, 9, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[9, 9, 1]} target={[0, 0, 0]} />
     </Environment>

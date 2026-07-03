@@ -27,7 +27,7 @@ function GreenLighting() {
     <>
       <directionalLight position={[-4, 5, 3]} intensity={3.0} color="#fff1d6" />
       <spotLight position={[5, 1.5, 3.5]} angle={0.9} penumbra={1} decay={0} intensity={0.8} color="#15351f" />
-      <spotLight position={[0, 2.5, -5]} angle={0.45} penumbra={0.6} decay={0} intensity={1.7} color="#6f4f34" />
+      <spotLight position={[0, 2.5, -5]} angle={0.45} penumbra={0.6} decay={0} intensity={1.7} color="#8c5438" />
       <ambientLight intensity={0.2} />
       <pointLight position={[0.6, -0.2, 4.5]} intensity={0.5} decay={0} color="#dfeede" />
     </>

@@ -13,7 +13,7 @@ import { pillars, type Pillar } from "@/lib/content";
 export function PillarHero({ pillar, backdrop }: { pillar: Pillar; backdrop?: ReactNode }) {
   return (
     <section className="relative flex min-h-[58vh] items-end overflow-hidden px-6 pb-14 pt-36 lg:px-10">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_28%_18%,_rgba(58,74,60,0.5)_0%,_rgba(27,38,31,0.96)_62%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_28%_18%,_rgba(57,77,58,0.5)_0%,_rgba(29,41,29,0.96)_62%)]" />
       {backdrop}
       <div className="relative mx-auto w-full max-w-[1200px]">
         <Reveal>

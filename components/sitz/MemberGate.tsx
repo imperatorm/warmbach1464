@@ -49,7 +49,7 @@ export function MemberGate() {
               <span
                 key={n}
                 className={`aspect-square rounded-full transition-colors duration-300 ${
-                  n === seatNo ? "bg-gold shadow-[0_0_10px_2px_rgba(192,145,106,0.7)]" : "bg-hairline/15"
+                  n === seatNo ? "bg-gold shadow-[0_0_10px_2px_rgba(197,126,91,0.7)]" : "bg-hairline/15"
                 }`}
               />
             ))}
