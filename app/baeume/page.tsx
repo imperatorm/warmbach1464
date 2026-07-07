@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
-import { PillarHero, PillarNext } from "@/components/sections/PillarShell";
+import { PillarNext } from "@/components/sections/PillarShell";
+import { PillarHeroV3 } from "@/components/sections/PillarShellV3";
 import { ElementalSceneSection } from "@/components/sections/ElementalSceneSection";
 import { pillars, editions } from "@/lib/content";
 
@@ -14,7 +15,7 @@ export const metadata = {
 export default function BaeumePage() {
   return (
     <div>
-      <PillarHero pillar={pillar} />
+      <PillarHeroV3 pillar={pillar} />
 
       {/* i — der lebendige Baum (interaktive 3D-Szene) */}
       <ElementalSceneSection

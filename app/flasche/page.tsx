@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
-import { PillarHero, PillarNext } from "@/components/sections/PillarShell";
+import { PillarHeroV3, PillarNextV3 } from "@/components/sections/PillarShellV3";
+import { NumberedSection } from "@/components/v3/NumberedSection";
+import { BlueprintShowcase } from "@/components/v3/BlueprintShowcase";
 import { pillars } from "@/lib/content";
 
 const pillar = pillars.find((p) => p.slug === "flasche")!;
@@ -11,8 +13,6 @@ export const metadata = {
     "Der Kristall-Dekanter: flach-oval gefasst, mit gefaltetem Stern-Schliff, graviert 1464 · Kitzbühel · Austria, mit dem Warmbach-Medaillon am Hals.",
 };
 
-const eyebrow = "font-body text-[0.7rem] font-medium uppercase tracking-[0.22em]";
-
 const angles = [
   { src: "/flasche/shot-side.jpg", label: "Das Profil", note: "Flach gefasst — eine Handbreit tief." },
   { src: "/flasche/shot-optic.jpg", label: "Der Schliff", note: "Der gefaltete, vierstrahlige Stern." },
@@ -20,85 +20,72 @@ const angles = [
   { src: "/flasche/shot-neck.jpg", label: "Das Siegel", note: "Medaillon an feiner Kette am Hals." },
 ];
 
+/**
+ * Säule V — Flasche, v3 (Watchibia crosshair product pattern): the crystal
+ * decanter inside registration marks ("Ihr Glas. Unsere Zeit."), a four-angle
+ * technical gallery, and the light hand-&-seal narrative.
+ */
 export default function FlaschePage() {
   return (
     <div>
-      <PillarHero pillar={pillar} />
+      <PillarHeroV3 pillar={pillar} />
 
-      {/* Die Flasche — dunkles Showcase: das Kristall schwebt im Schwarz */}
-      <section className="bg-night px-6 py-20 lg:px-10 lg:py-28">
-        <div className="mx-auto grid max-w-[1200px] items-center gap-12 md:grid-cols-2 lg:gap-20">
-          <Reveal>
-            <div className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden bg-[#0a0b0a]">
-              <Image
-                src="/flasche/shot-front.jpg"
-                fill
-                sizes="(max-width: 768px) 80vw, 40vw"
-                alt="Die 1464byW Kristallflasche — Front mit Medaillon, gefaltetem Stern-Schliff und Gravur 1464"
-                className="object-contain"
-                priority
-              />
-            </div>
-          </Reveal>
-          <div>
-            <Reveal>
-              <p className={`${eyebrow} mb-4 text-gold`}>Die Flasche</p>
-              <h2 className="t-h1 mb-6 text-cream">Ein flacher Kristall-Dekanter.</h2>
-              <p className="t-lead max-w-md">
-                Klares Kristall, flach-oval gefasst, mit geschliffenem Stopfen. Im Herzen des Korpus
-                ein gefalteter, vierstrahliger Stern. Vorderseite graviert: 1464 · Kitzbühel · Austria.
-                Am Hals das Warmbach-Medaillon an feiner Kette.
-              </p>
-              <p className="mt-6 text-sm leading-relaxed text-stone">
-                Tiroler Glasbläsertradition mit Wurzeln im 18. Jahrhundert — traditionell für edle Obstbrände.
-              </p>
+      <BlueprintShowcase
+        titleA="Ihr Glas."
+        titleB="Unsere Zeit."
+        image={{ src: "/flasche/shot-front.jpg", alt: "Die 1464byW Kristallflasche — Front mit Medaillon und Stern-Schliff" }}
+        annotations={[
+          { text: "Im Herzen des Korpus ein gefalteter, vierstrahliger Stern.", side: "left", top: "22%" },
+          { text: "Vorderseite graviert: 1464 · Kitzbühel · Austria.", side: "right", top: "40%" },
+          { text: "Am Hals das Warmbach-Medaillon an feiner Kette.", side: "left", top: "62%" },
+        ]}
+        caption="Klares Kristall, flach-oval gefasst, mit geschliffenem Stopfen — Tiroler Glasbläsertradition mit Wurzeln im 18. Jahrhundert."
+      />
+
+      <NumberedSection
+        no="01"
+        title="Vier Ansichten"
+        intro="Profil, Schliff, Signatur, Siegel — der Dekanter als technisches Blatt."
+        tone="kalk"
+      >
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
+          {angles.map((a, i) => (
+            <Reveal key={a.src} delay={i * 0.06}>
+              <figure className="group relative">
+                {/* Corner registration ticks — the blueprint frame per tile */}
+                {(["-top-1.5 -left-1.5 border-t border-l", "-top-1.5 -right-1.5 border-t border-r", "-bottom-1.5 -left-1.5 border-b border-l", "-bottom-1.5 -right-1.5 border-b border-r"] as const).map(
+                  (pos) => (
+                    <span key={pos} aria-hidden className={`absolute ${pos} z-10 h-4 w-4 border-night/50`} />
+                  ),
+                )}
+                <div className="relative aspect-[3/4] overflow-hidden border border-night/10 bg-[#0a0b0a]">
+                  <Image
+                    src={a.src}
+                    fill
+                    sizes="(max-width: 768px) 45vw, 22vw"
+                    alt={a.label}
+                    className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  />
+                </div>
+                <figcaption className="mt-4">
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-copper">{a.label}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-night/60">{a.note}</p>
+                </figcaption>
+              </figure>
             </Reveal>
-          </div>
+          ))}
         </div>
-      </section>
+      </NumberedSection>
 
-      {/* Vier Ansichten — Galerie auf Schwarz */}
-      <section className="bg-night px-6 pb-24 lg:px-10 lg:pb-32">
-        <div className="mx-auto max-w-[1300px]">
-          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
-            {angles.map((a, i) => (
-              <Reveal key={a.src} delay={i * 0.06}>
-                <figure className="group">
-                  <div className="relative aspect-[3/4] overflow-hidden border border-hairline/10 bg-[#0a0b0a]">
-                    <Image
-                      src={a.src}
-                      fill
-                      sizes="(max-width: 768px) 45vw, 22vw"
-                      alt={a.label}
-                      className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    />
-                  </div>
-                  <figcaption className="mt-3">
-                    <p className={`${eyebrow} text-gold/80`}>{a.label}</p>
-                    <p className="mt-1 text-xs leading-relaxed text-stone">{a.note}</p>
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <NumberedSection
+        no="02"
+        title="Hand & Siegel"
+        intro="Jede Flasche mundgeblasen — Material, Maß und Charakter eines Einzelstücks. Dazu fortlaufende Nummerierung, Echtheitszertifikat und Wachssiegel — die Signatur des Hofs."
+        tone="cream"
+        centered
+      />
 
-      {/* Hand & Siegel — helle Erzählung */}
-      <section className="bg-kalk px-6 py-16 text-night lg:px-10 lg:py-24">
-        <div className="mx-auto max-w-[1000px] text-center">
-          <Reveal>
-            <p className={`${eyebrow} mb-4 text-terrakotta`}>Hand &amp; Siegel</p>
-            <h2 className="t-h2 mb-6 text-night">Mundgeblasen, nummeriert, versiegelt.</h2>
-            <p className="t-lead mx-auto max-w-2xl !text-night/70">
-              Jede Flasche mundgeblasen — Material, Maß und Charakter eines Einzelstücks. Dazu
-              fortlaufende Nummerierung, Echtheitszertifikat und Wachssiegel — die Signatur des Hofs.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      <PillarNext current="flasche" />
+      <PillarNextV3 current="flasche" />
     </div>
   );
 }

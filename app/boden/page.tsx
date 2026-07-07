@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/ui/Reveal";
-import { PillarHero, PillarNext } from "@/components/sections/PillarShell";
+import { PillarNext } from "@/components/sections/PillarShell";
+import { PillarHeroV3 } from "@/components/sections/PillarShellV3";
 import { BodenTiefenschnitt } from "@/components/sections/BodenTiefenschnitt";
 import { pillars } from "@/lib/content";
 import { soilArchive, soilStandort, soilPending } from "@/lib/soil";
@@ -15,7 +16,7 @@ export const metadata = {
 export default function BodenPage() {
   return (
     <div>
-      <PillarHero pillar={pillar} />
+      <PillarHeroV3 pillar={pillar} />
 
       {/* ── Variante 3 · Das Terroir (das Territorium, editorial) ───────────── */}
       <section className="bg-kalk px-6 py-20 text-night lg:px-10 lg:py-28">
