@@ -2,7 +2,7 @@ import { HeroEditorial } from "@/components/v2/HeroEditorial";
 import { Manifesto } from "@/components/v2/Manifesto";
 import { MaterialPalette } from "@/components/v2/MaterialPalette";
 import { WordmarkMarquee } from "@/components/v2/WordmarkMarquee";
-import { PillarIndex } from "@/components/v2/PillarIndex";
+import { PillarPanels } from "@/components/v2/PillarPanels";
 import { EditorialSpread } from "@/components/v2/EditorialSpread";
 import { ChronicleSection } from "@/components/sections/ChronicleSection";
 import { ThresholdCTA } from "@/components/v2/ThresholdCTA";
@@ -16,7 +16,7 @@ import { ThresholdCTA } from "@/components/v2/ThresholdCTA";
  *   01 Manifest   → statement spread + counting facts (kalk)
  *   02 Material   → palette cards with copyable swatches (night)
  *   —             → giant scroll-velocity wordmark (cream)
- *   03 Säulen     → index with cursor-trailing previews (cream)
+ *   03 Säulen     → full-viewport photo panels, sticky-stacked (Floema pattern)
  *   04 Der Hof    → asymmetric parallax spread (kalk)
  *   05 Chronik    → the interactive 562-year timeline (night)
  *   Schwelle      → Club 1464 with magnetic CTA (night)
@@ -28,7 +28,7 @@ export default function HomePage() {
       <Manifesto />
       <MaterialPalette />
       <WordmarkMarquee />
-      <PillarIndex />
+      <PillarPanels />
       <EditorialSpread />
       <ChronicleSection />
       <ThresholdCTA />
