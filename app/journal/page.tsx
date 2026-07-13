@@ -11,7 +11,7 @@ export default function JournalPage() {
     <div>
       {/* Dark entry — title block (Fassade rhythm: dark hero → light body) */}
       <div className="pt-32 pb-20 px-6 lg:px-12 max-w-5xl mx-auto">
-        <p className="signage text-gold mb-4">Journal</p>
+        <p className="t-label mb-4">Journal</p>
         <h1 className="display text-5xl md:text-7xl text-cream leading-tight">
           Was am Hof passiert,
           <br />schreiben wir auf.

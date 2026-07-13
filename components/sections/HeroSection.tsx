@@ -5,8 +5,8 @@ import { Monogram } from "@/components/ui/Monogram";
 
 /**
  * Home hero — the cinematic alpine film with the centred 1464byW// wordmark.
- * The onyx bottle has been retired (a new Warmbach bottle is in the works,
- * see /flasche-test); the hero leads with the wordmark + "distilled in Kitzbühel".
+ * The onyx bottle has been retired (the Warmbach bottle now lives in the
+ * v3 Flaschenkammer); the hero leads with the wordmark + "distilled in Kitzbühel".
  */
 export function HeroSection() {
   const reduce = useReducedMotion();
@@ -63,7 +63,7 @@ export function HeroSection() {
         transition={{ duration: 1.4, delay: 1.4 }}
         className="pointer-events-none absolute inset-x-0 bottom-7 z-10 text-center"
       >
-        <p className="signage text-stone">Scroll</p>
+        <p className="t-label text-stone">Scroll</p>
       </motion.div>
     </section>
   );

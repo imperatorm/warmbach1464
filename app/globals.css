@@ -163,3 +163,180 @@ html.cursor-hover .cursor-ring { width: 46px; height: 46px; margin: -23px 0 0 -2
 .gallery-flow { animation: gallery-flow 70s linear infinite; will-change: transform; }
 .gallery-flow:hover { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { .gallery-flow { animation: none !important; } }
+
+/* ---- Sticky Steps (Osmo) — die fünf Elemente auf /v3 ---- */
+/* Structure follows the Osmo resource; skin (type, copper, poster frame) is ours. */
+
+.sticky-steps {
+  position: relative;
+  overflow: clip;
+}
+
+.sticky-steps__container {
+  max-width: 74em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+.sticky-steps__collection {
+  min-height: 100dvh;
+  display: flex;
+  position: relative;
+}
+
+.sticky-steps__list {
+  grid-column-gap: 30dvh;
+  grid-row-gap: 30dvh;
+  flex-flow: column;
+  flex: 1;
+  padding-top: calc(50dvh - 7.5em);
+  padding-bottom: calc(50dvh - 7.5em);
+  display: flex;
+}
+
+.sticky-steps__text {
+  grid-column-gap: 1.5em;
+  grid-row-gap: 1.5em;
+  flex-flow: column;
+  width: 50%;
+  padding-right: 6em;
+  display: flex;
+}
+
+.sticky-steps__eyebrow {
+  color: var(--color-copper, #8c5438);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.sticky-steps__h2 {
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: min(3.4em, 12vw);
+  font-weight: 600;
+  line-height: 0.95;
+}
+
+.sticky-steps__p {
+  opacity: 0.7;
+  max-width: 26em;
+  margin-bottom: 0;
+  font-size: min(1.05em, 5vw);
+  line-height: 1.55;
+}
+
+.sticky-steps__media {
+  width: 50%;
+  height: 100%;
+  padding-left: 3em;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.sticky-steps__sticky {
+  align-items: center;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  position: sticky;
+  top: 0;
+}
+
+.sticky-steps__visual {
+  width: 100%;
+  position: relative;
+}
+
+.sticky-steps__frame {
+  border: 1px solid rgba(29, 41, 29, 0.15);
+  background: var(--color-cream, #f0efeb);
+  padding: 0.55em;
+  margin: 0;
+  box-shadow: 0 24px 70px -30px rgba(29, 41, 29, 0.35);
+}
+
+.sticky-steps__frame-inner {
+  aspect-ratio: 3 / 4;
+  position: relative;
+  overflow: hidden;
+}
+
+.sticky-steps__cover-image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (min-width: 992px) {
+  [data-sticky-steps-item-status] .sticky-steps__visual {
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  [data-sticky-steps-item-status="before"] .sticky-steps__visual,
+  [data-sticky-steps-item-status="active"] .sticky-steps__visual {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  [data-sticky-steps-item-status] .sticky-steps__text {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0.25;
+  }
+
+  [data-sticky-steps-item-status="active"] .sticky-steps__text {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .sticky-steps__list {
+    grid-column-gap: 7.5em;
+    grid-row-gap: 7.5em;
+    padding-top: 6em;
+    padding-bottom: 6em;
+  }
+
+  .sticky-steps__collection {
+    min-height: auto;
+  }
+
+  .sticky-steps__text {
+    width: 100%;
+    padding-bottom: 3em;
+    padding-right: 0;
+  }
+
+  .sticky-steps__sticky {
+    min-height: auto;
+    position: relative;
+    top: auto;
+  }
+
+  .sticky-steps__media {
+    width: 100%;
+    height: auto;
+    padding-left: 0;
+    position: relative;
+    top: auto;
+    right: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .sticky-steps__text {
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+  }
+}

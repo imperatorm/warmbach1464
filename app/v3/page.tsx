@@ -4,35 +4,20 @@ import { SplitHero } from "@/components/v3/SplitHero";
 import { NumberedSection } from "@/components/v3/NumberedSection";
 import { HourglassMotif } from "@/components/v3/HourglassMotif";
 import { BlueprintShowcase } from "@/components/v3/BlueprintShowcase";
-import { InlineImageList, type InlineListItem } from "@/components/v3/InlineImageList";
+import { ElementSteps } from "@/components/v3/ElementSteps";
 import { GiantYearTimeline } from "@/components/v3/GiantYearTimeline";
 import { PosterLabelImage } from "@/components/v3/PosterLabelImage";
 import { PolaroidStack, type PolaroidShot } from "@/components/v3/PolaroidStack";
 import { MagneticLink } from "@/components/v3/MagneticLink";
-import { HourglassGlyph } from "@/components/v3/HourglassGlyph";
+import { BottleChamber } from "@/components/v3/BottleChamber";
+import { ScrollSandGlyph } from "@/components/v3/ScrollSandGlyph";
 import { Reveal } from "@/components/ui/Reveal";
-import { heritageElements } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "1464byW — v3 Entwurf",
   description: "Redesign-Entwurf: der Warmbachhof als editorialer Bogen — Sanduhr statt Uhrwerk.",
   robots: { index: false, follow: false },
 };
-
-// The five elements as a Fortress-style inline-image list.
-const ELEMENT_IMAGES: Record<string, { src: string; alt: string }> = {
-  Boden: { src: "/gallery/warmbach/img_0024.jpg", alt: "Wiese vor dem Wilden Kaiser" },
-  Wasser: { src: "/gallery/warmbach/img_0059.jpg", alt: "Der Hof in der Winterdämmerung" },
-  Baum: { src: "/gallery/warmbach/img_0030.jpg", alt: "Der Osthang über Kitzbühel" },
-  Kupfer: { src: "/gallery/warmbach/img_0080.jpg", alt: "Die kupferne Kothe-Brennblase" },
-  Zeit: { src: "/gallery/warmbach/img_6648.jpg", alt: "Das W-Monogramm auf Altholz" },
-};
-
-const elementItems: InlineListItem[] = heritageElements.map((e) => ({
-  label: e.name,
-  data: e.data,
-  image: ELEMENT_IMAGES[e.name] ?? ELEMENT_IMAGES.Zeit,
-}));
 
 const polaroids: PolaroidShot[] = [
   { src: "/gallery/warmbach/img_0027.jpg", alt: "Der Hof vor dem Wilden Kaiser", caption: "Der Hof · Osthang" },
@@ -82,15 +67,17 @@ export default function HomeV3Page() {
         caption="Ein Gefäß mit Denkmalwürde — gefertigt für Jahrzehnte, nicht für Regale."
       />
 
+      {/* Die Flaschenkammer — the drawing above becomes the object itself */}
+      <BottleChamber />
+
       <NumberedSection
         no="02"
         title="Fünf Elemente, ein Geschmack"
         intro="Worauf die Bäume stehen, schmeckt man später. Boden, Wasser, Baum, Kupfer und Zeit — die fünf Größen, aus denen jeder Brand des Hofs entsteht."
         tone="cream"
         centered
-      >
-        <InlineImageList items={elementItems} tone="cream" />
-      </NumberedSection>
+      />
+      <ElementSteps />
 
       <NumberedSection
         no="03"
@@ -134,9 +121,8 @@ export default function HomeV3Page() {
 
       {/* Threshold — split-tone Club close, the Sanduhr as watermark */}
       <section className="relative overflow-hidden bg-night px-6 py-28 text-center text-cream lg:py-36">
-        <HourglassGlyph
+        <ScrollSandGlyph
           className="pointer-events-none absolute left-1/2 top-1/2 h-[130%] -translate-x-1/2 -translate-y-1/2 text-cream/[0.045]"
-          sand={0.5}
           strokeWidth={0.8}
         />
         <div className="relative mx-auto max-w-2xl">

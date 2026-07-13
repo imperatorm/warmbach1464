@@ -14,7 +14,16 @@ const nextConfig = {
     if (dev || process.env.JARVIS_INSTRUMENT === "1") {
       // dev:true forces the inject-loader to stamp data-insp-path even in a production
       // build (the JARVIS_INSTRUMENT image runs `next start` with NODE_ENV=production).
-      config.plugins.push(codeInspectorPlugin({ bundler: "webpack", hideConsole: true, dev: true }));
+      // components/three is excluded: react-three-fiber parses data-insp-path as a
+      // nested prop path (data.insp.path) and crashes every <Canvas> scene.
+      config.plugins.push(
+        codeInspectorPlugin({
+          bundler: "webpack",
+          hideConsole: true,
+          dev: true,
+          exclude: [/components[\\/]three/],
+        }),
+      );
     }
     return config;
   },

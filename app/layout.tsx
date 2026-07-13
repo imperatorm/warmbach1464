@@ -5,6 +5,7 @@ import { Navigation } from "@/components/ui/Navigation";
 import { Footer } from "@/components/ui/Footer";
 import { AgeGate } from "@/components/ui/AgeGate";
 import { Cursor } from "@/components/ui/Cursor";
+import { EntryVeil } from "@/components/ui/EntryVeil";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { PageTransition } from "@/components/providers/PageTransition";
 import { display, body } from "./fonts";
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
     title: "1464byW — Warmbachhof Kitzbühel",
     description: "Sechsundzwanzig Generationen. Eine Quelle. Ein Osthang.",
     type: "website",
+    images: [{ url: "/og/default.jpg", alt: "Die Warmbach-Flasche, liegend auf Stein" }],
   },
 };
 
@@ -30,6 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-night text-cream font-body antialiased min-h-screen">
         <SmoothScroll />
         <Cursor />
+        <EntryVeil />
         <AgeGate />
         <Navigation />
         <main>

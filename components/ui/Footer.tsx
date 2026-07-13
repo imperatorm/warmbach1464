@@ -1,59 +1,171 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { brand } from "@/lib/content";
 import { Monogram } from "./Monogram";
-import Link from "next/link";
+
+const COLUMNS: { label: string; links: { href: string; text: string }[] }[] = [
+  {
+    label: "Die Säulen",
+    links: [
+      { href: "/zeit", text: "Zeit" },
+      { href: "/boden", text: "Boden" },
+      { href: "/baeume", text: "Bäume" },
+      { href: "/galerie", text: "Galerie" },
+      { href: "/journal", text: "Journal" },
+      { href: "/contact", text: "Besuch" },
+    ],
+  },
+  {
+    label: "Die Marke",
+    links: [
+      { href: "/manufaktur", text: "Manufaktur" },
+      { href: "/flasche", text: "Die Flasche" },
+      { href: "/editions", text: "Editionen" },
+      { href: "/club", text: "Club 1464" },
+      { href: "/club/partner", text: "1464 Partner" },
+      { href: "/sitz", text: "Mitglieder · Eintreten" },
+    ],
+  },
+];
+
+function NewsletterForm() {
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState<"idle" | "error" | "done">("idle");
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setState("error");
+      return;
+    }
+    setState("done"); // no backend yet — visual confirmation only
+  };
+
+  if (state === "done") {
+    return (
+      <p className="mt-3 border border-gold/40 px-4 py-3 text-sm text-cream/80">
+        Vorgemerkt. Wir schreiben an drei Tagen im Jahr.
+      </p>
+    );
+  }
+  return (
+    <form className="mt-3" onSubmit={submit} noValidate>
+      <div className="flex gap-2">
+        <label htmlFor="footer-newsletter" className="sr-only">
+          E-Mail-Adresse
+        </label>
+        <input
+          id="footer-newsletter"
+          type="email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            if (state === "error") setState("idle");
+          }}
+          placeholder="E-Mail"
+          autoComplete="email"
+          className={`min-w-0 flex-1 border bg-night px-3 py-2.5 text-sm text-cream placeholder:text-stone/60 focus:border-gold focus:outline-none ${
+            state === "error" ? "border-terrakotta" : "border-hairline/30"
+          }`}
+        />
+        <button
+          type="submit"
+          data-cursor
+          className="border border-gold/70 px-4 py-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-cream transition-colors duration-300 hover:bg-gold hover:text-night"
+        >
+          Eintragen
+        </button>
+      </div>
+      {state === "error" && (
+        <p className="mt-2 text-xs text-terrakotta" role="alert">
+          Bitte eine gültige E-Mail-Adresse angeben.
+        </p>
+      )}
+    </form>
+  );
+}
 
 export function Footer() {
   const pathname = usePathname();
+  const reduce = useReducedMotion();
+  const wrapRef = useRef<HTMLElement>(null);
+
+  // Footer parallax (Osmo pattern, driven by Framer Motion instead of GSAP):
+  // the inner sheet slides up from -25% while a dark veil fades from 0.5 → 0
+  // as the footer is revealed at the end of the page.
+  const { scrollYProgress } = useScroll({ target: wrapRef, offset: ["start end", "end end"] });
+  const innerY = useTransform(scrollYProgress, [0, 1], ["-25%", "0%"]);
+  const darkOpacity = useTransform(scrollYProgress, [0, 1], [0.5, 0]);
+
   if (pathname === "/enter" || pathname.startsWith("/sitz")) return null; // gate + portal have own chrome
+
   return (
-    <footer className="border-t border-hairline/10 mt-12 px-6 lg:px-10 py-14 bg-soot/30">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div className="flex flex-col gap-4">
-          <Monogram className="w-10 h-10 text-cream" />
-          <p className="signage text-stone">{brand.estate}</p>
-          <p className="text-stone text-sm">{brand.claim}</p>
+    <footer ref={wrapRef} data-footer-parallax className="relative mt-12 overflow-hidden border-t border-hairline/10 bg-night">
+      <motion.div
+        data-footer-parallax-inner
+        style={reduce ? undefined : { y: innerY }}
+        className="border-t border-hairline/10 bg-soot/30 px-6 py-14 lg:px-10"
+      >
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-4">
+          <div className="flex flex-col gap-4">
+            <Monogram className="h-10 w-10 text-cream" />
+            <p className="t-label">{brand.estate}</p>
+            <p className="text-sm text-stone">{brand.claim}</p>
+          </div>
+          {COLUMNS.map((col) => (
+            <nav key={col.label} aria-label={col.label} className="flex flex-col gap-2.5 text-sm">
+              <p className="t-label mb-2">{col.label}</p>
+              {col.links.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  data-cursor
+                  className="link-underline self-start text-cream/75 transition-colors duration-300 hover:text-gold"
+                >
+                  {l.text}
+                </Link>
+              ))}
+            </nav>
+          ))}
+          <div className="flex flex-col gap-2 text-sm">
+            <p className="t-label mb-2">Newsletter</p>
+            <p className="text-sm text-stone/80">
+              Hinweise an drei Tagen im Jahr — Brennstart, Abfüllung, Edition.
+            </p>
+            <NewsletterForm />
+          </div>
         </div>
-        <div className="flex flex-col gap-2 text-sm">
-          <p className="signage text-stone mb-2">Die Säulen</p>
-          <Link href="/zeit" className="hover:text-gold">Zeit</Link>
-          <Link href="/boden" className="hover:text-gold">Boden</Link>
-          <Link href="/baeume" className="hover:text-gold">Bäume</Link>
-          <Link href="/galerie" className="hover:text-gold">Galerie</Link>
-          <Link href="/journal" className="hover:text-gold">Journal</Link>
-          <Link href="/contact" className="hover:text-gold">Besuch</Link>
+
+        <div className="hairline mt-12" />
+        <div className="mx-auto mt-6 flex max-w-6xl flex-col justify-between gap-3 text-xs text-stone md:flex-row">
+          <p>
+            © {new Date().getFullYear()} {brand.house}. Alle Rechte vorbehalten.
+          </p>
+          <div className="flex gap-5">
+            <Link href="/legal" data-cursor className="link-underline hover:text-gold">
+              Impressum
+            </Link>
+            <Link href="/legal#privacy" data-cursor className="link-underline hover:text-gold">
+              Datenschutz
+            </Link>
+            <Link href="/legal#age" data-cursor className="link-underline hover:text-gold">
+              Altersbestätigung
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-2 text-sm">
-          <p className="signage text-stone mb-2">Die Marke</p>
-          <Link href="/manufaktur" className="hover:text-gold">Manufaktur</Link>
-          <Link href="/flasche" className="hover:text-gold">Die Flasche</Link>
-          <Link href="/editions" className="hover:text-gold">Editionen</Link>
-          <Link href="/club" className="hover:text-gold">Club 1464</Link>
-          <Link href="/club/partner" className="hover:text-gold">1464 Partner</Link>
-          <Link href="/sitz" className="hover:text-gold">Mitglieder · Eintreten</Link>
-        </div>
-        <div className="flex flex-col gap-2 text-sm">
-          <p className="signage text-stone mb-2">Newsletter</p>
-          <p className="text-stone/80 text-sm">Hinweise an drei Tagen im Jahr — Brennstart, Abfüllung, Edition.</p>
-          <form className="flex gap-2 mt-3" action="#" method="post">
-            <input type="email" placeholder="E-Mail" className="bg-night border border-hairline/30 px-3 py-2 text-sm flex-1 focus:outline-none focus:border-gold" />
-            <button className="border border-gold/70 px-4 py-2 text-sm signage hover:bg-gold hover:text-night transition-all">
-              Eintragen
-            </button>
-          </form>
-        </div>
-      </div>
-      <div className="hairline mt-12" />
-      <div className="max-w-6xl mx-auto mt-6 flex flex-col md:flex-row justify-between text-xs text-stone gap-3">
-        <p>© {new Date().getFullYear()} {brand.house}. Alle Rechte vorbehalten.</p>
-        <div className="flex gap-5">
-          <Link href="/legal" className="hover:text-gold">Impressum</Link>
-          <Link href="/legal#privacy" className="hover:text-gold">Datenschutz</Link>
-          <Link href="/legal#age" className="hover:text-gold">Altersbestätigung</Link>
-        </div>
-      </div>
+      </motion.div>
+
+      {/* Dark veil that lifts as the footer arrives */}
+      <motion.div
+        data-footer-parallax-dark
+        aria-hidden
+        style={reduce ? { opacity: 0 } : { opacity: darkOpacity }}
+        className="pointer-events-none absolute inset-0 bg-black"
+      />
     </footer>
   );
 }

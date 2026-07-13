@@ -2,11 +2,20 @@
 
 import { Canvas } from "@react-three/fiber";
 import { ContactShadows, Environment, Lightformer, OrbitControls } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { useReducedMotion } from "framer-motion";
 import { WarmbachBottle } from "./WarmbachBottle";
 import { GoldDust } from "./GoldDust";
 import { PostFX } from "./PostFX";
+
+/** Fires once the suspended resources have mounted — the signal consumers use
+ *  to cross-fade from the poster still to the live scene. */
+function SceneReady({ onReady }: { onReady?: () => void }) {
+  useEffect(() => {
+    onReady?.();
+  }, [onReady]);
+  return null;
+}
 
 /** Green-tuned "alpine night" environment — emerald back-glow instead of gold. */
 function GreenEnvironment() {
@@ -37,14 +46,25 @@ function GreenLighting() {
 export default function WarmbachBottleScene({
   tint = "green",
   showStopper = true,
+  active = true,
+  onReady,
+  dustCount = 260,
+  enableZoom = true,
 }: {
   tint?: "green" | "clear";
   showStopper?: boolean;
+  /** Pause the render loop when the scene scrolls out of view. */
+  active?: boolean;
+  onReady?: () => void;
+  dustCount?: number;
+  /** Off in scroll-embedded sections — wheel capture would trap Lenis smooth scroll. */
+  enableZoom?: boolean;
 }) {
   const reduce = useReducedMotion() ?? false;
   return (
     <Canvas
       flat
+      frameloop={active ? "always" : "never"}
       dpr={[1, 1.6]}
       camera={{ position: [0, 0.2, 6.8], fov: 38 }}
       gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
@@ -54,10 +74,12 @@ export default function WarmbachBottleScene({
         <GreenEnvironment />
         <WarmbachBottle tint={tint} showStopper={showStopper} reduce={reduce} />
         <ContactShadows position={[0, -1.82, 0]} opacity={0.5} blur={2.6} scale={7} far={4} resolution={512} color="#04140a" />
-        <GoldDust count={260} />
+        <GoldDust count={dustCount} />
+        <SceneReady onReady={onReady} />
       </Suspense>
       <OrbitControls
         enablePan={false}
+        enableZoom={enableZoom}
         minPolarAngle={Math.PI * 0.12}
         maxPolarAngle={Math.PI * 0.86}
         autoRotate={!reduce}

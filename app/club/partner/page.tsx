@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
+import { MagneticLink } from "@/components/v3/MagneticLink";
 
 export const metadata = {
   title: "1464 Partner — Vertrieb | 1464byW",
@@ -75,7 +76,7 @@ export default function PartnerPage() {
           </Reveal>
           <Reveal delay={0.3}>
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link href="#login" data-cursor className="btn-primary">Partner-Login <span aria-hidden>&rarr;</span></Link>
+              <MagneticLink href="#login" className="btn-primary">Partner-Login <span aria-hidden>&rarr;</span></MagneticLink>
               <Link href="#anfrage" data-cursor className="link-underline text-xs uppercase tracking-[0.18em] text-cream/70">Partner werden</Link>
             </div>
           </Reveal>
@@ -269,9 +270,9 @@ export default function PartnerPage() {
               Stellen Sie sich und Ihr Haus vor — wir prüfen Passung, Gebiet und Sortiment und melden uns
               persönlich. Aufnahme nur nach Freigabe.
             </p>
-            <Link href="/contact" data-cursor className="btn-primary self-start">
+            <MagneticLink href="/contact" className="btn-primary self-start">
               Anfrage an den Vertrieb <span aria-hidden>&rarr;</span>
-            </Link>
+            </MagneticLink>
           </Reveal>
         </div>
       </section>

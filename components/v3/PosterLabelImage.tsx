@@ -1,4 +1,5 @@
 import { ParallaxImage } from "./ParallaxImage";
+import { MaskReveal } from "./MaskReveal";
 
 /**
  * Fortress's offset framed image with a small vertical poster-label card
@@ -27,7 +28,9 @@ export function PosterLabelImage({
 }) {
   return (
     <figure className={`relative ${className}`}>
-      <ParallaxImage src={src} alt={alt} className={aspect} sizes={sizes} />
+      <MaskReveal>
+        <ParallaxImage src={src} alt={alt} className={aspect} sizes={sizes} />
+      </MaskReveal>
       {/* Vertical poster label riding the edge */}
       <div
         className={`absolute top-1/2 w-28 -translate-y-1/2 border border-night/15 bg-cream px-3 py-5 text-center shadow-[0_18px_50px_rgba(29,41,29,0.25)] sm:w-32 ${

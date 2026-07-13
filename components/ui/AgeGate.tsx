@@ -38,7 +38,7 @@ export function AgeGate() {
   return (
     <div className="fixed inset-0 z-50 bg-night/95 backdrop-blur-md flex items-center justify-center px-6">
       <div className="max-w-md w-full border border-gold/40 bg-soot p-10 text-center">
-        <p className="signage mb-6">Vor dem Eintritt</p>
+        <p className="t-label mb-6">Vor dem Eintritt</p>
         <h2 className="display text-3xl mb-6 text-cream">Bitte bestätigen Sie Ihr Geburtsdatum.</h2>
         <p className="text-stone text-sm mb-8">Wir verkaufen ausschließlich an Volljährige.</p>
         <input

@@ -1,5 +1,6 @@
 import { ParallaxImage } from "./ParallaxImage";
 import { Reveal } from "@/components/ui/Reveal";
+import { LineReveal } from "./LineReveal";
 
 /**
  * Mirage's "about us" hero: a giant lowercase italic serif headline set on the
@@ -24,11 +25,9 @@ export function OverlapHeading({
             <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-copper">{kicker}</p>
           </Reveal>
         )}
-        <Reveal delay={0.05}>
-          <h1 className="-mb-[0.34em] font-display text-[clamp(4.2rem,15vw,12.5rem)] lowercase italic leading-[0.9] tracking-[-0.02em] text-merlot [text-shadow:0_2px_30px_rgba(240,239,235,0.25)]">
-            {word}
-          </h1>
-        </Reveal>
+        <h1 className="-mb-[0.34em] font-display text-[clamp(4.2rem,15vw,12.5rem)] lowercase italic leading-[0.9] tracking-[-0.02em] text-merlot [text-shadow:0_2px_30px_rgba(240,239,235,0.25)]">
+          <LineReveal lines={[word]} delay={0.05} lineClassName="pb-[0.1em] -mb-[0.1em]" />
+        </h1>
       </div>
       <ParallaxImage src={image.src} alt={image.alt} className="h-[46svh] w-full lg:h-[56svh]" sizes="100vw" priority />
       {children}

@@ -62,16 +62,26 @@ function VelocityRow({
  * The giant wordmark interlude — "Warmbach" at poster scale drifting with
  * the reader's scroll, a second counter-running line of provenance beneath.
  * Static (centred, single line) when the reader prefers reduced motion.
+ * `tone="night"` renders it on the dark ground (footer closing band).
  */
-export function WordmarkMarquee() {
+export function WordmarkMarquee({
+  tone = "cream",
+  compact = false,
+}: {
+  tone?: "cream" | "night";
+  compact?: boolean;
+}) {
   const reduce = useReducedMotion();
+  const ground = tone === "cream" ? "bg-cream text-night" : "bg-transparent text-cream";
+  const accent = tone === "cream" ? "text-copper" : "text-gold";
+  const pad = compact ? "py-12 lg:py-16" : "py-20 lg:py-28";
 
   return (
-    <section aria-label="Warmbach — Anno 1464, Kitzbühel" className="overflow-hidden bg-cream py-20 text-night lg:py-28">
+    <section aria-label="Warmbach — Anno 1464, Kitzbühel" className={`overflow-hidden ${ground} ${pad}`}>
       {reduce ? (
         <div className="px-6 text-center">
           <p className="font-display text-[clamp(3.5rem,12vw,11rem)] leading-none tracking-[-0.02em]">Warmbach</p>
-          <p className="mt-6 text-[0.7rem] uppercase tracking-[0.3em] text-copper">
+          <p className={`mt-6 text-[0.7rem] uppercase tracking-[0.3em] ${accent}`}>
             Anno 1464 · Kitzbühel · Vom Boden in die Seele
           </p>
         </div>
@@ -79,13 +89,13 @@ export function WordmarkMarquee() {
         <>
           <VelocityRow baseVelocity={2.2} className="font-display text-[clamp(4.5rem,14vw,13rem)] leading-[0.95] tracking-[-0.02em]">
             <span className="pr-[0.5em]">
-              Warmbach <span className="italic text-copper">Hof</span> — Warmbach{" "}
-              <span className="italic text-copper">1464</span> —
+              Warmbach <span className={`italic ${accent}`}>Hof</span> — Warmbach{" "}
+              <span className={`italic ${accent}`}>1464</span> —
             </span>
           </VelocityRow>
           <VelocityRow
             baseVelocity={-1.4}
-            className="mt-6 text-[0.75rem] uppercase tracking-[0.32em] text-copper lg:text-[0.85rem]"
+            className={`mt-6 text-[0.75rem] uppercase tracking-[0.32em] ${accent} lg:text-[0.85rem]`}
           >
             <span className="pr-[2em]">
               Anno 1464 · Kitzbühel · Tirol · Vom Boden in die Seele · Zweifachbrand auf Kupfer ·

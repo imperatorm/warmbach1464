@@ -15,7 +15,7 @@ export function WaitlistSection() {
   return (
     <section className="py-32 px-6 lg:px-12 border-t border-hairline/10">
       <div className="max-w-2xl mx-auto text-center">
-        <p className="signage text-gold mb-4">Club 1464</p>
+        <p className="t-label mb-4">Club 1464</p>
         <h2 className="display text-4xl md:text-5xl text-cream mb-6 leading-tight">
           1464.
           <br />

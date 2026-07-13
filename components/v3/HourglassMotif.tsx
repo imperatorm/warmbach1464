@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useMotionValueEvent, useReducedMotion, useScroll } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { HourglassGlyph } from "./HourglassGlyph";
+import { LineReveal } from "./LineReveal";
 
 /**
  * The Sanduhr statement (Watchibia's "time around a statement", reinterpreted
@@ -61,11 +62,7 @@ export function HourglassMotif({
             <p className="mb-6 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-copper">{kicker}</p>
           </Reveal>
           <h2 className="font-body text-[clamp(1.5rem,2.9vw,2.3rem)] font-semibold leading-[1.3] text-night">
-            {lines.map((l, i) => (
-              <Reveal key={l} delay={0.08 + i * 0.08}>
-                <span className="block">{l}</span>
-              </Reveal>
-            ))}
+            <LineReveal lines={lines} delay={0.08} stagger={0.08} />
           </h2>
           {body && (
             <Reveal delay={0.3}>

@@ -97,7 +97,7 @@ export function ExperienceHero() {
         transition={{ duration: 1.4, delay: 1.9 }}
         className="pointer-events-none absolute inset-x-0 bottom-7 z-10 text-center"
       >
-        <p className="signage text-stone">Scroll</p>
+        <p className="t-label text-stone">Scroll</p>
       </motion.div>
     </section>
   );

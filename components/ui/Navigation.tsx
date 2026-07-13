@@ -3,55 +3,27 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { nav, secondary, clubMenu, brand } from "@/lib/content";
 import { Monogram } from "./Monogram";
-import { GooFilter } from "./GooFilter";
 
 const numerals = ["I", "II", "III", "IV", "V"];
 
+const linkBase =
+  "text-[0.66rem] font-semibold uppercase tracking-[0.22em] transition-colors duration-300";
+
 /**
- * Gooey pill: the text sits crisp on top; the capsule itself is a background
- * span that stretches horizontally on hover. Because the whole row runs
- * through the goo filter, a stretching capsule flows into its neighbours
- * with a liquid neck (Floema's nav behaviour).
+ * Editorial header (PROmeat grammar): a solid cream bar with the wordmark
+ * left, quiet uppercase links with an underline hover, and the Club as an
+ * outlined oval on the right. The gooey-pill interaction has been retired.
  */
-function GooPill({
-  children,
-  accent = false,
-  active = false,
-}: {
-  children: React.ReactNode;
-  accent?: boolean;
-  active?: boolean;
-}) {
-  const bg = accent || active ? "bg-gold" : "bg-cream";
-  return (
-    <>
-      <span
-        aria-hidden
-        className={`absolute inset-0 rounded-full ${bg} transition-transform duration-300 ease-deep group-hover/pill:scale-x-[1.22] group-hover/pill:scale-y-[1.06]`}
-      />
-      <span className="relative inline-flex items-center gap-1.5">{children}</span>
-    </>
-  );
-}
-
-const pillBase =
-  "group/pill relative inline-flex items-center px-5 py-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-night";
-
 export function Navigation() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
+  const reduce = useReducedMotion();
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<null | "pillars" | "club">(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.4 });
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -60,6 +32,22 @@ export function Navigation() {
     };
   }, [open]);
 
+  // Escape closes whichever layer is open; route changes close everything.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setMenu(null);
+      setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  useEffect(() => {
+    setMenu(null);
+    setOpen(false);
+  }, [pathname]);
+
   if (pathname === "/enter" || pathname.startsWith("/sitz")) return null; // gate + portal have own chrome
 
   const isActive = (href: string) => pathname === href || (href !== "/" && pathname.startsWith(href));
@@ -67,77 +55,70 @@ export function Navigation() {
 
   return (
     <>
-      <header
-        className={`fixed inset-x-0 top-0 z-40 transition-colors duration-500 ${
-          scrolled || open ? "bg-night/70 backdrop-blur-md" : "bg-transparent"
-        }`}
-      >
+      <header className="fixed inset-x-0 top-0 z-40 border-b border-night/10 bg-cream text-night">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 lg:px-10">
           <Link href="/" data-cursor aria-label={`${brand.master} — Startseite`} className="group flex items-center gap-2.5">
-            <span className="font-display text-[1.7rem] leading-none tracking-[0.01em] text-cream [text-shadow:0_1px_10px_rgba(0,0,0,0.35)]">
-              1464
-            </span>
-            <span className="text-[0.6rem] uppercase tracking-[0.28em] text-cream/70 [margin-inline-end:-0.28em]">by</span>
-            <Monogram className="h-7 w-auto text-cream transition-transform duration-500 group-hover:scale-105" />
+            <span className="font-display text-[1.7rem] leading-none tracking-[0.01em]">1464</span>
+            <span className="text-[0.6rem] uppercase tracking-[0.28em] text-night/60 [margin-inline-end:-0.28em]">by</span>
+            <Monogram className="h-7 w-auto text-night transition-transform duration-500 group-hover:scale-105" />
           </Link>
 
-          {/* Desktop: gooey pill row; dropdowns live OUTSIDE the filter */}
-          <nav className="relative hidden lg:block" onMouseLeave={() => setMenu(null)}>
-            <GooFilter id="nav-goo" blur={6} />
-            <div style={{ filter: "url(#nav-goo)" }} className="flex items-center gap-2.5">
-              <button
-                data-cursor
-                aria-haspopup="true"
-                aria-expanded={menu === "pillars"}
-                onMouseEnter={() => setMenu("pillars")}
-                onFocus={() => setMenu("pillars")}
-                className={pillBase}
-              >
-                <GooPill active={pillarActive || menu === "pillars"}>
-                  Die Säulen
-                  <span aria-hidden className="text-[0.5rem] opacity-60">▾</span>
-                </GooPill>
-              </button>
+          {/* Desktop: quiet uppercase link row */}
+          <nav className="relative hidden items-center gap-9 lg:flex" onMouseLeave={() => setMenu(null)}>
+            <button
+              data-cursor
+              aria-haspopup="true"
+              aria-expanded={menu === "pillars"}
+              onMouseEnter={() => setMenu("pillars")}
+              onFocus={() => setMenu("pillars")}
+              className={`${linkBase} inline-flex items-center gap-1.5 ${
+                pillarActive || menu === "pillars" ? "text-copper" : "text-night hover:text-copper"
+              }`}
+            >
+              Die Säulen
+              <span aria-hidden className="text-[0.5rem] opacity-60">▾</span>
+            </button>
 
-              {secondary.map((n) => (
-                <Link
-                  key={n.href}
-                  href={n.href}
-                  data-cursor
-                  onMouseEnter={() => setMenu(null)}
-                  className={pillBase}
-                >
-                  <GooPill active={isActive(n.href)}>{n.label}</GooPill>
-                </Link>
-              ))}
-
+            {secondary.map((n) => (
               <Link
-                href="/club"
+                key={n.href}
+                href={n.href}
                 data-cursor
-                aria-haspopup="true"
-                aria-expanded={menu === "club"}
-                onMouseEnter={() => setMenu("club")}
-                onFocus={() => setMenu("club")}
-                className={`${pillBase} ml-2`}
+                data-underline-link
+                onMouseEnter={() => setMenu(null)}
+                className={`${linkBase} link-underline ${isActive(n.href) ? "text-copper" : "text-night hover:text-copper"}`}
               >
-                <GooPill accent>
-                  Club 1464
-                  <span aria-hidden className="text-[0.5rem] opacity-60">▾</span>
-                </GooPill>
+                {n.label}
               </Link>
-            </div>
+            ))}
 
-            {/* Säulen menu — anchored to the row start */}
+            <Link
+              href="/club"
+              data-cursor
+              aria-haspopup="true"
+              aria-expanded={menu === "club"}
+              onMouseEnter={() => setMenu("club")}
+              onFocus={() => setMenu("club")}
+              className={`${linkBase} ml-2 rounded-full border px-5 py-2.5 ${
+                isActive("/club") || menu === "club"
+                  ? "border-copper bg-copper text-cream"
+                  : "border-night/35 text-night hover:border-copper hover:text-copper"
+              }`}
+            >
+              Club 1464
+            </Link>
+
+            {/* Säulen menu — a quiet cream sheet under the bar */}
             {menu === "pillars" && (
-              <div className="absolute left-0 top-full w-64 pt-3">
-                <div className="overflow-hidden rounded-3xl bg-cream p-2 shadow-[0_24px_70px_-18px_rgba(29,41,29,0.5)]">
+              <div className="absolute left-0 top-full w-64 pt-4">
+                <div className="border border-night/12 bg-cream py-2 shadow-[0_24px_70px_-18px_rgba(29,41,29,0.35)]">
                   {nav.map((n, i) => (
                     <Link
                       key={n.href}
                       href={n.href}
                       data-cursor
                       onClick={() => setMenu(null)}
-                      className="flex items-baseline gap-3 rounded-full px-5 py-2.5 text-sm text-night transition-colors hover:bg-kalk"
+                      className="flex items-baseline gap-3 px-6 py-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-night transition-colors hover:bg-kalk hover:text-copper"
                     >
                       <span className="font-display text-xs italic text-copper">{numerals[i]}</span>
                       {n.label}
@@ -147,17 +128,17 @@ export function Navigation() {
               </div>
             )}
 
-            {/* Club menu — anchored to the row end */}
+            {/* Club menu */}
             {menu === "club" && (
-              <div className="absolute right-0 top-full w-72 pt-3">
-                <div className="overflow-hidden rounded-3xl bg-cream p-2 shadow-[0_24px_70px_-18px_rgba(29,41,29,0.5)]">
+              <div className="absolute right-0 top-full w-72 pt-4">
+                <div className="border border-night/12 bg-cream py-2 shadow-[0_24px_70px_-18px_rgba(29,41,29,0.35)]">
                   {clubMenu.map((n) => (
                     <Link
                       key={n.href}
                       href={n.href}
                       data-cursor
                       onClick={() => setMenu(null)}
-                      className="flex items-center justify-between rounded-full px-5 py-2.5 text-sm text-night transition-colors hover:bg-kalk"
+                      className="flex items-center justify-between px-6 py-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-night transition-colors hover:bg-kalk hover:text-copper"
                     >
                       {n.label} <span aria-hidden className="text-copper">&rarr;</span>
                     </Link>
@@ -172,17 +153,26 @@ export function Navigation() {
             data-cursor
             aria-expanded={open}
             aria-label="Menü"
-            className={`${pillBase} lg:hidden`}
+            className={`${linkBase} rounded-full border border-night/35 px-5 py-2.5 text-night lg:hidden`}
           >
-            <GooPill>{open ? "Schließen" : "Menü"}</GooPill>
+            {open ? "Schließen" : "Menü"}
           </button>
         </div>
+
+        {/* Reading-progress hairline along the header's lower edge */}
+        {!reduce && (
+          <motion.div
+            aria-hidden
+            style={{ scaleX: progress }}
+            className="absolute inset-x-0 bottom-0 h-px origin-left bg-copper/70"
+          />
+        )}
       </header>
 
       {open && (
-        <div className="fixed inset-0 z-30 flex flex-col justify-center gap-8 overflow-y-auto bg-night px-8 py-24 lg:hidden">
+        <div className="fixed inset-0 z-30 flex flex-col justify-center gap-8 overflow-y-auto bg-cream px-8 py-24 text-night lg:hidden">
           <div>
-            <p className="t-label mb-3 text-stone">Die Säulen</p>
+            <p className="mb-3 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-copper">Die Säulen</p>
             <div className="flex flex-col gap-1">
               {nav.map((n, i) => (
                 <motion.div
@@ -194,7 +184,7 @@ export function Navigation() {
                   <Link
                     href={n.href}
                     onClick={() => setOpen(false)}
-                    className={`block py-1.5 font-display text-3xl ${isActive(n.href) ? "text-gold" : "text-cream"}`}
+                    className={`block py-1.5 font-display text-3xl ${isActive(n.href) ? "text-copper" : "text-night"}`}
                   >
                     {n.label}
                   </Link>
@@ -203,20 +193,20 @@ export function Navigation() {
             </div>
           </div>
           <div>
-            <p className="t-label mb-3 text-stone">Mehr</p>
+            <p className="mb-3 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-copper">Mehr</p>
             <div className="flex flex-col gap-1.5">
               {secondary.map((n) => (
-                <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className={`block text-lg ${isActive(n.href) ? "text-gold" : "text-cream/85"}`}>
+                <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className={`block text-lg ${isActive(n.href) ? "text-copper" : "text-night/85"}`}>
                   {n.label}
                 </Link>
               ))}
             </div>
           </div>
           <div>
-            <p className="t-label mb-3 text-gold">Club 1464</p>
+            <p className="mb-3 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-copper">Club 1464</p>
             <div className="flex flex-col gap-1.5">
               {clubMenu.map((n) => (
-                <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className="block text-lg text-cream/85">
+                <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className="block text-lg text-night/85">
                   {n.label}
                 </Link>
               ))}
