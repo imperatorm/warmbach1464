@@ -134,6 +134,9 @@ html.cursor-hover .cursor-ring { width: 46px; height: 46px; margin: -23px 0 0 -2
 .holo-float { animation: holo-float 7s ease-in-out infinite; }
 @keyframes holo-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 
+/* Quiet entrance for full-sheet overlays (age gate) */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
 /* ---- Hyperrealistic copper plate (member plaque) ---------------------- */
 .copper-plate {
   background-color: #7a4a28;
