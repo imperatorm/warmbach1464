@@ -58,13 +58,6 @@ export function HeroEditorial() {
         <motion.p {...rise(0)} className="mb-5 text-[0.6rem] uppercase tracking-[0.42em] text-gold sm:text-[0.68rem]">
           Warmbachhof · Kitzbühel
         </motion.p>
-        <motion.h1
-          {...rise(0.08)}
-          style={{ fontSize: "clamp(5.5rem, 17vw, 15rem)", fontWeight: 500 }}
-          className="display leading-none text-cream [text-shadow:0_2px_50px_rgba(0,0,0,0.55)]"
-        >
-          1464
-        </motion.h1>
         <motion.div {...rise(0.24)} className="mt-5 flex items-center gap-3 sm:mt-7">
           <span className="text-sm uppercase tracking-[0.4em] text-gold sm:text-base [margin-inline-end:-0.4em]">by</span>
           <Monogram className="h-9 w-auto sm:h-11" />
@@ -72,6 +65,20 @@ export function HeroEditorial() {
         <motion.p {...rise(0.38)} className="mt-6 font-display text-base italic text-cream/70 sm:text-lg">
           From our Soil to your Soul.
         </motion.p>
+      </motion.div>
+
+      {/* Full-width title — bottom positioned */}
+      <motion.div
+        style={reduce ? undefined : { opacity }}
+        className="absolute bottom-24 left-0 right-0 z-10"
+      >
+        <motion.h1
+          {...rise(0.08)}
+          style={{ fontSize: "clamp(5.5rem, 17vw, 15rem)", fontWeight: 400 }}
+          className="font-display leading-none text-cream [text-shadow:0_2px_50px_rgba(0,0,0,0.55)] px-6 lg:px-10"
+        >
+          1464
+        </motion.h1>
       </motion.div>
 
       {/* Editorial data strip — the folio line of the title sheet */}
