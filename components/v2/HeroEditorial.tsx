@@ -72,13 +72,27 @@ export function HeroEditorial() {
         style={reduce ? undefined : { opacity }}
         className="absolute bottom-24 left-0 right-0 z-10 overflow-hidden"
       >
-        <motion.h1
-          {...rise(0.08)}
-          style={{ fontSize: "clamp(6rem, 28vw, 28rem)", fontWeight: 400, lineHeight: "0.85" }}
-          className="font-display text-cream [text-shadow:0_2px_50px_rgba(0,0,0,0.55)] px-4 lg:px-6"
-        >
-          1464
-        </motion.h1>
+        <motion.div {...rise(0.08)} className="w-full">
+          <svg
+            viewBox="0 0 1000 280"
+            className="block w-full h-auto text-cream [filter:drop-shadow(0_2px_50px_rgba(0,0,0,0.55))]"
+            role="img"
+            aria-label="1464"
+          >
+            <text
+              x="0"
+              y="230"
+              textLength="1000"
+              lengthAdjust="spacingAndGlyphs"
+              fontFamily="var(--font-display)"
+              fontWeight="400"
+              fontSize="260"
+              fill="currentColor"
+            >
+              1464
+            </text>
+          </svg>
+        </motion.div>
       </motion.div>
 
       {/* Editorial data strip — the folio line of the title sheet */}
