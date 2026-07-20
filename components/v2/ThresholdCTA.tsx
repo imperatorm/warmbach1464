@@ -53,6 +53,10 @@ export function ThresholdCTA() {
       <div className="relative mx-auto max-w-2xl">
         <Reveal>
           <p className="t-label mb-6">Die Schwelle</p>
+          <p className="mx-auto mb-6 inline-flex items-center gap-2.5 border border-gold/30 px-4 py-2 text-[0.6rem] uppercase tracking-[0.24em] text-gold">
+            <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-gold motion-safe:animate-pulse" />
+            Warteliste offen
+          </p>
           <h2 className="t-h1 text-cream">Club 1464</h2>
           <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-cream/60">
             Direkt vom Hof, in kleiner Zahl. Jede Flasche nummeriert, mit Echtheitszertifikat
@@ -72,6 +76,9 @@ export function ThresholdCTA() {
               Den Club kennenlernen
             </MagneticLink>
           </div>
+          <p className="mt-8 text-[0.6rem] uppercase tracking-[0.22em] text-cream/35">
+            Direktvertrieb an Sammler · Ohne Zwischenhandel
+          </p>
         </Reveal>
       </div>
     </section>
