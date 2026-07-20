@@ -1,36 +1,34 @@
-import { HeroEditorial } from "@/components/v2/HeroEditorial";
-import { Manifesto } from "@/components/v2/Manifesto";
-import { PillarIndex } from "@/components/v2/PillarIndex";
-import { PillarPanels } from "@/components/v2/PillarPanels";
-import { BottleChamber } from "@/components/v2/BottleChamber";
-import { EditorialSpread } from "@/components/v2/EditorialSpread";
+import { HeroPoster } from "@/components/poster/HeroPoster";
+import { IntroBand } from "@/components/poster/IntroBand";
+import { EstateSpread } from "@/components/poster/EstateSpread";
+import { PillarScatter } from "@/components/poster/PillarScatter";
+import { BottleBand } from "@/components/poster/BottleBand";
 import { ChronicleSection } from "@/components/sections/ChronicleSection";
-import { ThresholdCTA } from "@/components/v2/ThresholdCTA";
+import { ClubCTA } from "@/components/poster/ClubCTA";
 
 /**
- * Home v2 — the brand book as a website. An editorial sheet in numbered
- * chapters, alternating night-green and kalk bands (grid & composition
- * after the EcoWood reference):
+ * Home, poster edition — the brand book recomposed after the Escape Cafe
+ * sheet (Mobbin): type-as-image, split statements, staggered specimens,
+ * one dark artifact band, one giant door.
  *
- *   Title sheet   → alpine film with the folio data strip
- *   01 Manifest   → statement spread + counting facts (kalk)
- *   02 Säulen     → index cards of the five Säulen, click opens the pillar (night)
- *   03 Flasche    → the spotlit product chamber (Fey/Telepathic pattern, night)
- *   04 Der Hof    → asymmetric parallax spread (kalk)
- *   05 Chronik    → the interactive 562-year timeline (night)
- *   Schwelle      → Club 1464 with magnetic CTA (night)
+ *   Poster hero   → alpine film, split manifesto statement + side rails
+ *   Intro         → one plain paragraph on kalk, no headline
+ *   Der Hof       → staggered small specimens + twin mini-columns (kalk)
+ *   Die Säulen    → five giant scattered words, each a door (kalk)
+ *   Die Flasche   → dark band: caps lead + live decanter + coordinates
+ *   Chronik       → the interactive 562-year timeline (night)
+ *   Club 1464     → giant poster CTA + back-to-top sign-off (night)
  */
 export default function HomePage() {
   return (
     <>
-      <HeroEditorial />
-      <Manifesto />
-      <PillarIndex />
-      {/* <PillarPanels /> */}
-      <BottleChamber />
-      <EditorialSpread />
+      <HeroPoster />
+      <IntroBand />
+      <EstateSpread />
+      <PillarScatter />
+      <BottleBand />
       <ChronicleSection />
-      <ThresholdCTA />
+      <ClubCTA />
     </>
   );
 }

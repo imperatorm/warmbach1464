@@ -84,6 +84,23 @@ html.cursor-hover .cursor-ring { width: 46px; height: 46px; margin: -23px 0 0 -2
 .t-lead { font-size: var(--t-lead); line-height: 1.62; color: rgb(236 228 210 / 0.82); }
 .t-label { font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.7rem; color: var(--color-gold); font-weight: 500; }
 
+/* Poster display — Whyte Black, the Escape-composition voice (self-hosted, fonts.css) */
+.t-poster {
+  font-family: 'Whyte', var(--font-body, system-ui), sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+}
+/* Vertical side rail — rotated micro caps pinned to the frame edge */
+.t-rail {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.6rem;
+  writing-mode: vertical-rl;
+}
+
 /* Legacy helpers still used by existing components */
 .signage { letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.72rem; color: var(--color-gold); font-weight: 500; }
 .display { font-family: var(--font-display, Georgia, serif); letter-spacing: -0.01em; }
