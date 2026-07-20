@@ -52,23 +52,51 @@ export function Timeline() {
 
   return (
     <div className="select-none">
-      {/* Active event */}
-      <div className="mb-14 min-h-[12rem]">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -14 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="font-display text-6xl leading-none text-gold md:text-8xl [font-variation-settings:'opsz'_90]">
-              {item.year}
-            </span>
-            <h3 className="t-h3 mt-4 text-cream">{item.title}</h3>
-            <p className="t-lead mt-4 max-w-xl">{item.detail}</p>
-          </motion.div>
-        </AnimatePresence>
+      {/* Active event with image */}
+      <div className="mb-14 flex gap-8 lg:gap-12">
+        <div className="flex-1">
+          <div className="h-[280px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -14 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="flex h-full flex-col justify-between"
+              >
+                <div>
+                  <span className="font-display text-6xl leading-none text-gold md:text-8xl [font-variation-settings:'opsz'_90]">
+                    {item.year}
+                  </span>
+                  <h3 className="t-h3 mt-4 text-cream">{item.title}</h3>
+                  <p className="t-lead mt-4 max-w-xl line-clamp-3">{item.detail}</p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Preview image */}
+        {item.image && (
+          <div className="hidden h-[280px] w-[280px] shrink-0 overflow-hidden rounded-lg lg:block">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={`${active}-img`}
+                src={item.image}
+                alt={`${item.year} — ${item.title}`}
+                className="h-full w-full object-cover"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = "none";
+                }}
+              />
+            </AnimatePresence>
+          </div>
+        )}
       </div>
 
       {/* Rail */}
