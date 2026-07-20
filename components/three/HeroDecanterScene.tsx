@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, Lightformer } from "@react-three/drei";
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { WarmbachBottle } from "./WarmbachBottle";
 import { GoldDust } from "./GoldDust";
@@ -36,6 +36,31 @@ function ScrollSpin({ spin, reduce, children }: { spin?: Readable; reduce: boole
   return <group ref={group}>{children}</group>;
 }
 
+/** A soft dark disc behind the bottle: the transmission buffer refracts THIS
+ *  instead of an empty (bright) frame, so the belly reads as green crystal
+ *  rather than chrome. In the DOM it doubles as a quiet halo of depth behind
+ *  the specimen — the video stays visible past its feathered edge. */
+function RefractionBackdrop() {
+  const texture = useMemo(() => {
+    const c = document.createElement("canvas");
+    c.width = c.height = 256;
+    const ctx = c.getContext("2d")!;
+    const g = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
+    g.addColorStop(0, "rgba(5, 12, 7, 0.92)");
+    g.addColorStop(0.55, "rgba(5, 12, 7, 0.55)");
+    g.addColorStop(1, "rgba(5, 12, 7, 0)");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, 256, 256);
+    return new THREE.CanvasTexture(c);
+  }, []);
+  return (
+    <mesh position={[0, 0, -4]}>
+      <planeGeometry args={[14, 14]} />
+      <meshBasicMaterial map={texture} transparent depthWrite={false} toneMapped={false} />
+    </mesh>
+  );
+}
+
 /** Compact alpine-night rig — the WarmbachBottleScene environment, trimmed for
  *  a hero that shares the frame with a video film. */
 function HeroEnvironment() {
@@ -43,7 +68,7 @@ function HeroEnvironment() {
     <Environment resolution={256} frames={1} background={false}>
       <color attach="background" args={["#0c120e"]} />
       <Lightformer form="rect" intensity={0.8} color="#f3f6ee" position={[-6, 5, 1]} scale={[15, 15, 1]} target={[0, 0, 0]} />
-      <Lightformer form="rect" intensity={0.8} color="#bcae93" position={[7, 0, 3]} scale={[12, 12, 1]} target={[0, 0, 0]} />
+      <Lightformer form="rect" intensity={0.5} color="#bcae93" position={[7, 0, 3]} scale={[12, 12, 1]} target={[0, 0, 0]} />
       <Lightformer form="rect" intensity={1.6} color="#2f7d4f" position={[0, 2, -7]} scale={[11, 9, 1]} target={[0, 0, 0]} />
     </Environment>
   );
@@ -92,6 +117,7 @@ export default function HeroDecanterScene({
         <HeroEnvironment />
         {/* No ContactShadows — the decanter floats free in the film; a shadow
             plane would hang in the sky (and reads as a grey slab over video). */}
+        <RefractionBackdrop />
         <ScrollSpin spin={spin} reduce={false}>
           <WarmbachBottle tint="green" reduce={false} />
         </ScrollSpin>

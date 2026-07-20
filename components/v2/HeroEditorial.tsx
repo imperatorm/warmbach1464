@@ -70,6 +70,9 @@ export function HeroEditorial() {
   const bottleScale = useTransform(scrollYProgress, [0, 1], [0.92, 1.1]);
   const wordmarkY = useTransform(scrollYProgress, [0, 0.3], [0, -90]);
   const wordmarkOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0]);
+  // The mid-scroll beat — one line takes the stage the wordmark vacated
+  const beatOpacity = useTransform(scrollYProgress, [0.26, 0.36, 0.5, 0.6], [0, 1, 1, 0]);
+  const beatY = useTransform(scrollYProgress, [0.26, 0.6], [28, -28]);
   const filmScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
   const filmShade = useTransform(scrollYProgress, [0.45, 1], [0, 0.62]);
   const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "16%"]);
@@ -127,6 +130,20 @@ export function HeroEditorial() {
           </motion.p>
         </motion.div>
 
+        {/* Mid-scroll copy beat — annotates the turn the viewfinder frames */}
+        {!reduce && (
+          <motion.div
+            style={{ opacity: beatOpacity, y: beatY }}
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-[13svh] z-30 px-6 text-center"
+          >
+            <p className="text-[0.6rem] uppercase tracking-[0.42em] text-gold">Säule V · Die Flasche</p>
+            <p className="mt-4 font-display text-xl italic text-cream/90 sm:text-2xl">
+              Grünes Tiroler Kristall — jede Flasche handnummeriert.
+            </p>
+          </motion.div>
+        )}
+
         {/* The decanter — afloat over the numeral, spun by the scroll */}
         {mount && !reduce && (
           <motion.div
@@ -157,10 +174,10 @@ export function HeroEditorial() {
             <span className="absolute -right-px -top-px h-3 w-3 border-r border-t border-gold/70" />
             <span className="absolute -bottom-px -left-px h-3 w-3 border-b border-l border-gold/70" />
             <span className="absolute -bottom-px -right-px h-3 w-3 border-b border-r border-gold/70" />
-            <span className="absolute -top-6 left-0 text-[0.55rem] uppercase tracking-[0.28em] text-cream/40">
+            <span className="absolute -top-6 left-0 text-[0.55rem] uppercase tracking-[0.28em] text-cream/60">
               Warmbach · 01
             </span>
-            <span className="absolute -top-6 right-0 text-[0.55rem] uppercase tracking-[0.28em] text-cream/40">
+            <span className="absolute -top-6 right-0 text-[0.55rem] uppercase tracking-[0.28em] text-cream/60">
               Grünes Kristall
             </span>
           </motion.div>
@@ -205,12 +222,12 @@ export function HeroEditorial() {
             <div className="grid grid-cols-2 gap-y-3 py-5 sm:grid-cols-4">
               {meta.map((m) => (
                 <div key={m.k} className="flex flex-col gap-1">
-                  <span className="text-[0.55rem] uppercase tracking-[0.28em] text-cream/40">{m.k}</span>
+                  <span className="text-[0.55rem] uppercase tracking-[0.28em] text-cream/60">{m.k}</span>
                   <span className="text-[0.7rem] uppercase tracking-[0.18em] text-cream/80">{m.v}</span>
                 </div>
               ))}
               <div className="flex flex-col gap-1 sm:items-end sm:text-right">
-                <span className="text-[0.55rem] uppercase tracking-[0.28em] text-cream/40">Blatt</span>
+                <span className="text-[0.55rem] uppercase tracking-[0.28em] text-cream/60">Blatt</span>
                 <span className="inline-flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                   Scroll
                   <motion.span

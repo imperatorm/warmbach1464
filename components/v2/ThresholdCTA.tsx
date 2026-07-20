@@ -76,7 +76,7 @@ export function ThresholdCTA() {
               Den Club kennenlernen
             </MagneticLink>
           </div>
-          <p className="mt-8 text-[0.6rem] uppercase tracking-[0.22em] text-cream/35">
+          <p className="mt-8 text-[0.6rem] uppercase tracking-[0.22em] text-cream/60">
             Direktvertrieb an Sammler · Ohne Zwischenhandel
           </p>
         </Reveal>

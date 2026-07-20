@@ -45,7 +45,7 @@ export function BottleChamber() {
                   key={s.k}
                   className="flex items-baseline justify-between gap-4 border-t border-hairline/15 py-3 first:border-t-0"
                 >
-                  <dt className="text-[0.6rem] uppercase tracking-[0.28em] text-cream/40">{s.k}</dt>
+                  <dt className="text-[0.6rem] uppercase tracking-[0.28em] text-cream/60">{s.k}</dt>
                   <dd className="text-right text-[0.7rem] uppercase tracking-[0.14em] text-cream/85">{s.v}</dd>
                 </div>
               ))}
@@ -66,7 +66,7 @@ export function BottleChamber() {
               />
               {/* Telepathic-style annotation, anchored to the plaque */}
               <div className="absolute bottom-5 left-5 border-l border-gold/60 pl-3">
-                <p className="text-[0.55rem] uppercase tracking-[0.28em] text-cream/50">Kupferplakette</p>
+                <p className="text-[0.55rem] uppercase tracking-[0.28em] text-cream/60">Kupferplakette</p>
                 <p className="mt-1 text-[0.7rem] uppercase tracking-[0.18em] text-gold">Jede Flasche nummeriert</p>
               </div>
             </div>
@@ -83,7 +83,7 @@ export function BottleChamber() {
                 <span className="text-[0.72rem] font-medium uppercase tracking-[0.22em]">Zur Flasche</span>
                 <span aria-hidden>&rarr;</span>
               </Link>
-              <p className="text-[0.6rem] uppercase tracking-[0.22em] text-cream/35">
+              <p className="text-[0.6rem] uppercase tracking-[0.22em] text-cream/60">
                 Streng limitiert · Direkt vom Hof
               </p>
             </div>

@@ -96,7 +96,7 @@ export function AgeGate() {
         <div className="mt-10 flex items-end justify-center gap-4 sm:gap-6">
           {FIELDS.map((f, i) => (
             <label key={f.key} className="flex flex-col items-start gap-2">
-              <span className="text-[0.55rem] uppercase tracking-[0.28em] text-cream/40">{f.label}</span>
+              <span className="text-[0.55rem] uppercase tracking-[0.28em] text-cream/60">{f.label}</span>
               <input
                 ref={(el) => { refs.current[f.key] = el; }}
                 value={value[f.key]}
