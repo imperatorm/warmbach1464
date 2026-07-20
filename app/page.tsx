@@ -1,7 +1,6 @@
 import { HeroEditorial } from "@/components/v2/HeroEditorial";
 import { Manifesto } from "@/components/v2/Manifesto";
-import { MaterialPalette } from "@/components/v2/MaterialPalette";
-import { WordmarkMarquee } from "@/components/v2/WordmarkMarquee";
+import { PillarIndex } from "@/components/v2/PillarIndex";
 import { PillarPanels } from "@/components/v2/PillarPanels";
 import { EditorialSpread } from "@/components/v2/EditorialSpread";
 import { ChronicleSection } from "@/components/sections/ChronicleSection";
@@ -14,7 +13,7 @@ import { ThresholdCTA } from "@/components/v2/ThresholdCTA";
  *
  *   Title sheet   → alpine film with the folio data strip
  *   01 Manifest   → statement spread + counting facts (kalk)
- *   02 Material   → palette cards with copyable swatches (night)
+ *   02 Säulen     → index cards of the five Säulen, click opens the pillar (night)
  *   —             → giant scroll-velocity wordmark (cream)
  *   03 Säulen     → full-viewport photo panels, sticky-stacked (Floema pattern)
  *   04 Der Hof    → asymmetric parallax spread (kalk)
@@ -26,9 +25,8 @@ export default function HomePage() {
     <>
       <HeroEditorial />
       <Manifesto />
-      <MaterialPalette />
-      <WordmarkMarquee />
-      <PillarPanels />
+      <PillarIndex />
+      {/* <PillarPanels /> */}
       <EditorialSpread />
       <ChronicleSection />
       <ThresholdCTA />
