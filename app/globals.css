@@ -1,8 +1,12 @@
+@import './fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+  --font-display: 'EB Garamond', Georgia, serif;
+  --font-body: 'Whyte', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   /* v3 Pantone palette (Figma "Panton & RGB Color Scheme"):
      Page = Cloud Dancer 11-4201 / Light Gray 12-0404
      Akzent 1 = Copper 16-1325 / Mocha Bisque 18-1140
@@ -31,7 +35,7 @@
 html, body {
   background: var(--color-night);
   color: var(--color-cream);
-  font-family: var(--font-body, system-ui, sans-serif);
+  font-family: var(--font-body);
   font-variant-numeric: oldstyle-nums; /* §3.2 */
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -338,5 +342,103 @@ html.cursor-hover .cursor-ring { width: 46px; height: 46px; margin: -23px 0 0 -2
   .sticky-steps__text {
     grid-column-gap: 1em;
     grid-row-gap: 1em;
+  }
+}
+
+/* ---- Multilevel Navigation (Osmo pattern) — /components/ui/Navigation.tsx ---- */
+/* Mechanics adapted from the Osmo resource: accordion grid-rows reveal, staggered
+   list items, image-card hover, page dim overlay, morphing burger. Skin is ours. */
+
+.nav-dropdown__overflow {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.525, 0, 0, 1);
+}
+
+.nav-dropdown[data-state="open"] .nav-dropdown__overflow {
+  grid-template-rows: 1fr;
+}
+
+.nav-dropdown__overflow-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.nav-dropdown__content-li {
+  opacity: 0;
+  transform: translateY(0.85em);
+  transition: opacity 0.4s cubic-bezier(0.525, 0, 0, 1), transform 0.45s cubic-bezier(0.525, 0, 0, 1);
+  transition-delay: 0s;
+}
+
+.nav-dropdown[data-state="open"] .nav-dropdown__content-li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-dropdown[data-state="open"] .nav-dropdown__content-li:nth-child(1) { transition-delay: 0.06s; }
+.nav-dropdown[data-state="open"] .nav-dropdown__content-li:nth-child(2) { transition-delay: 0.11s; }
+.nav-dropdown[data-state="open"] .nav-dropdown__content-li:nth-child(3) { transition-delay: 0.16s; }
+.nav-dropdown[data-state="open"] .nav-dropdown__content-li:nth-child(4) { transition-delay: 0.21s; }
+.nav-dropdown[data-state="open"] .nav-dropdown__content-li:nth-child(5) { transition-delay: 0.26s; }
+
+.nav-dropdown__link-bg { position: absolute; inset: 0; }
+
+.nav-dropdown__img {
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.525, 0, 0, 1);
+}
+
+.nav-dropdown__img-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image: linear-gradient(to top, rgba(29, 41, 29, 0.9), rgba(29, 41, 29, 0) 55%);
+  transition: opacity 0.3s cubic-bezier(0.525, 0, 0, 1);
+}
+
+.nav-dropdown__link:hover .nav-dropdown__img,
+.nav-dropdown__link:focus-visible .nav-dropdown__img {
+  transform: scale(1.08);
+}
+
+.nav-dropdown__link:hover .nav-dropdown__img-overlay,
+.nav-dropdown__link:focus-visible .nav-dropdown__img-overlay {
+  opacity: 0.15;
+}
+
+.nav-dropdown__link-bubble {
+  transform: scale(0.6);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.525, 0, 0, 1), opacity 0.3s cubic-bezier(0.525, 0, 0, 1);
+}
+
+.nav-dropdown__link:hover .nav-dropdown__link-bubble,
+.nav-dropdown__link:focus-visible .nav-dropdown__link-bubble,
+.nav-dropdown__link.is--static:hover .nav-dropdown__link-bubble,
+.nav-dropdown__link.is--static:focus-visible .nav-dropdown__link-bubble {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Page dim overlay while a dropdown or the mobile menu is open */
+.page-bg {
+  transition: opacity 0.2s cubic-bezier(0.525, 0, 0, 1);
+}
+
+/* Burger → close morph */
+.menu-button__line {
+  transition: transform 0.45s cubic-bezier(0.525, 0, 0, 1), background-color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-dropdown__overflow,
+  .nav-dropdown__content-li,
+  .nav-dropdown__img,
+  .nav-dropdown__img-overlay,
+  .nav-dropdown__link-bubble,
+  .page-bg,
+  .menu-button__line {
+    transition: none !important;
   }
 }

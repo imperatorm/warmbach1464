@@ -1,0 +1,271 @@
+/* EB Garamond - Serif font for headers */
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/eb-garamond/EBGaramond-Regular.woff2') format('woff2'),
+       url('/fonts/eb-garamond/EBGaramond-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/eb-garamond/EBGaramond-Medium.woff2') format('woff2'),
+       url('/fonts/eb-garamond/EBGaramond-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/eb-garamond/EBGaramond-SemiBold.woff2') format('woff2'),
+       url('/fonts/eb-garamond/EBGaramond-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/eb-garamond/EBGaramond-Bold.woff2') format('woff2'),
+       url('/fonts/eb-garamond/EBGaramond-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/eb-garamond/EBGaramond-ExtraBold.woff2') format('woff2'),
+       url('/fonts/eb-garamond/EBGaramond-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/eb-garamond/EBGaramond-Italic.woff2') format('woff2'),
+       url('/fonts/eb-garamond/EBGaramond-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/eb-garamond/EBGaramond-MediumItalic.woff2') format('woff2'),
+       url('/fonts/eb-garamond/EBGaramond-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/eb-garamond/EBGaramond-SemiBoldItalic.woff2') format('woff2'),
+       url('/fonts/eb-garamond/EBGaramond-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/eb-garamond/EBGaramond-BoldItalic.woff2') format('woff2'),
+       url('/fonts/eb-garamond/EBGaramond-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/eb-garamond/EBGaramond-ExtraBoldItalic.woff2') format('woff2'),
+       url('/fonts/eb-garamond/EBGaramond-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Whyte - Sans-serif font for body text */
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-Thin.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-ThinItalic.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-ThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-ExtraLight.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-ExtraLightItalic.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-ExtraLightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-Light.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-LightItalic.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-Book.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-Book.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-BookItalic.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-BookItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-Regular.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-Italic.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-Medium.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-MediumItalic.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-Bold.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-Bold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-BoldItalic.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-BoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-Heavy.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-Heavy.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-HeavyItalic.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-HeavyItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-Super.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-Super.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-SuperItalic.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-SuperItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-Black.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Whyte';
+  src: url('/fonts/whyte/Whyte-BlackItalic.woff2') format('woff2'),
+       url('/fonts/whyte/Whyte-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
