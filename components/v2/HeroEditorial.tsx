@@ -70,12 +70,12 @@ export function HeroEditorial() {
       {/* Full-width title — bottom positioned */}
       <motion.div
         style={reduce ? undefined : { opacity }}
-        className="absolute bottom-24 left-0 right-0 z-10"
+        className="absolute bottom-24 left-0 right-0 z-10 overflow-hidden"
       >
         <motion.h1
           {...rise(0.08)}
-          style={{ fontSize: "clamp(5.5rem, 17vw, 15rem)", fontWeight: 400 }}
-          className="font-display leading-none text-cream [text-shadow:0_2px_50px_rgba(0,0,0,0.55)] px-6 lg:px-10"
+          style={{ fontSize: "clamp(6rem, 28vw, 28rem)", fontWeight: 400, lineHeight: "0.85" }}
+          className="font-display text-cream [text-shadow:0_2px_50px_rgba(0,0,0,0.55)] px-4 lg:px-6"
         >
           1464
         </motion.h1>
