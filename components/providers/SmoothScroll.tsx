@@ -2,11 +2,17 @@
 
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
+import { registerLenis } from "@/lib/smoothScroll";
 
 /**
  * Global smooth scroll (briefing §4.7): Lenis with a long, quartic-eased glide.
  * Side-effect only — Lenis drives window scroll, so framer-motion's useScroll /
  * whileInView read it directly. Disabled under prefers-reduced-motion.
+ *
+ * Exactly one instance and one RAF loop for the whole app. The instance is
+ * registered on lib/smoothScroll so features that must drive scrolling
+ * imperatively (the Boden Auto Tour) can borrow it rather than starting a
+ * competing loop.
  */
 export function SmoothScroll() {
   useEffect(() => {
@@ -20,6 +26,7 @@ export function SmoothScroll() {
     if (process.env.NODE_ENV !== "production") {
       (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
     }
+    registerLenis(lenis);
 
     let raf = 0;
     const loop = (time: number) => {
@@ -30,6 +37,7 @@ export function SmoothScroll() {
 
     return () => {
       cancelAnimationFrame(raf);
+      registerLenis(null);
       lenis.destroy();
     };
   }, []);
