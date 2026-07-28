@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
-import { PillarNext } from "@/components/sections/PillarShell";
-import { PillarHeroV3 } from "@/components/sections/PillarShellV3";
+import { PillarHero, PillarNext } from "@/components/aw/PillarChrome";
 import { ElementalSceneSection } from "@/components/sections/ElementalSceneSection";
 import { pillars, editions } from "@/lib/content";
 
@@ -15,7 +14,7 @@ export const metadata = {
 export default function BaeumePage() {
   return (
     <div>
-      <PillarHeroV3 pillar={pillar} />
+      <PillarHero pillar={pillar} image="/gallery/warmbach/img_0030.jpg" alt="Der Osthang mit Hof und Wald über Kitzbühel" />
 
       {/* i — der lebendige Baum (interaktive 3D-Szene) */}
       <ElementalSceneSection

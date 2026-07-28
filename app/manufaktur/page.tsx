@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
-import { PillarHeroV3, PillarNextV3 } from "@/components/sections/PillarShellV3";
+import { PillarHero, PillarNext } from "@/components/aw/PillarChrome";
 import { NumberedSection } from "@/components/v3/NumberedSection";
 import { BlueprintShowcase } from "@/components/v3/BlueprintShowcase";
 import { CollageFeatureList } from "@/components/v3/CollageFeatureList";
@@ -43,7 +43,7 @@ export const metadata = {
 export default function ManufakturPage() {
   return (
     <div>
-      <PillarHeroV3 pillar={pillar} />
+      <PillarHero pillar={pillar} image="/gallery/warmbach/img_0080.jpg" alt="Die kupferne Kothe-Brennblase mit der Prägung 1464" />
 
       <BlueprintShowcase
         titleA="Kupfer und Feuer."
@@ -108,7 +108,7 @@ export default function ManufakturPage() {
         </Reveal>
       </NumberedSection>
 
-      <PillarNextV3 current="manufaktur" />
+      <PillarNext current="manufaktur" />
     </div>
   );
 }
