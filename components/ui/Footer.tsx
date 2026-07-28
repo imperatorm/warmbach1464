@@ -114,7 +114,7 @@ export function Footer() {
           <div className="flex flex-col gap-4">
             <Monogram className="h-10 w-10 text-cream" />
             <p className="t-label">{brand.estate}</p>
-            <p className="text-sm text-stone">{brand.claim}</p>
+            <p className="text-sm text-cream/70">{brand.claim}</p>
           </div>
           {COLUMNS.map((col) => (
             <nav key={col.label} aria-label={col.label} className="flex flex-col gap-2.5 text-sm">
@@ -133,7 +133,7 @@ export function Footer() {
           ))}
           <div className="flex flex-col gap-2 text-sm">
             <p className="t-label mb-2">Newsletter</p>
-            <p className="text-sm text-stone/80">
+            <p className="text-sm text-cream/70">
               Hinweise an drei Tagen im Jahr — Brennstart, Abfüllung, Edition.
             </p>
             <NewsletterForm />
@@ -141,7 +141,7 @@ export function Footer() {
         </div>
 
         <div className="hairline mt-12" />
-        <div className="mx-auto mt-6 flex max-w-6xl flex-col justify-between gap-3 text-xs text-stone md:flex-row">
+        <div className="mx-auto mt-6 flex max-w-6xl flex-col justify-between gap-3 text-xs text-cream/60 md:flex-row">
           <p>
             © {new Date().getFullYear()} {brand.house}. Alle Rechte vorbehalten.
           </p>
@@ -156,6 +156,23 @@ export function Footer() {
               Altersbestätigung
             </Link>
           </div>
+        </div>
+
+        {/* The house signature — glyphs spread edge to edge, cropped at the
+            baseline so the sheet ends on the name rather than trailing off. */}
+        <div
+          aria-label={`${brand.master} — ${brand.house}`}
+          className="mt-16 flex select-none items-end justify-between overflow-hidden px-1 lg:mt-20"
+        >
+          {["1", "4", "6", "4", "B", "Y", "W"].map((c, i) => (
+            <span
+              key={`${c}-${i}`}
+              aria-hidden
+              className="t-poster text-[13.5vw] leading-[0.78] text-cream/90"
+            >
+              {c}
+            </span>
+          ))}
         </div>
       </motion.div>
 

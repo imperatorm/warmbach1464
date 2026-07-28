@@ -1,34 +1,36 @@
-import { HeroPoster } from "@/components/poster/HeroPoster";
-import { IntroBand } from "@/components/poster/IntroBand";
-import { EstateSpread } from "@/components/poster/EstateSpread";
-import { PillarScatter } from "@/components/poster/PillarScatter";
-import { BottleBand } from "@/components/poster/BottleBand";
-import { ChronicleSection } from "@/components/sections/ChronicleSection";
-import { ClubCTA } from "@/components/poster/ClubCTA";
+import { HeroFilm } from "@/components/aw/HeroFilm";
+import { ManifestBand } from "@/components/aw/ManifestBand";
+import { PillarIndex } from "@/components/aw/PillarIndex";
+import { CraftFeatures } from "@/components/aw/CraftFeatures";
+import { ArtifactBand } from "@/components/aw/ArtifactBand";
+import { ChronicleRail } from "@/components/aw/ChronicleRail";
+import { LivingCount } from "@/components/aw/LivingCount";
+import { ClosingCTA } from "@/components/aw/ClosingCTA";
 
 /**
- * Home, poster edition — the brand book recomposed after the Escape Cafe
- * sheet (Mobbin): type-as-image, split statements, staggered specimens,
- * one dark artifact band, one giant door.
+ * Home — the estate as one continuous sheet, banded light/dark so no two
+ * neighbouring chapters read the same:
  *
- *   Poster hero   → alpine film, split manifesto statement + side rails
- *   Intro         → one plain paragraph on kalk, no headline
- *   Der Hof       → staggered small specimens + twin mini-columns (kalk)
- *   Die Säulen    → five giant scattered words, each a door (kalk)
- *   Die Flasche   → dark band: caps lead + live decanter + coordinates
- *   Chronik       → the interactive 562-year timeline (night)
- *   Club 1464     → giant poster CTA + back-to-top sign-off (night)
+ *   Hero        film  · statement bottom-aligned, serif accent, status bar
+ *   01 Manifest kalk  · lifts over the film on rounded corners
+ *   02 Säulen   cream · five giant words; hover floats the photograph
+ *   03 Manufakt night · held photograph, sticky rail, cards over it
+ *   04 Flasche  night · the live decanter + provenance register
+ *   05 Chronik  kalk  · 562 years as a pinned horizontal century rail
+ *   06 Zeit     night · the two live numbers, plain
+ *   Schwelle    night · one door
  */
 export default function HomePage() {
   return (
     <>
-      <HeroPoster />
-      <IntroBand />
-      <EstateSpread />
-      <PillarScatter />
-      <BottleBand />
-      <ChronicleSection />
-      <ClubCTA />
+      <HeroFilm />
+      <ManifestBand />
+      <PillarIndex />
+      <CraftFeatures />
+      <ArtifactBand />
+      <ChronicleRail />
+      <LivingCount />
+      <ClosingCTA />
     </>
   );
 }

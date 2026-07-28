@@ -92,6 +92,21 @@ html.cursor-hover .cursor-ring { width: 46px; height: 46px; margin: -23px 0 0 -2
   line-height: 0.92;
   letter-spacing: -0.01em;
 }
+/* Hero voice — Whyte at medium weight, sentence case: calm, not shouted.
+   Pairs with .t-accent (Garamond italic) for the emphasised phrase. */
+.t-hero {
+  font-family: 'Whyte', var(--font-body, system-ui), sans-serif;
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+}
+.t-accent {
+  font-family: var(--font-display, Georgia, serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
 /* Vertical side rail — rotated micro caps pinned to the frame edge */
 .t-rail {
   font-family: var(--font-body);
