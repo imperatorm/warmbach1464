@@ -17,103 +17,190 @@ const QUESTIONS = [
   "Was verbindet Sie mit Kitzbühel, dem Warmbachhof oder dem Handwerk des Brennens?",
 ];
 
-const inputCls =
-  "mt-2 w-full border border-hairline/30 bg-soot/40 px-4 py-3 text-cream placeholder:text-stone/40 focus:border-gold focus:outline-none";
+const LABEL = "block text-[0.6rem] font-semibold uppercase tracking-[0.24em] text-cream/70";
+const FIELD =
+  "mt-2 w-full border-b border-cream/25 bg-transparent px-0 py-3 text-base text-cream placeholder:text-cream/30 transition-colors duration-300 focus:border-gold focus:outline-none";
 
 /**
- * Membership candidacy form ("Vorstellung", not a checkout). Prototype:
- * optimistic confirmation, no real submission — clearly marked.
+ * Membership candidacy form ("Vorstellung", not a checkout) in the house form
+ * language: fields on baseline hairlines, micro-caps labels, the cream pill
+ * for the primary action.
+ *
+ * Every label is bound to its control with htmlFor/id — the previous version
+ * used bare <label> elements, so assistive technology never announced them.
+ *
+ * Prototype: optimistic confirmation, no real submission — stated plainly.
  */
 export function MembershipForm() {
   const [sent, setSent] = useState(false);
 
   if (sent) {
     return (
-      <div className="border border-gold/30 bg-soot/20 p-10">
-        <p className="t-label text-gold">Eingereicht</p>
-        <h3 className="t-h3 mt-3 text-cream">Danke für Ihre Vorstellung.</h3>
-        <p className="mt-4 max-w-md text-sm leading-relaxed text-cream/75">
-          Ihre Worte liegen nun bei der Familie Wehrmann. Aufnahmen werden persönlich und ohne Eile
-          entschieden. Bei einer Freigabe erhalten Sie Ihre Mitgliedschaft, dürfen eintreten — und können
-          die Founder&rsquo;s Reserve N°1 erwerben.
+      <div className="border-t border-gold/50 pt-6">
+        <p className="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-gold">
+          Eingereicht
         </p>
-        <p className="mt-5 text-xs text-stone/70">(Prototyp — repräsentative Bestätigung, kein echter Versand.)</p>
+        <h3 className="t-hero mt-4 text-2xl text-cream">Danke für Ihre Vorstellung.</h3>
+        <p className="mt-4 max-w-md text-sm leading-relaxed text-cream/75">
+          Ihre Worte liegen nun bei der Familie Wehrmann. Aufnahmen werden persönlich und
+          ohne Eile entschieden. Bei einer Freigabe erhalten Sie Ihre Mitgliedschaft,
+          dürfen eintreten — und können die Founder&rsquo;s Reserve N°1 erwerben.
+        </p>
+        <p className="mt-5 text-xs text-cream/60">
+          (Prototyp — repräsentative Bestätigung, kein echter Versand.)
+        </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="flex flex-col gap-6">
-      <div className="grid gap-6 sm:grid-cols-2">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setSent(true);
+      }}
+      className="flex flex-col gap-9"
+    >
+      <div className="grid gap-9 sm:grid-cols-2">
         <div>
-          <label className="t-label text-stone">Name</label>
-          <input required name="name" placeholder="Vor- und Nachname" data-cursor className={inputCls} />
+          <label htmlFor="mf-name" className={LABEL}>
+            Name
+          </label>
+          <input
+            id="mf-name"
+            required
+            name="name"
+            autoComplete="name"
+            placeholder="Vor- und Nachname"
+            data-cursor
+            className={FIELD}
+          />
         </div>
         <div>
-          <label className="t-label text-stone">E-Mail</label>
-          <input required type="email" name="email" placeholder="name@beispiel.com" data-cursor className={inputCls} />
+          <label htmlFor="mf-email" className={LABEL}>
+            E-Mail
+          </label>
+          <input
+            id="mf-email"
+            required
+            type="email"
+            name="email"
+            autoComplete="email"
+            placeholder="name@beispiel.com"
+            data-cursor
+            className={FIELD}
+          />
         </div>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid gap-9 sm:grid-cols-2">
         <div>
-          <label className="t-label text-stone">Telefon (optional)</label>
-          <input name="phone" placeholder="+43 …" data-cursor className={inputCls} />
+          <label htmlFor="mf-phone" className={LABEL}>
+            Telefon (optional)
+          </label>
+          <input
+            id="mf-phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            placeholder="+43 …"
+            data-cursor
+            className={FIELD}
+          />
         </div>
         <div>
-          <label className="t-label text-stone">Wie haben Sie von uns gehört?</label>
-          <select name="source" defaultValue="" data-cursor className={`${inputCls} [color-scheme:dark]`}>
-            <option value="" disabled>Bitte wählen …</option>
+          <label htmlFor="mf-source" className={LABEL}>
+            Wie haben Sie von uns gehört?
+          </label>
+          <select
+            id="mf-source"
+            name="source"
+            defaultValue=""
+            data-cursor
+            className={`${FIELD} [color-scheme:dark]`}
+          >
+            <option value="" disabled>
+              Bitte wählen …
+            </option>
             {SOURCES.map((s) => (
-              <option key={s} value={s}>{s}</option>
+              <option key={s} value={s}>
+                {s}
+              </option>
             ))}
           </select>
         </div>
       </div>
 
       <div>
-        <label className="t-label text-stone">Über Sie</label>
-        <p className="mt-1 text-xs leading-relaxed text-stone/70">
-          Optional. Erzählen Sie, wer Sie sind — Herkunft, Werdegang, was Sie begeistert. So viel oder so
-          wenig, wie Sie mögen.
+        <label htmlFor="mf-about" className={LABEL}>
+          Über Sie
+        </label>
+        <p id="mf-about-hint" className="mt-1.5 text-xs leading-relaxed text-cream/60">
+          Optional. Erzählen Sie, wer Sie sind — Herkunft, Werdegang, was Sie begeistert.
+          So viel oder so wenig, wie Sie mögen.
         </p>
         <textarea
+          id="mf-about"
           name="about"
-          rows={5}
+          rows={4}
+          aria-describedby="mf-about-hint"
           placeholder="Ein paar Worte zu Ihnen …"
           data-cursor
-          className={`${inputCls} resize-none`}
+          className={`${FIELD} resize-y`}
         />
       </div>
 
       <div>
-        <label className="t-label text-stone">Weitere Angaben (Profile, Empfehlende, Kontext)</label>
+        <label htmlFor="mf-more" className={LABEL}>
+          Weitere Angaben
+        </label>
+        <p id="mf-more-hint" className="mt-1.5 text-xs leading-relaxed text-cream/60">
+          Profile, Empfehlende, Kontext.
+        </p>
         <input
+          id="mf-more"
           name="more"
+          aria-describedby="mf-more-hint"
           placeholder="z. B. Instagram, Website, Name des empfehlenden Mitglieds …"
           data-cursor
-          className={inputCls}
+          className={FIELD}
         />
       </div>
 
-      <div className="mt-2 flex flex-col gap-6 border-t border-hairline/15 pt-8">
-        <p className="t-label text-gold">Drei Fragen</p>
+      <fieldset className="mt-2 flex flex-col gap-8 border-t border-cream/20 pt-8">
+        <legend className="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-gold">
+          Drei Fragen
+        </legend>
         {QUESTIONS.map((q, i) => (
-          <div key={i}>
-            <label className="block text-sm leading-relaxed text-cream/85">
-              {i + 1}. {q}
+          <div key={q}>
+            <label htmlFor={`mf-q${i + 1}`} className="block text-sm leading-relaxed text-cream/85">
+              <span className="mr-2 text-gold">{String(i + 1).padStart(2, "0")}</span>
+              {q}
             </label>
-            <textarea required rows={3} name={`q${i + 1}`} data-cursor className={`${inputCls} resize-none`} />
+            <textarea
+              id={`mf-q${i + 1}`}
+              required
+              rows={3}
+              name={`q${i + 1}`}
+              data-cursor
+              className={`${FIELD} resize-y`}
+            />
           </div>
         ))}
-      </div>
+      </fieldset>
 
-      <button type="submit" data-cursor className="btn-primary mt-2 justify-center">
-        Kandidatur einreichen →
-      </button>
-      <p className="text-xs leading-relaxed text-stone/70">
-        Mit dem Absenden bestätigen Sie, volljährig zu sein. Genuss mit Verantwortung.
-      </p>
+      <div>
+        <button
+          type="submit"
+          data-cursor
+          className="rounded-full bg-cream px-7 py-3.5 text-sm font-medium text-night transition-colors duration-300 hover:bg-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+        >
+          Kandidatur einreichen
+        </button>
+        <p className="mt-5 max-w-md text-xs leading-relaxed text-cream/60">
+          Mit dem Absenden bestätigen Sie, volljährig zu sein. Genuss mit Verantwortung.
+        </p>
+      </div>
     </form>
   );
 }
