@@ -77,7 +77,7 @@ export function ManifestBand() {
       {/* Bottom — the statement */}
       <div className="mx-auto mt-16 flex max-w-[1500px] flex-col gap-12 md:flex-row md:gap-20">
         <Reveal className="shrink-0">
-          <Monogram className="h-10 w-auto text-night" />
+          <Monogram variant="dark" className="h-10 w-auto" />
           <p className="mt-4 text-[0.65rem] font-semibold uppercase leading-relaxed tracking-[0.2em] text-terrakotta">
             Boden
             <br />

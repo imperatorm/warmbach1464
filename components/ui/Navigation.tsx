@@ -139,7 +139,7 @@ export function Navigation() {
           <Link href="/" data-cursor aria-label={`${brand.master} — Startseite`} className="group flex items-center gap-2.5">
             <span className="font-display text-[1.7rem] leading-none tracking-[0.01em]">1464</span>
             <span className="text-[0.6rem] uppercase tracking-[0.28em] text-night/60 [margin-inline-end:-0.28em]">by</span>
-            <Monogram className="h-7 w-auto text-night transition-transform duration-500 group-hover:scale-105" />
+            <Monogram variant="dark" className="h-7 w-auto transition-transform duration-500 group-hover:scale-105" />
           </Link>
 
           {/* Desktop: quiet uppercase link row */}

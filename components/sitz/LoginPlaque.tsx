@@ -62,7 +62,7 @@ export function LoginPlaque({ member }: { member: Member }) {
         </button>
 
         <div className="relative">
-          <Monogram className="mx-auto h-9 w-9 text-cream/90" />
+          <Monogram className="mx-auto h-9 w-9" />
           <p className="mt-4 text-[0.68rem] uppercase tracking-[0.32em] text-cream/70">
             Warmbachhof · Founder&rsquo;s Circle
           </p>

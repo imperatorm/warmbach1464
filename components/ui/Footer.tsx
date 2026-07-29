@@ -112,7 +112,7 @@ export function Footer() {
       >
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-4">
           <div className="flex flex-col gap-4">
-            <Monogram className="h-10 w-10 text-cream" />
+            <Monogram className="h-10 w-10" />
             <p className="t-label">{brand.estate}</p>
             <p className="text-sm text-cream/70">{brand.claim}</p>
           </div>

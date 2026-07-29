@@ -100,7 +100,7 @@ export function PillarPanels() {
                     transition={{ duration: 0.4, delay: 0.18 }}
                     className="inline-flex items-center gap-2.5"
                   >
-                    <Monogram className="h-3.5 w-auto text-night" />
+                    <Monogram variant="dark" className="h-3.5 w-auto" />
                     {pillar.name}
                   </motion.span>
                 </motion.span>
@@ -212,7 +212,7 @@ function SlideContent({ pillar, reduce }: { pillar: Pillar; reduce: boolean }) {
           <span className="inline-flex items-center" style={{ filter: "url(#cta-goo)" }}>
             <span className="relative grid h-12 w-12 shrink-0 place-items-center">
               <span aria-hidden className="absolute inset-0 rounded-full bg-cream" />
-              <Monogram className="relative h-4 w-auto text-night transition-transform duration-500 ease-deep group-hover:rotate-[8deg]" />
+              <Monogram variant="dark" className="relative h-4 w-auto transition-transform duration-500 ease-deep group-hover:rotate-[8deg]" />
             </span>
             <span className="relative ml-2.5 transition-[margin] duration-500 ease-deep group-hover:-ml-1.5">
               <span aria-hidden className="absolute inset-0 rounded-full bg-cream" />
