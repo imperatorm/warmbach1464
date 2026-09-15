@@ -10,27 +10,8 @@ import {
   useReducedMotion,
   useScroll,
 } from "framer-motion";
-import { chronicle } from "@/lib/timeline";
+import { chronicle, chroniclePhoto } from "@/lib/timeline";
 import { Reveal } from "@/components/ui/Reveal";
-
-// The chronicle's own image paths (/images/1464.jpg …) were never shipped —
-// these are the estate photographs that exist, cycled so every entry carries
-// a face. The final entry gets the bottle: the chronicle's actual endpoint.
-const PHOTOS = [
-  "/gallery/warmbach/img_0059.jpg",
-  "/gallery/warmbach/img_0027.jpg",
-  "/gallery/warmbach/img_0041.jpg",
-  "/gallery/warmbach/img_0024.jpg",
-  "/gallery/warmbach/img_0096.jpg",
-  "/gallery/warmbach/img_0030.jpg",
-  "/gallery/warmbach/img_0046.jpg",
-  "/gallery/warmbach/img_0067.jpg",
-  "/gallery/warmbach/img_0075.jpg",
-  "/gallery/warmbach/img_0086.jpg",
-  "/gallery/warmbach/img_0101.jpg",
-];
-const photoFor = (i: number) =>
-  i === chronicle.length - 1 ? "/flasche/shot-front.jpg" : PHOTOS[i % PHOTOS.length];
 
 const CARD_W = 260; // px — must match w-[260px] on the card
 const GAP = 24; // px — must match gap-6 on the track
@@ -46,7 +27,7 @@ function EntryCard({ i, active }: { i: number; active: boolean }) {
     >
       <div className="relative aspect-[4/5] w-full overflow-hidden">
         <Image
-          src={photoFor(i)}
+          src={chroniclePhoto(i)}
           alt=""
           fill
           className="object-cover"

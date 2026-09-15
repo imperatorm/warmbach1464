@@ -26,6 +26,7 @@ export function AgeGate() {
   const [value, setValue] = useState<Record<FieldKey, string>>({ day: "", month: "", year: "" });
   const [error, setError] = useState("");
   const refs = useRef<Partial<Record<FieldKey, HTMLInputElement | null>>>({});
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -36,6 +37,52 @@ export function AgeGate() {
       setOpen(true);
     }
   }, []);
+
+  /**
+   * While the gate is up, nothing behind it exists: the page underneath is
+   * inert (unfocusable, unclickable, invisible to assistive tech), the
+   * document cannot scroll, and Tab cycles inside the dialog. A threshold
+   * that can be tabbed past is not a threshold.
+   */
+  useEffect(() => {
+    if (!open) return;
+    const root = document.getElementById("app-root");
+    const body = document.body;
+    const prevOverflow = body.style.overflow;
+
+    root?.setAttribute("inert", "");
+    root?.setAttribute("aria-hidden", "true");
+    body.style.overflow = "hidden";
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+      const focusable = Array.from(
+        dialog.querySelectorAll<HTMLElement>("input, button, [href], select, textarea, [tabindex]:not([tabindex='-1'])"),
+      ).filter((el) => !el.hasAttribute("disabled"));
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+
+      if (e.shiftKey && (active === first || !dialog.contains(active))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || !dialog.contains(active))) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      root?.removeAttribute("inert");
+      root?.removeAttribute("aria-hidden");
+      body.style.overflow = prevOverflow;
+    };
+  }, [open]);
 
   function setField(key: FieldKey, raw: string, size: number, nextKey?: FieldKey) {
     const digits = raw.replace(/\D/g, "").slice(0, size);
@@ -66,6 +113,7 @@ export function AgeGate() {
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-labelledby="agegate-title"

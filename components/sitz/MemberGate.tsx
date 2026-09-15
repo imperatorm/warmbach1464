@@ -92,9 +92,14 @@ export function MemberGate() {
             Platz einnehmen →
           </button>
 
-          <p className="mt-8 text-xs leading-relaxed text-stone/70">
-            Demo-Zugang: <span className="text-cream/80">1464.0007</span> · Code <span className="text-cream/80">1464</span>
-          </p>
+          {/* Der Demo-Zugang existiert nur in der Entwicklung — veröffentlichte
+              Zugangsdaten wären keine Schwelle, sondern ein Aushang. */}
+          {process.env.NODE_ENV !== "production" && (
+            <p className="mt-8 text-xs leading-relaxed text-stone/70">
+              Demo-Zugang: <span className="text-cream/80">1464.0007</span> · Code{" "}
+              <span className="text-cream/80">1464</span>
+            </p>
+          )}
         </form>
       </div>
     </div>

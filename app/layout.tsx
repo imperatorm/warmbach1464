@@ -34,11 +34,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Cursor />
         <EntryVeil />
         <AgeGate />
-        <Navigation />
-        <main>
-          <PageTransition>{children}</PageTransition>
-        </main>
-        <Footer />
+        {/* Everything the age gate has to seal off. AgeGate marks this subtree
+            inert while it is open, so nothing behind the threshold is
+            focusable, readable to a screen reader, or clickable. */}
+        <div id="app-root">
+          <Navigation />
+          <main>
+            <PageTransition>{children}</PageTransition>
+          </main>
+          <Footer />
+        </div>
         {(process.env.NODE_ENV !== "production" || process.env.JARVIS_INSTRUMENT === "1") && <JarvisBridge />}
       </body>
     </html>

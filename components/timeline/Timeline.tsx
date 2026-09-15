@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, animate, motion, useMotionValue } from "framer-motion";
-import { chronicle } from "@/lib/timeline";
+import { chronicle, chroniclePhoto } from "@/lib/timeline";
 
 const STEP = 128; // px between news-points on the rail
 
@@ -77,26 +77,23 @@ export function Timeline() {
           </div>
         </div>
 
-        {/* Preview image */}
-        {item.image && (
-          <div className="hidden h-[280px] w-[280px] shrink-0 overflow-hidden rounded-lg lg:block">
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={`${active}-img`}
-                src={item.image}
-                alt={`${item.year} — ${item.title}`}
-                className="h-full w-full object-cover"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = "none";
-                }}
-              />
-            </AnimatePresence>
-          </div>
-        )}
+        {/* Preview image — the estate photograph the entry carries
+            (lib/timeline.ts owns which one; the chronicle's own /images/*
+            paths were never shipped). */}
+        <div className="hidden h-[280px] w-[280px] shrink-0 overflow-hidden rounded-lg lg:block">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={`${active}-img`}
+              src={chroniclePhoto(active)}
+              alt={`${item.year} — ${item.title}`}
+              className="h-full w-full object-cover"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            />
+          </AnimatePresence>
+        </div>
       </div>
 
       {/* Rail */}

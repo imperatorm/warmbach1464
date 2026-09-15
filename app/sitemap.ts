@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 const BASE = "https://warmbachhof.com";
 
 /**
- * Public routes only: /v3 stays out while it is a noindex staging route,
+ * Public routes only: /v3 and /experience stay out as noindex studies,
  * /enter and /sitz/* are the gated member area, /api/* is machinery.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -20,7 +20,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/editions",
     "/galerie",
     "/journal",
-    "/experience",
     "/club",
     "/club/mitglied-werden",
     "/club/partner",

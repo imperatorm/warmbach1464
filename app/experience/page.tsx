@@ -4,9 +4,16 @@ import { ChronicleSection } from "@/components/sections/ChronicleSection";
 import { ElementalSceneSection } from "@/components/sections/ElementalSceneSection";
 import { Reveal } from "@/components/ui/Reveal";
 
+/**
+ * Eine zweite, cineastische Startseite — gehalten als Studie, nicht als
+ * öffentlicher Einstieg. Sie bleibt erreichbar, aber aus dem Index heraus:
+ * drei konkurrierende Startseiten wären für Suche wie für Besucher dasselbe
+ * Versprechen, dreimal verschieden gegeben.
+ */
 export const metadata = {
   title: "1464 — Experience",
   description: "Eine cineastische Annäherung an den Warmbachhof.",
+  robots: { index: false, follow: false },
 };
 
 /**
