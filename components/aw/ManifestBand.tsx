@@ -79,9 +79,7 @@ export function ManifestBand() {
         <Reveal className="shrink-0">
           <Monogram className="h-10 w-auto text-night" />
           <p className="mt-4 text-[0.65rem] font-semibold uppercase leading-relaxed tracking-[0.2em] text-terrakotta">
-            Boden
-            <br />
-            Verbürgt
+            Warmbachhof
           </p>
         </Reveal>
         <Reveal delay={0.1}>

@@ -1,90 +1,24 @@
-/* EB Garamond - Serif font for headers */
+/* Grand Slang — the Figma source's display/numeral/wordmark face. Three
+   distinct cuts, each registered under its own family name since B-Side is
+   a genuinely different letterform, not a weight/style variant of Roman. */
 @font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-Regular.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-Regular.ttf') format('truetype');
+  font-family: 'Grand Slang Roman';
+  src: url('/fonts/Grand%20Slang/GrandSlang-Roman.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-Medium.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-SemiBold.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-SemiBold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-Bold.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-ExtraBold.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-ExtraBold.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-Italic.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-Italic.ttf') format('truetype');
+  font-family: 'Grand Slang B-Side';
+  src: url('/fonts/Grand%20Slang/GrandSlang-B-Side.otf') format('opentype');
   font-weight: 400;
-  font-style: italic;
+  font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-MediumItalic.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-MediumItalic.ttf') format('truetype');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-SemiBoldItalic.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-SemiBoldItalic.ttf') format('truetype');
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-BoldItalic.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'EB Garamond';
-  src: url('/fonts/eb-garamond/EBGaramond-ExtraBoldItalic.woff2') format('woff2'),
-       url('/fonts/eb-garamond/EBGaramond-ExtraBoldItalic.ttf') format('truetype');
-  font-weight: 800;
+  font-family: 'Grand Slang Italic';
+  src: url('/fonts/Grand%20Slang/GrandSlang-Italic.otf') format('opentype');
+  font-weight: 400;
   font-style: italic;
   font-display: swap;
 }

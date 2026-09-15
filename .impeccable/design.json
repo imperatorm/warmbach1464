@@ -16,9 +16,9 @@
       "light-gray": { "role": "neutral", "displayName": "Light Gray", "canonical": "#d9d7cf", "tonalRamp": ["#26241f", "#494640", "#726f66", "#9c988e", "#c1beb4", "#d9d7cf", "#e8e7e2", "#f6f5f2"] }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Giant structural words and numerals — pillar names, chronicle year watermark, countdown digits. Never a sentence." },
+      "display": { "displayName": "Display", "purpose": "Grand Slang B-Side. Giant structural words and numerals — pillar names, chronicle year watermark, countdown digits. Never a sentence." },
       "headline": { "displayName": "Headline", "purpose": "The calm sentence-case Whyte voice opening every section, almost always pairing one Accent-tier italic phrase inline." },
-      "accent": { "displayName": "Accent", "purpose": "One italic Garamond phrase riding inside a Headline sentence — never a standalone block." },
+      "accent": { "displayName": "Accent", "purpose": "One italic Grand Slang phrase riding inside a Headline sentence — never a standalone block." },
       "body": { "displayName": "Body", "purpose": "Running copy at 60-80% opacity, slightly heavier weight (500) than the sibling branch to hold up against Whyte's own display-tier boldness." },
       "label": { "displayName": "Label", "purpose": "Numbered chapter markers, spec-register keys, capsule/button microcopy — uppercase, wide tracking." }
     },
@@ -82,7 +82,7 @@
       "One continuous scroll in banded chapters, each lifting over the last on a rounded top seam - never a hard page break",
       "Photographs float free of the grid - cursor-trailing, tilted specimens, not locked frames",
       "Two depth vocabularies used for different jobs: frosted glass-blur for UI riding over held photography, soft directional shadow for genuinely floating objects",
-      "Giant poster-weight numerals (Whyte 900, uppercase) do the visual shouting; running body voice stays calm, sentence-case, Whyte 500",
+      "Giant Grand Slang B-Side numerals and words do the visual shouting, set in their own case; the statement voice stays calm sentence-case Whyte Medium, and Hanken Grotesk handles everything small",
       "Soft rounding everywhere a surface is touched or transitions; the reading body of a pillar chapter stays flat and hairline-bordered",
       "The same 'no invented values' discipline as the rest of the product - this branch's own internal documentation calls it the 'Substanz-Sperre'"
     ],

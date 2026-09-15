@@ -1,15 +1,6 @@
-"use client";
-
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
-
-const HeroDecanterScene = dynamic(() => import("@/components/three/HeroDecanterScene"), {
-  ssr: false,
-});
 
 const SPECS = [
   { k: "Glas", v: "Tiroler Glaskunst" },
@@ -21,52 +12,17 @@ const SPECS = [
 ];
 
 /**
- * Die Flasche — the object itself, alive in the middle of the night, with the
- * provenance register beside it. Performance contract unchanged from the v3
- * Flaschenkammer: the canvas is dynamic/ssr:false, mounts only as the section
- * approaches and the thread goes idle, hides behind the poster still until
- * ready, pauses its frameloop off-screen, and never mounts at all under
- * prefers-reduced-motion.
+ * Die Flasche — the object and its provenance register, per the Figma source
+ * (node 53:194): the spec register left, the bottle photographed on its own
+ * warm ground in the middle, the provenance note and door right.
+ *
+ * The interactive WebGL decanter lives on in components/aw/BottleStudy.tsx —
+ * the Figma composition calls for the photograph here, so that is what this
+ * band ships.
  */
 export function ArtifactBand() {
-  const reduce = useReducedMotion();
-  const sectionRef = useRef<HTMLElement>(null);
-  const [near, setNear] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const [mount, setMount] = useState(false);
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el || reduce) return;
-    const nearObs = new IntersectionObserver(([e]) => e.isIntersecting && setNear(true), {
-      rootMargin: "100% 0px",
-    });
-    const visObs = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), {
-      rootMargin: "10% 0px",
-    });
-    nearObs.observe(el);
-    visObs.observe(el);
-    return () => {
-      nearObs.disconnect();
-      visObs.disconnect();
-    };
-  }, [reduce]);
-
-  useEffect(() => {
-    if (!near || reduce) return;
-    const w = window as typeof window & {
-      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-    };
-    if (w.requestIdleCallback) w.requestIdleCallback(() => setMount(true), { timeout: 1200 });
-    else window.setTimeout(() => setMount(true), 200);
-  }, [near, reduce]);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden bg-night px-6 py-24 text-cream lg:px-10 lg:py-32"
-    >
+    <section className="relative overflow-hidden bg-night px-6 py-24 text-cream lg:px-10 lg:py-32">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_50%_45%,_rgba(197,126,91,0.12),_transparent_70%)]"
@@ -77,9 +33,13 @@ export function ArtifactBand() {
           <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-gold">
             ( 04 ) Die Flasche
           </p>
-          <h2 className="t-hero mt-4 max-w-[18ch] text-[clamp(1.9rem,4vw,3.2rem)] text-cream">
-            Kein Rendering fürs Regal — <span className="t-accent">das Gefäß selbst</span>
+          <h2 className="t-hero mt-4 max-w-[24ch] text-[clamp(1.9rem,3.2vw,3.2rem)] text-cream">
+            Was wir brennen, brennen wir einmal.
           </h2>
+          <p className="mt-1 text-[clamp(1.9rem,3.2vw,3.2rem)] leading-[1.04] text-cream">
+            <span className="t-hero">—&nbsp;</span>
+            <span className="t-accent">Premiere Edition</span>
+          </p>
         </Reveal>
 
         <div className="mt-16 grid grid-cols-1 items-center gap-y-12 lg:grid-cols-12 lg:gap-x-10">
@@ -101,29 +61,20 @@ export function ArtifactBand() {
           </Reveal>
 
           {/* The object */}
-          <div className="relative order-1 mx-auto h-[58vh] min-h-[420px] w-full max-w-[560px] lg:order-2 lg:col-span-6">
-            <Image
-              src="/flasche/shot-front.jpg"
-              alt="Die Warmbach-Flasche aus grünem Kristall, frontal"
-              fill
-              sizes="(min-width: 1024px) 46vw, 92vw"
-              className={`object-contain transition-opacity duration-[1200ms] ease-out ${
-                ready ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            {mount && !reduce && (
-              <div
-                className={`absolute inset-0 transition-opacity duration-[1200ms] ease-out ${
-                  ready ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                <HeroDecanterScene active={visible} onReady={() => setReady(true)} dustCount={180} />
-              </div>
-            )}
-          </div>
+          <Reveal className="relative order-1 mx-auto w-full max-w-[560px] lg:order-2 lg:col-span-6 lg:col-start-5">
+            <div className="relative aspect-[560/696] w-full overflow-hidden rounded-[8px]">
+              <Image
+                src="/figma/flasche-bottle-glasses.png"
+                alt="Die Warmbach-Flasche mit zwei Gläsern auf warmem Grund"
+                fill
+                sizes="(min-width: 1024px) 560px, 92vw"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
 
           {/* Exit */}
-          <Reveal delay={0.1} className="order-3 lg:col-span-3">
+          <Reveal delay={0.1} className="order-3 lg:col-span-3 lg:col-start-11">
             <p className="max-w-[34ch] text-sm leading-relaxed text-cream/65">
               Tiroler Glasbläsertradition mit Wurzeln im 18. Jahrhundert. Herkunft, Hand
               und Siegel — die Flasche erzählt, wo der Brand herkommt, bevor man ihn
@@ -132,13 +83,16 @@ export function ArtifactBand() {
             <Link
               href="/flasche"
               data-cursor
-              className="mt-7 inline-block rounded-full bg-cream px-5 py-2.5 text-sm font-medium text-night transition-colors duration-300 hover:bg-gold"
+              className="group mt-7 inline-flex items-center gap-3 rounded-full bg-cream py-1.5 pl-6 pr-1.5 text-sm font-medium uppercase text-night transition-colors duration-300 hover:bg-gold"
             >
-              Zur Flasche
+              weiter Zur Flasche
+              <span
+                aria-hidden
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-night text-cream transition-transform duration-300 group-hover:translate-x-0.5"
+              >
+                &rarr;
+              </span>
             </Link>
-            <p className="mt-5 text-[0.6rem] uppercase tracking-[0.22em] text-cream/60">
-              47.4486° N — 12.3936° E
-            </p>
           </Reveal>
         </div>
       </div>

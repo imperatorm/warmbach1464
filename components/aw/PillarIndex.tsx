@@ -78,6 +78,16 @@ export function PillarIndex() {
           </div>
         </Reveal>
 
+        {/* The botanical specimen that crosses the Manufaktur line (Figma 53:115) */}
+        <Image
+          src="/figma/saeulen-branch.png"
+          alt=""
+          width={168}
+          height={253}
+          aria-hidden
+          className="pointer-events-none absolute left-[27%] top-[52%] z-20 hidden w-[168px] rotate-[2.3deg] select-none lg:block"
+        />
+
         <ul className="relative z-10">
           {PILLARS.map((p, i) => {
             const dim = active !== null && active !== p.slug;

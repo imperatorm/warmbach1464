@@ -1,51 +1,28 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useReducedMotion } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 
 /**
- * Hero — the alpine film full-bleed with the statement bottom-aligned
- * (Drift composition): a calm sentence-case Whyte heading whose emphasised
- * phrase switches to Garamond italic, a tight subtitle, and the inline
- * status bar (blurred capsule + solid door) instead of a lone button.
+ * Hero — the title sheet, per the Figma source (node 53:58): the still of the
+ * lit distillery room full-bleed, the wordmark set over it as a ghosted
+ * "1464" in Grand Slang B-Side with "by WARMBACH" reading across the middle,
+ * then the statement, subtitle and status capsule bottom-aligned.
  *
  * The negative bottom margin lets the next band's rounded top corners lift
- * over the film — the page opens like a sheet laid on the landscape.
- *
- * Under prefers-reduced-motion the video never mounts at all — the poster
- * still stands in its place, same as every other motion-heavy piece on
- * this branch (ScrollVideo, ArtifactBand, PillarIndex).
+ * over the image — the page opens like a sheet laid on the room.
  */
 export function HeroFilm() {
-  const reduce = useReducedMotion();
-
   return (
     <section className="relative -mb-8 h-[100svh] overflow-hidden bg-night">
-      {reduce ? (
-        <Image
-          src="/video/alpine-poster.jpg"
-          alt=""
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-          aria-hidden="true"
-        />
-      ) : (
-        <video
-          className="absolute inset-0 h-full w-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/video/alpine-poster.jpg"
-          aria-hidden="true"
-        >
-          <source src="/video/alpine.mp4" type="video/mp4" />
-        </video>
-      )}
+      <Image
+        src="/figma/hero-bar-interior.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+        aria-hidden="true"
+      />
 
       {/* Legibility: a soft wash overall, deeper where the type sits */}
       <div className="pointer-events-none absolute inset-0 bg-night/25" />
@@ -59,11 +36,31 @@ export function HeroFilm() {
         Salbuch · Anno 1464
       </p>
 
-      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center px-6 pb-16 text-center lg:pb-20">
+      {/* The wordmark lockup sits in the free space above the statement, so the
+          two can never collide on a short viewport; the "by WARMBACH" line
+          rides the lower half of the ghosted numeral, as in the comp. */}
+      <div className="relative z-[5] flex h-full flex-col">
+        <div className="pointer-events-none relative flex flex-1 select-none items-center justify-center">
+          <p
+            aria-hidden
+            className="t-poster text-[clamp(4rem,15vw,19.95rem)] leading-[0.75] tracking-[0.12em] text-cream mix-blend-soft-light"
+          >
+            1464
+          </p>
+          <div className="absolute inset-x-0 top-[62%] text-center">
+            <p className="font-body text-[clamp(0.55rem,0.85vw,0.85rem)] uppercase tracking-[0.28em] text-cream/60">
+              by
+            </p>
+            <h2 className="mt-1 font-display text-[clamp(2rem,5.6vw,7.5rem)] leading-[0.9] tracking-[-0.01em] text-cream">
+              WARMBACH
+            </h2>
+          </div>
+        </div>
+
+      <div className="z-10 flex flex-col items-center px-6 pb-16 text-center lg:pb-20">
         <Reveal y={26}>
-          <h1 className="t-hero max-w-[16ch] text-[clamp(2.6rem,7.4vw,6.5rem)] text-cream">
-            Seit 1464 auf{" "}
-            <span className="t-accent text-cream">demselben Boden</span>
+          <h1 className="font-display max-w-[16ch] text-[clamp(2.2rem,4.6vw,4.625rem)] leading-[1.17] tracking-[-0.014em] text-cream">
+            Seit 1464 auf demselben Boden
           </h1>
         </Reveal>
 
@@ -84,12 +81,13 @@ export function HeroFilm() {
             <Link
               href="/club/mitglied-werden"
               data-cursor
-              className="shrink-0 rounded-full bg-cream px-5 py-2.5 text-sm font-medium text-night transition-colors duration-300 hover:bg-gold"
+              className="shrink-0 rounded-full bg-cream px-5 py-2.5 text-sm font-medium uppercase text-night transition-colors duration-300 hover:bg-gold"
             >
               Club 1464
             </Link>
           </div>
         </Reveal>
+        </div>
       </div>
     </section>
   );

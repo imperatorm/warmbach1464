@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
 import { daysSince1464, timeToNextYear, formatInt, pad2, type Countdown } from "@/lib/time";
+import { Monogram } from "@/components/ui/Monogram";
 import { Reveal } from "@/components/ui/Reveal";
 
 const easeOutExpo = (t: number) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
@@ -66,60 +67,54 @@ export function LivingCount() {
   return (
     <section className="border-t border-hairline/10 bg-night px-6 py-24 text-cream lg:px-10 lg:py-32">
       <div ref={ref} className="mx-auto max-w-[1500px]">
+        {/* The figure, centred under the monogram (Figma 53:7) */}
         <Reveal>
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-gold">
-            ( 06 ) Die Zeit, lebendig
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-20">
-          <Reveal>
-            <div className="border-t border-cream/20 pt-6">
-              <p className="t-poster text-[clamp(3rem,9vw,7rem)] leading-none text-cream tabular-nums">
+          <div className="flex flex-col items-center">
+            <Monogram className="h-10 w-auto" />
+            <div className="mt-12 w-full max-w-[464px] border-t border-cream/20 pt-6 text-center">
+              <p className="t-poster text-[clamp(3rem,9.6vw,7.75rem)] leading-[0.83] text-cream tabular-nums">
                 {mounted ? formatInt(days) : "—"}
               </p>
-              <p className="mt-5 text-[0.65rem] uppercase tracking-[0.24em] text-gold">
+              <p className="mt-4 text-[0.65rem] uppercase tracking-[0.24em] text-gold">
                 Tage seit 1464
               </p>
-              <p className="mt-2 max-w-sm text-sm leading-relaxed text-cream/60">
+              <p className="mt-3 text-sm leading-relaxed text-cream/60">
                 Ununterbrochen bewirtschaftet — vom Salbuch bis zu diesem Augenblick.
               </p>
             </div>
-          </Reveal>
+          </div>
+        </Reveal>
 
-          <Reveal delay={0.1}>
-            <div className="border-t border-cream/20 pt-6">
-              <div className="flex items-start gap-5 sm:gap-8">
-                {units.map((u) => (
-                  <div key={u.l} className="flex flex-col">
-                    <span className="t-poster text-[clamp(2rem,5.4vw,4rem)] leading-none text-cream tabular-nums">
-                      {u.v}
-                    </span>
-                    <span className="mt-3 text-[0.55rem] uppercase tracking-[0.24em] text-cream/60">
-                      {u.l}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-5 flex items-center gap-4">
-                <p className="text-[0.65rem] uppercase tracking-[0.24em] text-gold">
-                  Bis zum Jahreswechsel
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setPaused((p) => !p)}
-                  aria-pressed={paused}
-                  className="rounded-full border border-cream/20 px-3 py-1 text-[0.6rem] uppercase tracking-[0.2em] text-cream/60 transition-colors duration-300 hover:border-gold hover:text-gold"
-                >
-                  {paused ? "Fortsetzen" : "Pausieren"}
-                </button>
-              </div>
-              <p className="mt-2 max-w-sm text-sm leading-relaxed text-cream/60">
-                Countdown bis zur Mitternacht des 31. Dezember.
-              </p>
+        {/* The turn of the year, kept as a quieter second reading */}
+        <Reveal delay={0.1}>
+          <div className="mx-auto mt-20 flex max-w-[464px] flex-col items-center border-t border-cream/15 pt-6">
+            <div className="flex items-start gap-5 sm:gap-8">
+              {units.map((u) => (
+                <div key={u.l} className="flex flex-col items-center">
+                  <span className="t-poster text-[clamp(1.5rem,3.6vw,2.6rem)] leading-none text-cream/90 tabular-nums">
+                    {u.v}
+                  </span>
+                  <span className="mt-2.5 text-[0.55rem] uppercase tracking-[0.24em] text-cream/55">
+                    {u.l}
+                  </span>
+                </div>
+              ))}
             </div>
-          </Reveal>
-        </div>
+            <div className="mt-5 flex items-center gap-4">
+              <p className="text-[0.62rem] uppercase tracking-[0.24em] text-gold/80">
+                Bis zum Jahreswechsel
+              </p>
+              <button
+                type="button"
+                onClick={() => setPaused((p) => !p)}
+                aria-pressed={paused}
+                className="rounded-full border border-cream/20 px-3 py-1 text-[0.6rem] uppercase tracking-[0.2em] text-cream/60 transition-colors duration-300 hover:border-gold hover:text-gold"
+              >
+                {paused ? "Fortsetzen" : "Pausieren"}
+              </button>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

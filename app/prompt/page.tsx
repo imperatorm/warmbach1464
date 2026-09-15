@@ -42,7 +42,7 @@ const BLOCKS: Block[] = [
     rows: [
       ["Grund", "Der Film liegt fixiert und formatfüllend hinter der Oberfläche; darüber nur Typografie und Linien — keine opaken Panels, die das Bild zudecken."],
       ["Farbe", "Ausschließlich die Haus-Token: night #1D291D, cream #EDE6D4, gold #B8893A, copper #8C5A2B, terrakotta #713940, kalk #D9D7CF, stone #9C9489."],
-      ["Typografie", "Whyte (self-hosted) für Display und Kapitel — .t-hero in mittlerer Stärke, .t-poster in Black für Zahlen; EB Garamond kursiv (.t-accent) für die betonte Zeile."],
+      ["Typografie", "Grand Slang (self-hosted) für Display und Zahlen — .t-poster in der B-Side-Schnittform, Roman für die Wortmarke, Italic (.t-accent) für die betonte Zeile; Whyte Medium (.t-hero) für die ruhigen Aussagesätze, Hanken Grotesk für Fließtext und Labels."],
       ["Instrumentierung", "Laufende Kopfzeile mit Ort und Gestein, Tiefenanzeige in cm, gestrichelte Schichtgrenzen, Registermarken — die Sprache eines Museumsexponats, nicht eines Dashboards."],
     ],
   },

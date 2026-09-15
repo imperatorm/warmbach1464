@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -8,9 +9,19 @@ import { Reveal } from "@/components/ui/Reveal";
 export function ClosingCTA() {
   return (
     <section className="relative overflow-hidden border-t border-hairline/10 bg-night px-6 py-28 text-center text-cream lg:py-40">
+      {/* The room the invitation is to (Figma 53:405) */}
+      <Image
+        src="/figma/closing-cta-bg.jpg"
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover"
+        aria-hidden="true"
+      />
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/20" />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(197,126,91,0.10),_transparent_65%)]"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night via-night/35 to-transparent"
       />
       <div className="relative mx-auto max-w-3xl">
         <Reveal>

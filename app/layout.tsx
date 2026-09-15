@@ -8,7 +8,7 @@ import { Cursor } from "@/components/ui/Cursor";
 import { EntryVeil } from "@/components/ui/EntryVeil";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { PageTransition } from "@/components/providers/PageTransition";
-import { display, body } from "./fonts";
+import { hankenGrotesk } from "./fonts";
 
 export const metadata: Metadata = {
   title: "1464byW — Warmbachhof Kitzbühel",
@@ -24,10 +24,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${display.variable} ${body.variable} bg-night`}>
+    <html lang="de" className={`${hankenGrotesk.variable} bg-night`}>
       <head>
-        {/* Preload the hero LCP poster (what the home hero actually paints) so it is fetched in parallel with the document */}
-        <link rel="preload" href="/video/alpine-poster.jpg" as="image" type="image/jpeg" />
+        {/* Preload the hero LCP image (what the home hero actually paints) so it is fetched in parallel with the document */}
+        <link rel="preload" href="/figma/hero-bar-interior.jpg" as="image" type="image/jpeg" />
       </head>
       <body className="bg-night text-cream font-body antialiased min-h-screen">
         <SmoothScroll />

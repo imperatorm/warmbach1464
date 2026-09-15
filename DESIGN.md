@@ -14,9 +14,9 @@ colors:
   oxblood-900: "#422628"
 typography:
   display:
-    fontFamily: "'Whyte', system-ui, Arial, sans-serif"
+    fontFamily: "'Grand Slang B-Side', Georgia, serif"
     fontSize: "clamp(2.8rem, 11.5vw, 9.5rem)"
-    fontWeight: 900
+    fontWeight: 400
     lineHeight: 0.92
     letterSpacing: "-0.01em"
   headline:
@@ -25,21 +25,27 @@ typography:
     fontWeight: 500
     lineHeight: 1.04
     letterSpacing: "-0.025em"
+  wordmark:
+    fontFamily: "'Grand Slang Roman', Georgia, serif"
+    fontSize: "clamp(2rem, 5.6vw, 7.5rem)"
+    fontWeight: 400
+    lineHeight: 0.9
+    letterSpacing: "-0.01em"
   accent:
-    fontFamily: "'EB Garamond', Georgia, 'Times New Roman', serif"
+    fontFamily: "'Grand Slang Italic', Georgia, serif"
     fontSize: "1em"
     fontWeight: 400
     lineHeight: 1.04
     letterSpacing: "-0.01em"
     fontFeature: "italic"
   body:
-    fontFamily: "'Whyte', system-ui, Arial, sans-serif"
+    fontFamily: "'Hanken Grotesk', system-ui, Arial, sans-serif"
     fontSize: "0.9375rem"
     fontWeight: 500
     lineHeight: 1.6
     letterSpacing: "normal"
   label:
-    fontFamily: "'Whyte', system-ui, Arial, sans-serif"
+    fontFamily: "'Hanken Grotesk', system-ui, Arial, sans-serif"
     fontSize: "0.7rem"
     fontWeight: 600
     lineHeight: 1.5
@@ -90,7 +96,7 @@ branch's working tree. -->
 
 **Creative North Star: "The Living Scroll"**
 
-The homepage's own composition comment states the idea directly: the estate as one continuous sheet, banded light and dark, so no two neighboring chapters read the same. There are no page breaks here, only lifts — each band ends in a rounded top corner that rises over the one before it, like a loose page laid on top of the last. Photographs are not locked into the grid: the pillar index lets a photograph float free and trail the cursor, tilted, the moment a word is touched; the artifact band's decanter and hero's alpine film are held full-bleed behind glass-blurred UI riding on top of them. Numbers do the shouting the type otherwise refuses — giant poster-weight digits (chronicle years, the daily countdown, each pillar's name) punctuate an otherwise calm, sentence-case voice.
+The homepage's own composition comment states the idea directly: the estate as one continuous sheet, banded light and dark, so no two neighboring chapters read the same. There are no page breaks here, only lifts — each band ends in a rounded top corner that rises over the one before it, like a loose page laid on top of the last. Photographs are not locked into the grid: the pillar index lets a photograph float free and trail the cursor, tilted, the moment a word is touched; the hero's lit distillery room is held full-bleed behind glass-blurred UI riding on top of it, and the bottle is photographed on its own warm ground. Numbers do the shouting the type otherwise refuses — giant poster-weight digits (chronicle years, the daily countdown, each pillar's name) punctuate an otherwise calm, sentence-case voice.
 
 This is a warmer, softer reading of the same estate that `redesign/v3-editorial` renders as a square-cornered dossier: same tokens, same 562-year claim, same restraint about invented facts — but expressed here as something you unroll and touch, not something you file.
 
@@ -98,7 +104,7 @@ This is a warmer, softer reading of the same estate that `redesign/v3-editorial`
 - One continuous scroll in banded chapters, each lifting over the last on a rounded top seam — never a hard page break
 - Photographs float free of the grid — cursor-trailing, tilted specimens, not locked frames
 - Two depth vocabularies used for different jobs: frosted glass-blur for UI riding over held photography, soft directional shadow for genuinely floating objects
-- Giant poster-weight numerals (Whyte 900, uppercase) do the visual shouting; running body voice stays calm, sentence-case, Whyte 500
+- Giant Grand Slang B-Side numerals and words do the visual shouting, set in their own case; the running statement voice stays calm, sentence-case Whyte Medium, and Hanken Grotesk handles everything small
 - Soft rounding everywhere a surface is touched or transitions (buttons, status chips, section seams, cards); the reading body of a pillar chapter stays flat and hairline-bordered, closer to the sibling branch's restraint
 - The same "no invented values" discipline as the rest of the product — this branch's own internal documentation calls it the "Substanz-Sperre"
 
@@ -129,15 +135,17 @@ The same ten-token Pantone-derived palette as the rest of the codebase (`tailwin
 
 ## Typography
 
-**Display Font:** Whyte (self-hosted, `app/fonts.css`, weights 100–900 + italics)
-**Accent Font:** EB Garamond (self-hosted, italic only in this system's actual usage)
+**Display Font:** Grand Slang (self-hosted, `app/fonts.css`) in three distinct cuts — **B-Side** (giant numerals and pillar words), **Roman** (the WARMBACH wordmark, the footer's "by"), **Italic** (accent phrases). Each is registered under its own family name because B-Side is a genuinely different letterform, not a style variant of Roman.
+**Statement Font:** Whyte (self-hosted), Medium weight only — the calm sentence-case headline voice (`.t-hero`).
+**Body/UI Font:** Hanken Grotesk (`next/font/google`, `app/fonts.ts`) — body copy, labels, nav, buttons, spec registers.
 
-**Character:** Whyte alone carries almost the entire voice here — from a giant 900-weight uppercase shout down to a calm 500-weight sentence-case whisper — with Garamond italic used surgically, one phrase at a time, to soften a single emphasized word inside an otherwise Whyte sentence (`Seit 1464 auf *demselben Boden*`). This is a reversed emphasis from the sibling branch, where Garamond carries the big signature moments and Whyte stays structural — here Whyte is the whole range, and Garamond is the italic aside.
+**Character:** Three faces, three clearly separated jobs. Grand Slang does all the shouting and all the flourish: the ghosted `1464`, the five pillar words, the day-count figure, and — in its Italic cut — the single emphasised phrase that closes a headline (`— *Premiere Edition*`, `Kommen Sie an den *Tisch*`). Whyte Medium carries the calm statement sentences that sit under those flourishes. Hanken Grotesk handles everything small and structural, and never appears large. A headline is never set in the body face, and the italic accent never carries a sentence on its own.
 
 ### Hierarchy
-- **Display** (900, `clamp(2.8rem, 11.5vw, 9.5rem)`, uppercase, line-height 0.92): giant structural words and numerals — each pillar's name in the index, the "next pillar" doorway, the chronicle's background year, the countdown's day/hour/minute/second figures. Never a sentence, always a word or number.
+- **Display** (Grand Slang B-Side, 400, `clamp(2.8rem, 11.5vw, 9.5rem)`, set in the type's own case — never forced uppercase, line-height 0.92): giant structural words and numerals — each pillar's name in the index, the "next pillar" doorway, the chronicle's background year, the countdown's day/hour/minute/second figures. Never a sentence, always a word or number.
 - **Headline** (500, `clamp(1.9rem, 4vw, 3.2rem)`–`clamp(2.6rem, 7.4vw, 6.5rem)` for the hero, sentence case, line-height 1.04, letter-spacing -0.025em): the calm narrative voice for every section's opening statement — almost always pairs one **Accent**-tier italic phrase inline.
-- **Accent** (400 italic, inherits surrounding size): the one emphasized phrase inside a Headline or a pillar tagline — never a standalone block, always riding inside a Headline-tier sentence.
+- **Wordmark** (Grand Slang Roman, 400, `clamp(2rem, 5.6vw, 7.5rem)`): the WARMBACH lockup over the hero still, and the footer signature's lowercase "by". The Roman cut appears only in the wordmark — never in running text.
+- **Accent** (Grand Slang Italic, 400, inherits surrounding size): the one emphasized phrase inside a Headline or a pillar tagline — never a standalone block, always riding inside a Headline-tier sentence.
 - **Label** (600, 0.6rem–0.7rem, uppercase, letter-spacing 0.22em–0.24em): the numbered chapter marker (`( 01 ) Manifest`), spec-register keys (`ArtifactBand`'s `dl`), status-capsule and button microcopy.
 - **Rail** (Whyte, uppercase, letter-spacing 0.3em, 0.6rem, `writing-mode: vertical-rl`): coordinates and provenance notes pinned to the frame edge, rotated — a device unique to this branch, not present on the sibling.
 - **Body** (500, ~0.9375rem, line-height 1.6, measure `max-w-xs`–`max-w-lg`): set at 60–80% opacity on its ground color, slightly heavier weight (500 vs. the sibling's 400) to hold up against Whyte's own display-tier boldness elsewhere on the same page.

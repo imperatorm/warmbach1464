@@ -158,21 +158,18 @@ export function Footer() {
           </div>
         </div>
 
-        {/* The house signature — glyphs spread edge to edge, cropped at the
-            baseline so the sheet ends on the name rather than trailing off. */}
+        {/* The house signature — set as one line and blended into the sheet
+            rather than printed on it (Figma 53:538: soft-light, wide track). */}
         <div
           aria-label={`${brand.master} — ${brand.house}`}
-          className="mt-16 flex select-none items-end justify-between overflow-hidden px-1 lg:mt-20"
+          className="mt-16 flex select-none items-end justify-center overflow-hidden px-1 lg:mt-20"
         >
-          {["1", "4", "6", "4", "B", "Y", "W"].map((c, i) => (
-            <span
-              key={`${c}-${i}`}
-              aria-hidden
-              className="t-poster text-[13.5vw] leading-[0.78] text-cream/90"
-            >
-              {c}
-            </span>
-          ))}
+          <p
+            aria-hidden
+            className="t-poster whitespace-nowrap text-[16.6vw] uppercase leading-[0.75] tracking-[0.12em] text-white mix-blend-soft-light"
+          >
+            1464 <span className="font-display normal-case">by</span> W
+          </p>
         </div>
       </motion.div>
 
