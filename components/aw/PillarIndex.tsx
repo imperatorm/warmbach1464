@@ -25,10 +25,16 @@ const PILLARS = [
 /** Distinct drawings to warm — one today, five once each Säule has its own. */
 const SPECIMENS = Array.from(new Set(PILLARS.map((p) => p.specimen)));
 
+/**
+ * The index is staggered, not stacked: rows sit left / right / centre / left /
+ * right down the sheet (Figma 26:5953). Only from `lg` — below that the words
+ * already fill the measure, so the offsets would read as ragged rather than
+ * composed, and every row runs flush left.
+ */
 const ALIGN = {
-  left: "text-left justify-start",
-  right: "text-right justify-end",
-  center: "text-center justify-center",
+  left: "justify-start text-left",
+  right: "lg:justify-end lg:text-right",
+  center: "lg:justify-center lg:text-center",
 } as const;
 
 /** The row's door mark — same stroke and weight as the arrow on the Flasche band. */
@@ -131,20 +137,23 @@ export function PillarIndex() {
                     >
                       {p.word}
                     </span>
+                    {/* The door, drawn only when the row is addressed: fades in
+                        and travels right into the gap after the word. It holds
+                        its own space at rest, so arriving on a row never shifts
+                        the caption — and never absorbs the free space the row's
+                        justification needs to stagger. */}
+                    <span
+                      aria-hidden
+                      className="hidden h-12 w-12 shrink-0 -translate-x-3 self-center items-center justify-center rounded-full bg-night text-cream opacity-0 transition-[opacity,transform] duration-500 ease-deep group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 lg:inline-flex"
+                    >
+                      <ChevronRight />
+                    </span>
                     <span
                       className={`text-[0.62rem] uppercase tracking-[0.2em] transition-opacity duration-500 ${
                         dim ? "text-terrakotta/65" : "text-terrakotta"
                       }`}
                     >
                       {p.note}
-                    </span>
-                    {/* The door, drawn only when the row is addressed: fades up
-                        from the left and settles on the row's right edge. */}
-                    <span
-                      aria-hidden
-                      className="ml-auto hidden h-12 w-12 shrink-0 -translate-x-3 self-center items-center justify-center rounded-full bg-night text-cream opacity-0 transition-[opacity,transform] duration-500 ease-deep group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 lg:inline-flex"
-                    >
-                      <ChevronRight />
                     </span>
                   </Link>
                 </Reveal>
