@@ -54,9 +54,13 @@ export function useLightbox(
       const vt = (document as Document & {
         startViewTransition: (cb: () => void) => { finished: Promise<void> };
       }).startViewTransition(commit);
-      vt.finished.finally(() => {
-        nameFrame(source, "");
-      });
+      // An aborted transition is not an error worth surfacing — the state
+      // change has already happened either way. Only the name must come off.
+      vt.finished
+        .catch(() => {})
+        .finally(() => {
+          nameFrame(source, "");
+        });
     },
     [setIndex],
   );
@@ -77,10 +81,12 @@ export function useLightbox(
     const vt = (document as Document & {
       startViewTransition: (cb: () => void) => { finished: Promise<void> };
     }).startViewTransition(commit);
-    vt.finished.finally(() => {
-      nameFrame(source, "");
-      returnFocusRef.current?.focus();
-    });
+    vt.finished
+      .catch(() => {})
+      .finally(() => {
+        nameFrame(source, "");
+        returnFocusRef.current?.focus();
+      });
   }, [setIndex]);
 
   return { open, close, sourceRef };

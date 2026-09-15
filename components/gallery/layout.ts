@@ -21,6 +21,8 @@ export type Print = GalleryImage & {
   /** Parallax factor — a print further from the eye travels less. */
   depth: number;
   region: GallerySection;
+  /** The quarter's own name, resolved once rather than looked up per render. */
+  regionLabel: string;
   index: number;
 };
 
@@ -107,6 +109,7 @@ export function buildPrints(): Print[] {
         rot: (rand() - 0.5) * (featured ? 7 : 13),
         depth,
         region: region.key,
+        regionLabel: region.label,
         index: index++,
       });
     });
