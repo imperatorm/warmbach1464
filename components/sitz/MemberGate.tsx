@@ -32,7 +32,7 @@ export function MemberGate() {
         href="/"
         data-cursor
         aria-label="Zur Startseite"
-        className="absolute left-6 top-6 flex items-center gap-1.5 lg:left-10 lg:top-8"
+        className="absolute left-6 top-6 flex min-h-11 items-center gap-1.5 lg:left-10 lg:top-8"
       >
         <span className="font-display text-xl leading-none text-cream [font-variation-settings:'opsz'_48]">1464</span>
         <span className="text-[0.6rem] uppercase tracking-[0.22em] text-gold [margin-inline-end:-0.22em]">by</span>

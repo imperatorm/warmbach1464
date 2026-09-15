@@ -108,7 +108,7 @@ export function LivingCount() {
                 type="button"
                 onClick={() => setPaused((p) => !p)}
                 aria-pressed={paused}
-                className="rounded-full border border-cream/20 px-3 py-1 text-[0.6rem] uppercase tracking-[0.2em] text-cream/60 transition-colors duration-300 hover:border-gold hover:text-gold"
+                className="inline-flex min-h-11 items-center rounded-full border border-cream/20 px-4 text-[0.6rem] uppercase tracking-[0.2em] text-cream/60 transition-colors duration-300 hover:border-gold hover:text-gold"
               >
                 {paused ? "Fortsetzen" : "Pausieren"}
               </button>

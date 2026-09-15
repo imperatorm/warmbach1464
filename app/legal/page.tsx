@@ -68,13 +68,13 @@ export default function LegalPage() {
 
         {/* Anchor TOC — the footer links target these ids */}
         <Reveal delay={0.12}>
-          <nav aria-label="Inhalt" className="mt-10 flex flex-wrap gap-x-6 gap-y-2 border-b border-hairline/15 pb-8">
+          <nav aria-label="Inhalt" className="mt-10 flex flex-wrap gap-x-6 border-b border-hairline/15 pb-6">
             {SECTIONS.map((s, i) => (
               <a
                 key={s.id}
                 href={`#${s.id}`}
                 data-cursor
-                className="link-underline text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-stone transition-colors hover:text-gold"
+                className="link-underline flex min-h-11 items-center text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-stone transition-colors hover:text-gold"
               >
                 {String(i + 1).padStart(2, "0")} — {s.title}
               </a>

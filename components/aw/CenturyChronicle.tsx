@@ -80,13 +80,13 @@ export function CenturyChronicle() {
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-[160px_1fr] lg:gap-20">
           {/* Century index — stays with you */}
           <nav aria-label="Jahrhunderte" className="lg:sticky lg:top-24 lg:self-start">
-            <ul className="flex flex-wrap gap-x-4 gap-y-2 lg:flex-col lg:gap-2">
+            <ul className="flex flex-wrap gap-x-5 lg:flex-col lg:gap-0">
               {groups.map(([c]) => (
                 <li key={c}>
                   <a
                     href={`#jh-${c}`}
                     data-cursor
-                    className={`block text-[0.7rem] font-semibold uppercase tracking-[0.18em] transition-colors duration-300 ${
+                    className={`flex min-h-11 items-center text-[0.7rem] font-semibold uppercase tracking-[0.18em] transition-colors duration-300 ${
                       active === c ? "text-terrakotta" : "text-night/45 hover:text-night/80"
                     }`}
                     aria-current={active === c ? "true" : undefined}

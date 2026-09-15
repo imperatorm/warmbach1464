@@ -81,7 +81,7 @@ export function HeroFilm() {
             <Link
               href="/club/mitglied-werden"
               data-cursor
-              className="shrink-0 rounded-full bg-cream px-5 py-2.5 text-sm font-medium uppercase text-night transition-colors duration-300 hover:bg-gold"
+              className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-cream px-5 text-sm font-medium uppercase text-night transition-colors duration-300 hover:bg-gold"
             >
               Club 1464
             </Link>

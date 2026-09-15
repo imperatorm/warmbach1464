@@ -153,8 +153,14 @@ export function CraftFeatures() {
                   ref={(el) => {
                     cardRefs.current[c.id] = el;
                   }}
-                  className={`rounded-[24px] bg-night/45 p-6 backdrop-blur-sm transition-all duration-700 ease-out motion-reduce:translate-x-0 motion-reduce:opacity-100 md:p-10 ${
-                    shown ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
+                  className={`rounded-[24px] bg-night/45 p-6 backdrop-blur-sm transition-all duration-700 ease-out motion-reduce:translate-x-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 md:p-10 ${
+                    // The card arrives from the side only where there is room
+                    // beside it. On narrow screens that offset is wider than the
+                    // gutter, so the sheet itself grows and the header slides
+                    // off with it — there the card rises instead.
+                    shown
+                      ? "translate-x-0 translate-y-0 opacity-100"
+                      : "translate-y-10 opacity-0 lg:translate-x-16 lg:translate-y-0"
                   }`}
                 >
                   <Monogram className="h-9 w-auto text-cream/80" />

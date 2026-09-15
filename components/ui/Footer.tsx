@@ -68,14 +68,14 @@ function NewsletterForm() {
           }}
           placeholder="E-Mail"
           autoComplete="email"
-          className={`min-w-0 flex-1 border bg-night px-3 py-2.5 text-sm text-cream placeholder:text-stone/60 focus:border-gold focus:outline-none ${
+          className={`min-h-11 min-w-0 flex-1 border bg-night px-3 py-2.5 text-sm text-cream placeholder:text-stone/60 focus:border-gold focus:outline-none ${
             state === "error" ? "border-terrakotta" : "border-hairline/30"
           }`}
         />
         <button
           type="submit"
           data-cursor
-          className="border border-gold/70 px-4 py-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-cream transition-colors duration-300 hover:bg-gold hover:text-night"
+          className="min-h-11 border border-gold/70 px-4 py-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-cream transition-colors duration-300 hover:bg-gold hover:text-night"
         >
           Eintragen
         </button>
@@ -110,21 +110,23 @@ export function Footer() {
         style={reduce ? undefined : { y: innerY }}
         className="border-t border-hairline/10 bg-soot/30 px-6 py-14 lg:px-10"
       >
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col gap-4">
             <Monogram className="h-10 w-10 text-cream" />
             <p className="t-label">{brand.estate}</p>
             <p className="text-sm text-cream/70">{brand.claim}</p>
           </div>
           {COLUMNS.map((col) => (
-            <nav key={col.label} aria-label={col.label} className="flex flex-col gap-2.5 text-sm">
+            // gap-0 with min-h-11 links: the pitch is the touch target, not
+            // the gap, so every entry is tappable without spacing the column out.
+            <nav key={col.label} aria-label={col.label} className="flex flex-col text-sm">
               <p className="t-label mb-2">{col.label}</p>
               {col.links.map((l) => (
                 <Link
                   key={l.href}
                   href={l.href}
                   data-cursor
-                  className="link-underline self-start text-cream/75 transition-colors duration-300 hover:text-gold"
+                  className="link-underline flex min-h-11 items-center self-start text-cream/75 transition-colors duration-300 hover:text-gold"
                 >
                   {l.text}
                 </Link>
@@ -145,14 +147,14 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} {brand.house}. Alle Rechte vorbehalten.
           </p>
-          <div className="flex gap-5">
-            <Link href="/legal" data-cursor className="link-underline hover:text-gold">
+          <div className="flex flex-wrap items-center gap-x-5">
+            <Link href="/legal" data-cursor className="link-underline flex min-h-11 items-center hover:text-gold">
               Impressum
             </Link>
-            <Link href="/legal#privacy" data-cursor className="link-underline hover:text-gold">
+            <Link href="/legal#privacy" data-cursor className="link-underline flex min-h-11 items-center hover:text-gold">
               Datenschutz
             </Link>
-            <Link href="/legal#age" data-cursor className="link-underline hover:text-gold">
+            <Link href="/legal#age" data-cursor className="link-underline flex min-h-11 items-center hover:text-gold">
               Altersbestätigung
             </Link>
           </div>

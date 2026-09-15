@@ -223,11 +223,13 @@ export function ScrollVideo({ src, progressRef, onReady, className = "", poster 
 
       {/* Loading state — a hairline that fills with the buffer, nothing more */}
       <div
-        className={`pointer-events-none absolute inset-0 flex items-end justify-center bg-black transition-opacity duration-700 ${
+        // Centred, not bottom-anchored: the bottom lane belongs to the fixed
+        // tour control, which would otherwise sit on top of this caption.
+        className={`pointer-events-none absolute inset-0 flex items-center justify-center bg-black transition-opacity duration-700 ${
           ready ? "opacity-0" : "opacity-100"
         }`}
       >
-        <div className="mb-16 w-48">
+        <div className="w-48">
           <div className="h-px w-full bg-cream/20">
             <div
               className="h-px bg-gold transition-[width] duration-300"

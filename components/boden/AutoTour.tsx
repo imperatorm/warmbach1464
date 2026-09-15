@@ -184,7 +184,7 @@ export function AutoTour() {
         <button
           type="button"
           onClick={onPrimary}
-          className="relative overflow-hidden rounded-full px-5 py-2.5 text-[0.65rem] font-medium uppercase tracking-[0.18em] text-cream transition-colors duration-300 hover:bg-cream/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+          className="relative inline-flex min-h-11 items-center overflow-hidden rounded-full px-5 text-[0.65rem] font-medium uppercase tracking-[0.18em] text-cream transition-colors duration-300 hover:bg-cream/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
         >
           {/* Progress fill, driven by the CSS custom property */}
           <span
@@ -206,7 +206,7 @@ export function AutoTour() {
           <button
             type="button"
             onClick={restart}
-            className="rounded-full px-3.5 py-2.5 text-[0.6rem] uppercase tracking-[0.16em] text-cream/70 transition-colors duration-300 hover:bg-cream/10 hover:text-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full px-3.5 text-[0.6rem] uppercase tracking-[0.16em] text-cream/70 transition-colors duration-300 hover:bg-cream/10 hover:text-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           >
             Neu
           </button>
@@ -216,7 +216,7 @@ export function AutoTour() {
           type="button"
           onClick={() => setSpeed((s) => (s === 1 ? 2 : 1))}
           aria-label={`Tempo ${speed === 1 ? "einfach" : "doppelt"} — umschalten`}
-          className="rounded-full px-3.5 py-2.5 text-[0.6rem] uppercase tracking-[0.16em] text-cream/70 transition-colors duration-300 hover:bg-cream/10 hover:text-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full px-3.5 text-[0.6rem] uppercase tracking-[0.16em] text-cream/70 transition-colors duration-300 hover:bg-cream/10 hover:text-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
         >
           {speed}×
         </button>

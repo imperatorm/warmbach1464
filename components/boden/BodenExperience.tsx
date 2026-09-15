@@ -320,7 +320,7 @@ export function BodenExperience() {
                 <Link
                   href="/contact"
                   data-cursor
-                  className="text-[0.68rem] uppercase tracking-[0.2em] text-cream/70 underline-offset-4 transition-colors duration-300 hover:text-gold hover:underline"
+                  className="inline-flex min-h-11 items-center text-[0.68rem] uppercase tracking-[0.2em] text-cream/70 underline-offset-4 transition-colors duration-300 hover:text-gold hover:underline"
                 >
                   Den Hang besuchen
                 </Link>
@@ -364,13 +364,13 @@ export function BodenExperience() {
             <button
               type="button"
               onClick={() => scrollTo(0)}
-              className="text-[0.6rem] uppercase tracking-[0.24em] text-cream/70 transition-colors duration-300 hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+              className="inline-flex min-h-11 items-center text-[0.6rem] uppercase tracking-[0.24em] text-cream/70 transition-colors duration-300 hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
             >
               ↑ Zurück an die Oberfläche
             </button>
             <Link
               href="/prompt"
-              className="text-[0.6rem] uppercase tracking-[0.24em] text-cream/60 transition-colors duration-300 hover:text-gold"
+              className="inline-flex min-h-11 items-center text-[0.6rem] uppercase tracking-[0.24em] text-cream/60 transition-colors duration-300 hover:text-gold"
             >
               Rekonstruktions-Brief
             </Link>

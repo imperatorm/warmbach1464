@@ -140,7 +140,7 @@ export function ParallelChronik() {
                 onClick={() => selectParallel(p.id, p.kitzbuehel)}
                 aria-pressed={on}
                 className={[
-                  "rounded-full border px-3 py-1 text-xs tracking-wide transition-all duration-300",
+                  "inline-flex min-h-11 items-center rounded-full border px-4 text-xs tracking-wide transition-all duration-300",
                   on
                     ? isCopper
                       ? "border-copper bg-copper/20 text-cream"
@@ -161,7 +161,7 @@ export function ParallelChronik() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setActive(null)}
-                className="ml-1 text-xs text-stone underline-offset-4 hover:text-cream hover:underline"
+                className="ml-1 inline-flex min-h-11 items-center text-xs text-stone underline-offset-4 hover:text-cream hover:underline"
               >
                 zurücksetzen
               </motion.button>

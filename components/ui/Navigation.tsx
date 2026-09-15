@@ -136,7 +136,7 @@ export function Navigation() {
     <>
       <header className="fixed inset-x-0 top-0 z-40 border-b border-night/10 bg-cream text-night">
         <div className="relative mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 lg:px-10">
-          <Link href="/" data-cursor aria-label={`${brand.master} — Startseite`} className="group flex items-center gap-2.5">
+          <Link href="/" data-cursor aria-label={`${brand.master} — Startseite`} className="group flex min-h-11 items-center gap-2.5">
             <span className="font-display text-[1.7rem] leading-none tracking-[0.01em]">1464</span>
             <span className="text-[0.6rem] uppercase tracking-[0.28em] text-night/60 [margin-inline-end:-0.28em]">by</span>
             <Monogram className="h-7 w-auto text-night transition-transform duration-500 group-hover:scale-105" />
@@ -189,7 +189,7 @@ export function Navigation() {
               }}
               onMouseLeave={scheduleClose}
               onFocus={() => setMenu("club")}
-              className={`${linkBase} ml-2 rounded-full border px-5 py-2.5 ${
+              className={`${linkBase} ml-2 inline-flex min-h-11 items-center rounded-full border px-5 py-2.5 ${
                 isActive("/club") || menu === "club"
                   ? "border-copper bg-copper text-cream"
                   : "border-night/35 text-night hover:border-copper hover:text-copper"

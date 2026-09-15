@@ -7,6 +7,7 @@ import { motion, useReducedMotion } from "framer-motion";
  * rises from below its baseline when the block scrolls into view — the
  * editorial "typesetting" entrance for display type. Pass the copy as
  * `lines` so the mask boundaries are deterministic (no runtime line-breaking).
+ * The mask allows for descenders, so lowercase display type is never clipped.
  *
  * Honors prefers-reduced-motion: degrades to a plain opacity fade.
  */
@@ -30,7 +31,11 @@ export function LineReveal({
   return (
     <Tag className={className}>
       {lines.map((line, i) => (
-        <span key={i} className="block overflow-hidden">
+        // The mask carries its own descender allowance: padding extends the
+        // clipping box below the baseline, the equal negative margin takes
+        // that space back out of the flow. Without it the mask cuts every
+        // descender mid-glyph — visible on any lowercase display line.
+        <span key={i} className="-mb-[0.24em] block overflow-hidden pb-[0.24em]">
           <motion.span
             className={`block ${lineClassName}`}
             initial={reduce ? { opacity: 0 } : { y: "110%" }}

@@ -71,7 +71,7 @@ export default function ClubPage() {
           </div>
 
           <Reveal delay={0.42}>
-            <Link href="/sitz" data-cursor className="link-underline mt-12 inline-block text-xs uppercase tracking-[0.18em] text-cream/70">
+            <Link href="/sitz" data-cursor className="link-underline mt-12 inline-flex min-h-11 items-center text-xs uppercase tracking-[0.18em] text-cream/70">
               Mitglieder · Eintreten &rarr;
             </Link>
           </Reveal>
