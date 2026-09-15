@@ -6,16 +6,24 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 
+/**
+ * The botanical specimen a row carries under the cursor (Figma 53:115).
+ * One drawing stands in for all five Säulen for now; each is getting its own.
+ * Point a row at its own file when it arrives — nothing else needs to change,
+ * because the reveal keys on the file rather than on the row (see below).
+ */
+const SPECIMEN = "/figma/saeulen-branch.png";
+
 const PILLARS = [
-  { slug: "zeit", word: "Zeit", note: "Der Hof, die Stadt, die Chronik", align: "left" },
-  { slug: "boden", word: "Boden", note: "Tiefenschnitt, Geologie, Wasser", align: "right" },
-  { slug: "baeume", word: "Bäume", note: "Der lebendige Baum, Früchte & Düfte", align: "center" },
-  { slug: "manufaktur", word: "Manufaktur", note: "Das Kupfer, das Feuer", align: "left" },
-  { slug: "flasche", word: "Flasche", note: "Tradition, Hand, Siegel", align: "right" },
+  { slug: "zeit", word: "Zeit", note: "Der Hof, die Stadt, die Chronik", specimen: SPECIMEN, align: "left" },
+  { slug: "boden", word: "Boden", note: "Tiefenschnitt, Geologie, Wasser", specimen: SPECIMEN, align: "right" },
+  { slug: "baeume", word: "Bäume", note: "Der lebendige Baum, Früchte & Düfte", specimen: SPECIMEN, align: "center" },
+  { slug: "manufaktur", word: "Manufaktur", note: "Das Kupfer, das Feuer", specimen: SPECIMEN, align: "left" },
+  { slug: "flasche", word: "Flasche", note: "Tradition, Hand, Siegel", specimen: SPECIMEN, align: "right" },
 ] as const;
 
-/** The botanical specimen the index carries under the cursor (Figma 53:115). */
-const SPECIMEN = "/figma/saeulen-branch.png";
+/** Distinct drawings to warm — one today, five once each Säule has its own. */
+const SPECIMENS = Array.from(new Set(PILLARS.map((p) => p.specimen)));
 
 const ALIGN = {
   left: "text-left justify-start",
@@ -40,10 +48,13 @@ function ChevronRight() {
 
 /**
  * Die Säulen — five giant words, each the door to its chapter. Addressing a
- * row floats the botanical specimen under the cursor (spring-trailed, tilted)
- * while the other four recede. The specimen is picked up once on entering the
- * index and carried across the rows rather than re-drawn per row, so moving
- * down the list reads as one branch travelling with the hand.
+ * row floats its botanical specimen under the cursor (spring-trailed, tilted)
+ * while the other four recede.
+ *
+ * The reveal keys on the drawing, not the row: while every Säule shares the
+ * one specimen, moving between rows carries it rather than re-drawing it, and
+ * once each row has its own the same key makes every drawing animate in on
+ * arrival. No change needed here when the other four land.
  *
  * Pointer-only — on touch and under prefers-reduced-motion the words stand
  * alone and stay fully legible.
@@ -161,6 +172,7 @@ export function PillarIndex() {
           <AnimatePresence>
             {current && (
               <motion.div
+                key={current.specimen}
                 initial={{ opacity: 0, scale: 0.88, rotate: -6 }}
                 animate={{ opacity: 1, scale: 1, rotate: 2.3 }}
                 exit={{ opacity: 0, scale: 0.92, rotate: 6 }}
@@ -168,7 +180,7 @@ export function PillarIndex() {
                 className="relative -translate-x-1/2 -translate-y-1/2"
               >
                 <Image
-                  src={SPECIMEN}
+                  src={current.specimen}
                   alt=""
                   width={280}
                   height={431}
@@ -180,18 +192,20 @@ export function PillarIndex() {
         </motion.div>
       )}
 
-      {/* Warm the specimen at the size the hover actually renders, so the first
+      {/* Warm the drawings at the size the hover actually renders, so the first
           pick-up never flashes. Same width prop ⇒ same optimized source. */}
-      {hoverEnabled && (
-        <Image
-          src={SPECIMEN}
-          alt=""
-          width={280}
-          height={431}
-          aria-hidden
-          className="pointer-events-none absolute h-px w-px opacity-0"
-        />
-      )}
+      {hoverEnabled &&
+        SPECIMENS.map((src) => (
+          <Image
+            key={src}
+            src={src}
+            alt=""
+            width={280}
+            height={431}
+            aria-hidden
+            className="pointer-events-none absolute h-px w-px opacity-0"
+          />
+        ))}
     </section>
   );
 }
