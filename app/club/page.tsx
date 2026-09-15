@@ -131,8 +131,9 @@ export default function ClubPage() {
             <h2 className="t-h1 mb-6 text-night">Ein Sitz, eine Lebenszeit.</h2>
             <p className="t-lead max-w-md !text-night/70">
               Nach der persönlichen Freigabe aktiviert der Erstkauf der Founder&rsquo;s Reserve N°1
-              (1.464 €) Ihren Sitz. Es gibt keinen Jahresbeitrag — nur die Kosten je Flasche und Edition.
-              Die Mitgliedschaft ist lebenslang und einmal vererbbar.
+              Ihren Sitz. Es gibt keinen Jahresbeitrag — nur die Kosten je Flasche und Edition.
+              Den Betrag nennt Ihnen der Concierge mit der Freigabe. Die Mitgliedschaft ist
+              lebenslang und einmal vererbbar.
             </p>
             <Link href="/club/mitglied-werden" data-cursor className="btn-primary mt-8 inline-flex !text-night">
               Mitglied werden <span aria-hidden>&rarr;</span>
@@ -141,7 +142,7 @@ export default function ClubPage() {
           <Reveal delay={0.1} className="lg:col-span-6 lg:col-start-7">
             <dl className="grid grid-cols-1 gap-px overflow-hidden border border-copper/20 bg-copper/20 sm:grid-cols-2">
               {[
-                { t: "Erstkauf", d: "Nach Freigabe — Founder's Reserve N°1 (1.464 €) aktiviert den Sitz." },
+                { t: "Erstkauf", d: "Nach Freigabe — die Founder's Reserve N°1 aktiviert den Sitz. Betrag über den Concierge." },
                 { t: "Kein Jahresbeitrag", d: "Keine Mitgliedsgebühr — nur die Kosten je Flasche." },
                 { t: "Dauer", d: "Lebenslang. Ein Sitz, eine Lebenszeit." },
                 { t: "Vererbung", d: "Einmalig, auf eine Person, Anzeige binnen 12 Monaten." },

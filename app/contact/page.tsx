@@ -68,7 +68,7 @@ export default function ContactPage() {
       <NumberedSection
         no="02"
         title="Ihre Anfrage"
-        intro="Tasting, Patron Cask, Gästehaus oder etwas Eigenes — schreiben Sie uns, worum es geht. Wir antworten persönlich."
+        intro="Tasting, Patron Cask, Gästehaus oder etwas Eigenes — schreiben Sie uns, worum es geht. Wir antworten persönlich, innerhalb von 48 Stunden."
         tone="night"
       >
         <div className="max-w-3xl">

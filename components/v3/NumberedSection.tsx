@@ -10,8 +10,8 @@ const TONES: Record<Tone, { bg: string; ink: string; meta: string; rule: string;
 };
 
 /**
- * Fortress-style numbered section: a small underlined index (01), a big
- * uppercase grotesk headline, an optional narrow intro, then free children.
+ * Fortress-style numbered section: a small underlined index (01), a Headline
+ * tier serif headline, an optional narrow intro, then free children.
  * The v3 successor to ChapterHead — used on the home and inside pillar bodies.
  */
 export function NumberedSection({
@@ -41,7 +41,10 @@ export function NumberedSection({
           </span>
         </Reveal>
         <Reveal delay={0.06}>
-          <h2 className={`mt-6 font-body text-[clamp(1.7rem,3.6vw,2.9rem)] font-semibold uppercase leading-[1.12] tracking-[0.01em] ${t.ink} ${centered ? "mx-auto max-w-3xl" : "max-w-3xl"}`}>
+          {/* Headline tier — Grand Slang Roman, sentence case, same as every
+              other H2 on the site. It used to be uppercase grotesk, which made
+              /contact, /editions and /manufaktur read as a second website. */}
+          <h2 className={`t-hero mt-6 text-[clamp(1.7rem,3.6vw,2.9rem)] ${t.ink} ${centered ? "mx-auto max-w-3xl" : "max-w-3xl"}`}>
             {title}
           </h2>
         </Reveal>
