@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-15T11:39:48Z",
+  "title": "Design System: 1464byW — Warmbachhof (Awwwards direction)",
+  "extensions": {
+    "colorMeta": {
+      "bronze-green": { "role": "primary", "displayName": "Bronze Green", "canonical": "#1d291d", "tonalRamp": ["#0d130d", "#141d14", "#1d291d", "#2b3b2b", "#3f543f", "#5c7a5c", "#8ba38b", "#c3d1c3"] },
+      "bronze-green-800": { "role": "primary", "displayName": "Bronze Green 800", "canonical": "#2b3b2b", "tonalRamp": ["#12190f", "#1d291d", "#2b3b2b", "#3f543f", "#587058", "#7f9a7f", "#adc0ad", "#dde5dd"] },
+      "mocha-bisque": { "role": "secondary", "displayName": "Mocha Bisque", "canonical": "#8c5438", "tonalRamp": ["#2c1a11", "#432818", "#623522", "#8c5438", "#ab7250", "#c99878", "#e0c1ab", "#f2e4d9"] },
+      "copper": { "role": "secondary", "displayName": "Copper", "canonical": "#c57e5b", "tonalRamp": ["#3a2016", "#5c3322", "#8a4e34", "#c57e5b", "#d59d80", "#e3bba6", "#f0d8cc", "#faf0ea"] },
+      "oxblood-red": { "role": "tertiary", "displayName": "Oxblood Red", "canonical": "#713940", "tonalRamp": ["#241012", "#3c1c20", "#572a30", "#713940", "#8f4f57", "#b1747c", "#d3a7ac", "#ecd6d8"] },
+      "oxblood-900": { "role": "tertiary", "displayName": "Oxblood 900", "canonical": "#422628", "tonalRamp": ["#170d0e", "#241618", "#331d20", "#422628", "#603a3c", "#845859", "#b08c8d", "#dcc4c5"] },
+      "cloud-dancer": { "role": "neutral", "displayName": "Cloud Dancer", "canonical": "#f0efeb", "tonalRamp": ["#26241f", "#4a4740", "#726e64", "#9b968a", "#c4c0b5", "#e0ddd5", "#f0efeb", "#faf9f7"] },
+      "cloud-dancer-400": { "role": "neutral", "displayName": "Cloud Dancer 400", "canonical": "#a8a59b", "tonalRamp": ["#26241f", "#403d37", "#5f5c53", "#807c72", "#a8a59b", "#c4c1b9", "#dedcd6", "#f0efec"] },
+      "cloud-dancer-500": { "role": "neutral", "displayName": "Cloud Dancer 500", "canonical": "#9b988e", "tonalRamp": ["#232019", "#3c3830", "#57534a", "#767267", "#9b988e", "#bab8b0", "#d7d5cf", "#eeede9"] },
+      "light-gray": { "role": "neutral", "displayName": "Light Gray", "canonical": "#d9d7cf", "tonalRamp": ["#26241f", "#494640", "#726f66", "#9c988e", "#c1beb4", "#d9d7cf", "#e8e7e2", "#f6f5f2"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Giant structural words and numerals — pillar names, chronicle year watermark, countdown digits. Never a sentence." },
+      "headline": { "displayName": "Headline", "purpose": "The calm sentence-case Whyte voice opening every section, almost always pairing one Accent-tier italic phrase inline." },
+      "accent": { "displayName": "Accent", "purpose": "One italic Garamond phrase riding inside a Headline sentence — never a standalone block." },
+      "body": { "displayName": "Body", "purpose": "Running copy at 60-80% opacity, slightly heavier weight (500) than the sibling branch to hold up against Whyte's own display-tier boldness." },
+      "label": { "displayName": "Label", "purpose": "Numbered chapter markers, spec-register keys, capsule/button microcopy — uppercase, wide tracking." }
+    },
+    "shadows": [
+      { "name": "floating-specimen", "value": "0 30px 80px rgba(29,41,29,0.35)", "purpose": "The pillar-index's cursor-trailing photograph — the one object in the system that actually leaves the page's plane." }
+    ],
+    "motion": [
+      { "name": "ease-deep", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The system's default easing for reveals, mask un-clips, and card entrances." },
+      { "name": "spring-specimen", "value": "stiffness 190, damping 24, mass 0.55", "purpose": "The floating photograph's cursor-follow spring." }
+    ],
+    "breakpoints": [
+      { "name": "lg-desktop-rail-cutover", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Status Capsule",
+      "kind": "custom",
+      "refersTo": "status-capsule",
+      "description": "A frosted rounded-full chip combining a short message and a solid door — the system's answer to a plain CTA button.",
+      "html": "<div class=\"ds-status-capsule\"><p class=\"ds-status-text\">Sechsundzwanzig Generationen. Eine Quelle. Ein Osthang.</p><a class=\"ds-status-door\" href=\"#\">Club 1464</a></div>",
+      "css": ".ds-status-capsule { display: inline-flex; align-items: center; gap: 16px; border-radius: 9999px; background: rgba(29,41,29,0.45); backdrop-filter: blur(12px); padding: 4px 4px 4px 24px; } .ds-status-text { font-family: 'Whyte', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: rgba(240,239,235,0.9); } .ds-status-door { flex-shrink: 0; border-radius: 9999px; background: #f0efeb; color: #1d291d; padding: 10px 20px; font-size: 0.875rem; font-weight: 500; transition: background-color 0.3s; } .ds-status-door:hover, .ds-status-door:focus-visible { background: #c57e5b; }"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Rounded-full solid Cloud Dancer button, the standalone-CTA form of the pill language.",
+      "html": "<button class=\"ds-btn-primary\">Mitglied werden</button>",
+      "css": ".ds-btn-primary { border-radius: 9999px; background: #f0efeb; color: #1d291d; padding: 14px 28px; font-family: 'Whyte', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; transition: background-color 0.3s; } .ds-btn-primary:hover, .ds-btn-primary:focus-visible { background: #c57e5b; }"
+    },
+    {
+      "name": "Held Card",
+      "kind": "card",
+      "refersTo": "card-held",
+      "description": "A frosted rounded-24px card riding over a sticky-held photograph, with a rounded-16px inner image — the Manufaktur chapter's scrolling card.",
+      "html": "<article class=\"ds-held-card\"><h3 class=\"ds-held-card-title\">Der Boden trägt alles</h3><div class=\"ds-held-card-image\"></div><p class=\"ds-held-card-body\">Ein Osthang auf 760 Metern, eine Quelle mit ganzjährig sieben Grad.</p></article>",
+      "css": ".ds-held-card { border-radius: 24px; background: rgba(29,41,29,0.45); backdrop-filter: blur(8px); padding: 24px 40px; color: #f0efeb; } .ds-held-card-title { margin-top: 24px; font-size: 1.25rem; font-weight: 500; } .ds-held-card-image { margin-top: 24px; aspect-ratio: 16/10; border-radius: 16px; background: rgba(29,41,29,0.4); } .ds-held-card-body { margin-top: 24px; font-size: 0.9375rem; font-weight: 500; line-height: 1.6; color: rgba(240,239,235,0.7); }"
+    },
+    {
+      "name": "Chapter Marker",
+      "kind": "custom",
+      "refersTo": "chapter-marker",
+      "description": "The ( 01 ), ( 02 ) numbered label preceding every section — Oxblood Red on light grounds, Copper on dark.",
+      "html": "<p class=\"ds-chapter-marker\">( 01 ) Manifest</p>",
+      "css": ".ds-chapter-marker { font-family: 'Whyte', system-ui, sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.22em; color: #713940; } .ds-chapter-marker.on-dark { color: #c57e5b; }"
+    },
+    {
+      "name": "Underline Date Field",
+      "kind": "input",
+      "refersTo": "age-gate-field",
+      "description": "AgeGate's box-less TT/MM/JJJJ fields — underline only, large Garamond digits, auto-advancing focus.",
+      "html": "<label class=\"ds-field-label\"><span class=\"ds-field-caption\">Tag</span><input class=\"ds-underline-input\" placeholder=\"TT\" maxlength=\"2\" /></label>",
+      "css": ".ds-field-label { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; } .ds-field-caption { font-family: 'Whyte', system-ui, sans-serif; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.28em; color: rgba(240,239,235,0.6); } .ds-underline-input { width: 56px; border: none; border-bottom: 1px solid rgba(155,152,142,0.3); background: transparent; padding-bottom: 8px; text-align: center; font-family: 'EB Garamond', Georgia, serif; font-size: 1.5rem; color: #f0efeb; } .ds-underline-input::placeholder { color: rgba(240,239,235,0.2); } .ds-underline-input:focus { border-bottom-color: #c57e5b; outline: none; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Living Scroll",
+    "overview": "The homepage's own composition comment states the idea directly: the estate as one continuous sheet, banded light and dark, so no two neighboring chapters read the same. There are no page breaks here, only lifts - each band ends in a rounded top corner that rises over the one before it, like a loose page laid on top of the last. Photographs are not locked into the grid: the pillar index lets a photograph float free and trail the cursor, tilted, the moment a word is touched; the artifact band's decanter and hero's alpine film are held full-bleed behind glass-blurred UI riding on top of them. Numbers do the shouting the type otherwise refuses - giant poster-weight digits (chronicle years, the daily countdown, each pillar's name) punctuate an otherwise calm, sentence-case voice.\n\nThis is a warmer, softer reading of the same estate that redesign/v3-editorial renders as a square-cornered dossier: same tokens, same 562-year claim, same restraint about invented facts - but expressed here as something you unroll and touch, not something you file.",
+    "keyCharacteristics": [
+      "One continuous scroll in banded chapters, each lifting over the last on a rounded top seam - never a hard page break",
+      "Photographs float free of the grid - cursor-trailing, tilted specimens, not locked frames",
+      "Two depth vocabularies used for different jobs: frosted glass-blur for UI riding over held photography, soft directional shadow for genuinely floating objects",
+      "Giant poster-weight numerals (Whyte 900, uppercase) do the visual shouting; running body voice stays calm, sentence-case, Whyte 500",
+      "Soft rounding everywhere a surface is touched or transitions; the reading body of a pillar chapter stays flat and hairline-bordered",
+      "The same 'no invented values' discipline as the rest of the product - this branch's own internal documentation calls it the 'Substanz-Sperre'"
+    ],
+    "rules": [
+      { "name": "The Ledger Rule", "body": "Only the ten confirmed tokens exist anywhere in the system, carried unchanged from the sibling branch. No gradient appears except soft radial glows behind statement text and the directional shadow under floating photographs.", "section": "colors" },
+      { "name": "The One Aside Rule", "body": "The italic accent phrase appears at most once per sentence, inline, never as its own block - it punctuates a Whyte sentence, it does not replace one.", "section": "typography" },
+      { "name": "The Two-Depths Rule", "body": "Blur means this is glass on top of the scene. Shadow means this has left the page entirely. A surface never gets both, and nothing gets a shadow just to look important.", "section": "elevation" },
+      { "name": "The Touchpoint Rule", "body": "A corner is rounded only if it is something you would press, or a seam where the page itself folds. Everything else - running text, content dividers, the reading body - stays exactly as flat as the sibling branch's dossier system.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do round a corner only where it is touched or where the page itself folds - never on running content.",
+      "Do use frosted glass-blur for UI riding over held photography, and reserve real directional shadow for the one thing that actually floats free of the layout.",
+      "Do keep the italic Garamond accent to one phrase inside a Whyte sentence.",
+      "Do resolve every color by its hex value in tailwind.config.ts, not by its Tailwind key name.",
+      "Do provide a full static fallback for every scroll-locked or cursor-driven effect."
+    ],
+    "donts": [
+      "Don't round the reading body of a pillar chapter or any structural content divider.",
+      "Don't give a surface both a shadow and a glass-blur treatment, or a shadow with no reason.",
+      "Don't invent or estimate a factual value anywhere on the site - this branch's own /prompt documentation names this the 'Substanz-Sperre'.",
+      "Don't treat this branch's system as an extension of redesign/v3-editorial's DESIGN.md - they share tokens but are separate, independently authored visual worlds."
+    ]
+  }
+}

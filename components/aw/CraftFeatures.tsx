@@ -115,7 +115,7 @@ export function CraftFeatures() {
                       onClick={() =>
                         cardRefs.current[c.id]?.scrollIntoView({ behavior: "smooth", block: "center" })
                       }
-                      className={`w-full rounded-full bg-night/40 px-5 py-3 text-left text-[0.7rem] font-medium uppercase tracking-[0.16em] backdrop-blur-sm transition-colors duration-300 ${
+                      className={`flex min-h-11 w-full items-center rounded-full bg-night/40 px-5 py-3 text-left text-[0.7rem] font-medium uppercase tracking-[0.16em] backdrop-blur-sm transition-colors duration-300 ${
                         activeId === c.id ? "text-cream" : "text-cream/65 hover:text-cream/90"
                       }`}
                       aria-current={activeId === c.id ? "true" : undefined}

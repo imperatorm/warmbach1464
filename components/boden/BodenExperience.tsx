@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 import { ScrollVideo } from "./ScrollVideo";
 import { AutoTour } from "./AutoTour";
 import { scrollTo } from "@/lib/smoothScroll";
@@ -65,6 +66,7 @@ const BANDS: [number, number][] = [
 const MAX_DEPTH = 120;
 
 export function BodenExperience() {
+  const reduce = useReducedMotion();
   const trackRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef(0);
   const depthRef = useRef<HTMLSpanElement>(null);
@@ -119,8 +121,12 @@ export function BodenExperience() {
       <div className="relative">
         <ScrollVideo src={VIDEO_SRC} progressRef={progressRef} />
 
-        {/* ── The track: 520svh of scroll that drives the descent ────────── */}
-        <div ref={trackRef} className="relative h-[520svh]">
+        {/* ── The track: drives the descent. 520svh gives the full-motion
+            scrub room to breathe; under reduced motion the video is already
+            parked on one frame (ScrollVideo), so the track only needs to
+            carry the four reading chapters, not a five-and-a-bit-viewport
+            scroll-jack for a still image. ──────────────────────────────── */}
+        <div ref={trackRef} className={reduce ? "relative h-[220svh]" : "relative h-[520svh]"}>
           <div className="sticky top-0 h-[100svh] overflow-hidden">
             {/* Reading scrim — a soft wash on the type side only, so the core
                 stays visible while the chapter text keeps its contrast. */}

@@ -1,4 +1,8 @@
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
+import { useReducedMotion } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 
 /**
@@ -9,21 +13,39 @@ import { Reveal } from "@/components/ui/Reveal";
  *
  * The negative bottom margin lets the next band's rounded top corners lift
  * over the film — the page opens like a sheet laid on the landscape.
+ *
+ * Under prefers-reduced-motion the video never mounts at all — the poster
+ * still stands in its place, same as every other motion-heavy piece on
+ * this branch (ScrollVideo, ArtifactBand, PillarIndex).
  */
 export function HeroFilm() {
+  const reduce = useReducedMotion();
+
   return (
     <section className="relative -mb-8 h-[100svh] overflow-hidden bg-night">
-      <video
-        className="absolute inset-0 h-full w-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="/video/alpine-poster.jpg"
-        aria-hidden="true"
-      >
-        <source src="/video/alpine.mp4" type="video/mp4" />
-      </video>
+      {reduce ? (
+        <Image
+          src="/video/alpine-poster.jpg"
+          alt=""
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+          aria-hidden="true"
+        />
+      ) : (
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/video/alpine-poster.jpg"
+          aria-hidden="true"
+        >
+          <source src="/video/alpine.mp4" type="video/mp4" />
+        </video>
+      )}
 
       {/* Legibility: a soft wash overall, deeper where the type sits */}
       <div className="pointer-events-none absolute inset-0 bg-night/25" />

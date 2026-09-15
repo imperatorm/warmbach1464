@@ -21,6 +21,10 @@ export function LivingCount() {
   const target = useRef(0);
   const [days, setDays] = useState(0);
   const [cd, setCd] = useState<Countdown>({ days: 0, hours: 0, minutes: 0, seconds: 0, total: 0 });
+  // WCAG 2.2.2 (Pause, Stop, Hide): the countdown updates every second,
+  // indefinitely — give it an explicit pause rather than relying on nobody
+  // needing to stop it.
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
@@ -45,12 +49,12 @@ export function LivingCount() {
   }, [mounted, reduce, inView]);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted || paused) return;
     const update = () => setCd(timeToNextYear());
     update();
     const id = window.setInterval(update, 1000);
     return () => window.clearInterval(id);
-  }, [mounted]);
+  }, [mounted, paused]);
 
   const units = [
     { v: mounted ? String(cd.days) : "––", l: "Tage" },
@@ -97,9 +101,19 @@ export function LivingCount() {
                   </div>
                 ))}
               </div>
-              <p className="mt-5 text-[0.65rem] uppercase tracking-[0.24em] text-gold">
-                Bis zum Jahreswechsel
-              </p>
+              <div className="mt-5 flex items-center gap-4">
+                <p className="text-[0.65rem] uppercase tracking-[0.24em] text-gold">
+                  Bis zum Jahreswechsel
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setPaused((p) => !p)}
+                  aria-pressed={paused}
+                  className="rounded-full border border-cream/20 px-3 py-1 text-[0.6rem] uppercase tracking-[0.2em] text-cream/60 transition-colors duration-300 hover:border-gold hover:text-gold"
+                >
+                  {paused ? "Fortsetzen" : "Pausieren"}
+                </button>
+              </div>
               <p className="mt-2 max-w-sm text-sm leading-relaxed text-cream/60">
                 Countdown bis zur Mitternacht des 31. Dezember.
               </p>
