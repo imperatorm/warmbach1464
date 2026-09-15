@@ -55,6 +55,44 @@ html, body {
 
 ::selection { background: var(--color-copper); color: var(--color-cream); } /* §4.7 */
 :focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
+/* The caret belongs to the palette too, not to the browser. */
+input, textarea { caret-color: var(--color-copper); }
+
+/* The scrollbar is a surface we did not draw but still ship. */
+* { scrollbar-color: rgb(155 152 142 / 0.5) transparent; scrollbar-width: thin; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgb(155 152 142 / 0.45);
+  border: 3px solid transparent;
+  border-radius: 9999px;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-copper); background-clip: content-box; }
+
+/* ── Gallery morph ──────────────────────────────────────────────────────
+   The print the visitor touched is the thing that grows. The group carries
+   the house's deep ease; old and new hold the same crop through the flight
+   so the photograph never squashes on its way open. */
+::view-transition-group(gallery-frame) {
+  animation-duration: 560ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+::view-transition-old(gallery-frame),
+::view-transition-new(gallery-frame) {
+  object-fit: cover;
+  height: 100%;
+  animation-duration: 560ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 300ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}
 
 /* ---- Custom cursor (§4.7): 8px copper dot + 24px ring, grows over interactives ---- */
 .cursor-dot, .cursor-ring {
@@ -71,6 +109,12 @@ html, body {
   transition: transform .22s ease, border-color .22s ease, opacity .22s ease;
 }
 html.cursor-hover .cursor-ring { border-color: var(--color-gold); }
+/* Dragging the gallery table: the ring closes to a grip and fills, so the
+   house cursor carries the grab affordance the OS cursor would have. */
+html.cursor-grabbing .cursor-ring {
+  border-color: var(--color-copper);
+  background: rgb(197 126 91 / 0.16);
+}
 @media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
 
 /* ---- Editorial type ---------------------------------------------------- */
