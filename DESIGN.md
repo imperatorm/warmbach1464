@@ -96,14 +96,14 @@ branch's working tree. -->
 
 **Creative North Star: "The Living Scroll"**
 
-The homepage's own composition comment states the idea directly: the estate as one continuous sheet, banded light and dark, so no two neighboring chapters read the same. There are no page breaks here, only lifts — each band ends in a rounded top corner that rises over the one before it, like a loose page laid on top of the last. Photographs are not locked into the grid: the pillar index lets a photograph float free and trail the cursor, tilted, the moment a word is touched; the hero's lit distillery room is held full-bleed behind glass-blurred UI riding on top of it, and the bottle is photographed on its own warm ground. Numbers do the shouting the type otherwise refuses — giant poster-weight digits (chronicle years, the daily countdown, each pillar's name) punctuate an otherwise calm, sentence-case voice.
+The homepage's own composition comment states the idea directly: the estate as one continuous sheet, banded light and dark, so no two neighboring chapters read the same. There are no page breaks here, only lifts — each band ends in a rounded top corner that rises over the one before it, like a loose page laid on top of the last. Photographs are not locked into the grid: the pillar index lets a botanical specimen float free and trail the cursor, tilted, the moment a word is touched; the hero's lit distillery room is held full-bleed behind glass-blurred UI riding on top of it, and the bottle is photographed on its own warm ground. Numbers do the shouting the type otherwise refuses — giant poster-weight digits (chronicle years, the daily countdown, each pillar's name) punctuate an otherwise calm, sentence-case voice.
 
 This is a warmer, softer reading of the same estate that `redesign/v3-editorial` renders as a square-cornered dossier: same tokens, same 562-year claim, same restraint about invented facts — but expressed here as something you unroll and touch, not something you file.
 
 **Key Characteristics:**
 - One continuous scroll in banded chapters, each lifting over the last on a rounded top seam — never a hard page break
-- Photographs float free of the grid — cursor-trailing, tilted specimens, not locked frames
-- Two depth vocabularies used for different jobs: frosted glass-blur for UI riding over held photography, soft directional shadow for genuinely floating objects
+- Imagery floats free of the grid — a cursor-borne botanical cut-out, not a locked frame
+- Flat by default: frosted glass-blur for UI riding over held photography, and shadow reserved for the one surface that genuinely lifts off the page
 - Giant Grand Slang B-Side numerals and words do the visual shouting; the running statement voice stays calm and sentence-case in Grand Slang Roman, and Hanken Grotesk handles everything small
 - Soft rounding everywhere a surface is touched or transitions (buttons, status chips, section seams, cards); the reading body of a pillar chapter stays flat and hairline-bordered, closer to the sibling branch's restraint
 - The same "no invented values" discipline as the rest of the product — this branch's own internal documentation calls it the "Substanz-Sperre"
@@ -160,14 +160,14 @@ A 12-column grid inside a `max-w-[1500px]` container. The composition is a singl
 
 ## Elevation & Depth
 
-Two distinct depth vocabularies, used for two distinct situations — never interchanged.
+The system is almost entirely flat. Depth is carried by material and motion, not by stacked shadows.
 
 **Frosted glass, for UI riding over held photography.** Where a control sits on top of a full-bleed image or a sticky-held photograph (the hero's status capsule, the Manufaktur chapter-nav pills, the artifact band's spec register background), it gets `backdrop-blur` and a translucent fill — never a shadow. This reads as glass laid over the scene, not an object floating above it.
 
-**Directional shadow, for objects genuinely floating free of the layout.** The one thing in this system that actually leaves the page's plane is the pillar-index's cursor-trailing photograph — it gets a real, soft, wide shadow (`shadow-[0_30px_80px_rgba(29,41,29,0.35)]`) because it is meant to read as a loose print lifted off the surface, tilted, following the pointer.
+**Nothing casts a shadow to look important.** The one shadow left in the system is structural: the navigation dropdown's sheet (`shadow-[0_30px_70px_-24px_rgba(29,41,29,0.35)]`), which has genuinely lifted off the bar to cover the page beneath it. The cursor-borne specimen carries none — it is a cut-out lying directly on the sheet, and its depth comes from scale, tilt and travel instead.
 
 ### Named Rules
-**The Two-Depths Rule.** Blur means "this is glass on top of the scene." Shadow means "this has left the page entirely." A surface never gets both, and nothing gets a shadow just to look important.
+**The Flat-Sheet Rule.** Blur means "this is glass on top of the scene." A shadow means "this surface has lifted off the page and is covering what is under it" — which in practice is only the nav sheet. A surface never gets both, and decoration never earns either.
 
 ## Shapes
 
@@ -193,11 +193,11 @@ A `rounded-full` frosted chip combining a message and a solid door in one object
 
 ### Säulen Row
 - **Type:** the pillar's name in Display tier, set in caps, with the chapter list beside it in Label tier Oxblood Red. Rows alternate alignment left / right / centre / left / right down the index.
-- **Addressed state:** the hovered (or keyboard-focused) row holds full ink while the other four drop to `text-night/25`; the floating specimen appears under the pointer.
+- **Addressed state:** the hovered (or keyboard-focused) row holds full ink while the other four drop to `text-night/25`; the botanical specimen is picked up under the pointer.
 - **The door:** a 48px Bronze Green disc holding a chevron, pinned to the row's right edge. It rests at `opacity-0` and 12px to the left, then fades up and settles into place over 500ms on `ease-deep`. Pointer-width only (`lg:`) — it is a hover affordance, and touch taps the whole row. Keyboard focus triggers the same arrival, so the door is never mouse-only.
 
 ### Floating Specimen (signature component)
-A cursor-trailing photograph (`PillarIndex`) — spring-eased position (`stiffness 190, damping 24`), a slight tilt that reverses direction on exit, a hard rectangular frame (no rounding), and the one genuine drop shadow in the system. Fine-pointer only; on touch and under `prefers-reduced-motion` it never mounts at all, and the five giant words stand alone, still fully legible without it.
+The botanical cut-out the Säulen index carries under the cursor (`PillarIndex`) — spring-eased position (`stiffness 190, damping 24`), settling at a 2.3° tilt and rotating further on the way out. No frame, no crop, no shadow: the illustration sits straight on the cream sheet. It is picked up once when any row is addressed and travels across the rows rather than being re-drawn per row, so moving down the list reads as one branch carried in the hand. Fine-pointer only; on touch and under `prefers-reduced-motion` it never mounts at all, and the five giant words stand alone, still fully legible without it.
 
 ### Inputs / Fields
 - **Style:** No box at all — an underline-only field (`border-b border-hairline/30`) on a transparent background, large Garamond display digits, not a bordered rectangle. Used for AgeGate's three-part TT·MM·JJJJ date entry (auto-advancing focus per field) rather than a native date picker.

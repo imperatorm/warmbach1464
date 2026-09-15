@@ -6,14 +6,16 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 
-/** One photograph per Säule — the image the header is about. */
 const PILLARS = [
-  { slug: "zeit", word: "Zeit", note: "Der Hof, die Stadt, die Chronik", src: "/gallery/warmbach/img_0059.jpg", alt: "Der Warmbachhof in der Winterdämmerung", align: "left" },
-  { slug: "boden", word: "Boden", note: "Tiefenschnitt, Geologie, Wasser", src: "/gallery/warmbach/img_0024.jpg", alt: "Wiese und Wilder Kaiser hinter dem Hof", align: "right" },
-  { slug: "baeume", word: "Bäume", note: "Der lebendige Baum, Früchte & Düfte", src: "/gallery/warmbach/img_0030.jpg", alt: "Der Osthang mit Hof und Wald über Kitzbühel", align: "center" },
-  { slug: "manufaktur", word: "Manufaktur", note: "Das Kupfer, das Feuer", src: "/gallery/warmbach/img_0080.jpg", alt: "Die kupferne Kothe-Brennblase mit der Prägung 1464", align: "left" },
-  { slug: "flasche", word: "Flasche", note: "Tradition, Hand, Siegel", src: "/flasche/shot-front.jpg", alt: "Die Warmbach-Flasche vor dunklem Grund", align: "right" },
+  { slug: "zeit", word: "Zeit", note: "Der Hof, die Stadt, die Chronik", align: "left" },
+  { slug: "boden", word: "Boden", note: "Tiefenschnitt, Geologie, Wasser", align: "right" },
+  { slug: "baeume", word: "Bäume", note: "Der lebendige Baum, Früchte & Düfte", align: "center" },
+  { slug: "manufaktur", word: "Manufaktur", note: "Das Kupfer, das Feuer", align: "left" },
+  { slug: "flasche", word: "Flasche", note: "Tradition, Hand, Siegel", align: "right" },
 ] as const;
+
+/** The botanical specimen the index carries under the cursor (Figma 53:115). */
+const SPECIMEN = "/figma/saeulen-branch.png";
 
 const ALIGN = {
   left: "text-left justify-start",
@@ -37,11 +39,14 @@ function ChevronRight() {
 }
 
 /**
- * Die Säulen — five giant words, each the door to its chapter. Hovering a
- * word floats its photograph under the cursor (spring-trailed, tilted) while
- * the other four recede: the index reads as type, and the image answers what
- * the word means. Pointer-only — on touch and under prefers-reduced-motion
- * the words stand alone and stay fully legible.
+ * Die Säulen — five giant words, each the door to its chapter. Addressing a
+ * row floats the botanical specimen under the cursor (spring-trailed, tilted)
+ * while the other four recede. The specimen is picked up once on entering the
+ * index and carried across the rows rather than re-drawn per row, so moving
+ * down the list reads as one branch travelling with the hand.
+ *
+ * Pointer-only — on touch and under prefers-reduced-motion the words stand
+ * alone and stay fully legible.
  */
 export function PillarIndex() {
   const reduce = useReducedMotion();
@@ -92,16 +97,6 @@ export function PillarIndex() {
             </p>
           </div>
         </Reveal>
-
-        {/* The botanical specimen that crosses the Manufaktur line (Figma 53:115) */}
-        <Image
-          src="/figma/saeulen-branch.png"
-          alt=""
-          width={168}
-          height={253}
-          aria-hidden
-          className="pointer-events-none absolute left-[27%] top-[52%] z-20 hidden w-[168px] rotate-[2.3deg] select-none lg:block"
-        />
 
         <ul className="relative z-10">
           {PILLARS.map((p, i) => {
@@ -155,7 +150,8 @@ export function PillarIndex() {
         </Reveal>
       </div>
 
-      {/* The floating specimen — trails the cursor, tilts as it appears */}
+      {/* The specimen — trails the cursor, tilts as it is picked up. It has no
+          frame or shadow: the cut-out sits directly on the sheet. */}
       {hoverEnabled && (
         <motion.div
           aria-hidden
@@ -165,37 +161,37 @@ export function PillarIndex() {
           <AnimatePresence>
             {current && (
               <motion.div
-                key={current.slug}
-                initial={{ opacity: 0, scale: 0.88, rotate: -4 }}
-                animate={{ opacity: 1, scale: 1, rotate: -2 }}
-                exit={{ opacity: 0, scale: 0.92, rotate: 2 }}
+                initial={{ opacity: 0, scale: 0.88, rotate: -6 }}
+                animate={{ opacity: 1, scale: 1, rotate: 2.3 }}
+                exit={{ opacity: 0, scale: 0.92, rotate: 6 }}
                 transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 className="relative -translate-x-1/2 -translate-y-1/2"
               >
-                <div className="relative h-[280px] w-[210px] overflow-hidden shadow-[0_30px_80px_rgba(29,41,29,0.35)] lg:h-[340px] lg:w-[255px]">
-                  <Image
-                    src={current.src}
-                    alt=""
-                    fill
-                    className="object-cover"
-                    sizes="255px"
-                  />
-                </div>
-                <span className="absolute -bottom-6 left-0 text-[0.55rem] uppercase tracking-[0.24em] text-terrakotta">
-                  {current.alt}
-                </span>
+                <Image
+                  src={SPECIMEN}
+                  alt=""
+                  width={280}
+                  height={431}
+                  className="h-auto w-[220px] select-none lg:w-[280px]"
+                />
               </motion.div>
             )}
           </AnimatePresence>
         </motion.div>
       )}
 
-      {/* Preload the specimens so the first hover never flashes */}
-      <div className="pointer-events-none absolute h-px w-px overflow-hidden opacity-0">
-        {PILLARS.map((p) => (
-          <Image key={p.slug} src={p.src} alt="" width={16} height={16} aria-hidden />
-        ))}
-      </div>
+      {/* Warm the specimen at the size the hover actually renders, so the first
+          pick-up never flashes. Same width prop ⇒ same optimized source. */}
+      {hoverEnabled && (
+        <Image
+          src={SPECIMEN}
+          alt=""
+          width={280}
+          height={431}
+          aria-hidden
+          className="pointer-events-none absolute h-px w-px opacity-0"
+        />
+      )}
     </section>
   );
 }
