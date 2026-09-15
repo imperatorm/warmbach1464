@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-09-15T11:25:02.725Z",
+        "reason": "Isolated holo-chronometer digit effect (.holo-num) — deliberate sci-fi treatment for a countdown/membership feature, not a heading/metric pattern to police. Same call made on redesign/v3-editorial."
+      }
+    ]
+  }
+}

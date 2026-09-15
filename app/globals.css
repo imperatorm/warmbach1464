@@ -59,9 +59,12 @@ html, body {
 .cursor-ring {
   width: 26px; height: 26px; margin: -13px 0 0 -13px;
   border: 1px solid rgb(192 145 106 / 0.55);
-  transition: width .22s ease, height .22s ease, margin .22s ease, border-color .22s ease, opacity .22s ease;
+  /* Position is written imperatively (Cursor.tsx) as translate(...) scale(...) on the
+     same `transform`; only border-color/opacity are transitioned by this rule — the
+     hover swell rides the scale() factor the JS already includes, never width/height. */
+  transition: transform .22s ease, border-color .22s ease, opacity .22s ease;
 }
-html.cursor-hover .cursor-ring { width: 46px; height: 46px; margin: -23px 0 0 -23px; border-color: var(--color-gold); }
+html.cursor-hover .cursor-ring { border-color: var(--color-gold); }
 @media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
 
 /* ---- Editorial type ---------------------------------------------------- */

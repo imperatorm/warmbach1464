@@ -2,6 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
+// Hover swell as a transform scale (not a width/height resize) — keeps the
+// swell on the compositor instead of forcing layout on every hover toggle.
+const RING_SCALE_HOVER = 46 / 26;
+
 /**
  * Custom cursor (§4.7): a small copper dot tracking 1:1, and a gold ring that
  * lags slightly and swells over interactive elements. Fine-pointer only — never
@@ -22,26 +26,36 @@ export function Cursor() {
     let my = window.innerHeight / 2;
     let rx = mx;
     let ry = my;
+    let hovering = false;
     let raf = 0;
+
+    const ringTransform = (x: number, y: number) =>
+      `translate(${x}px, ${y}px) scale(${hovering ? RING_SCALE_HOVER : 1})`;
 
     const onMove = (e: PointerEvent) => {
       mx = e.clientX;
       my = e.clientY;
       if (dot.current) dot.current.style.transform = `translate(${mx}px, ${my}px)`;
-      if (reduce && ring.current) ring.current.style.transform = `translate(${mx}px, ${my}px)`;
+      if (reduce && ring.current) ring.current.style.transform = ringTransform(mx, my);
     };
     const onOver = (e: PointerEvent) => {
-      if ((e.target as HTMLElement)?.closest?.("a, button, [data-cursor]"))
+      if ((e.target as HTMLElement)?.closest?.("a, button, [data-cursor]")) {
+        hovering = true;
         root.classList.add("cursor-hover");
+        if (reduce && ring.current) ring.current.style.transform = ringTransform(mx, my);
+      }
     };
     const onOut = (e: PointerEvent) => {
-      if ((e.target as HTMLElement)?.closest?.("a, button, [data-cursor]"))
+      if ((e.target as HTMLElement)?.closest?.("a, button, [data-cursor]")) {
+        hovering = false;
         root.classList.remove("cursor-hover");
+        if (reduce && ring.current) ring.current.style.transform = ringTransform(mx, my);
+      }
     };
     const loop = () => {
       rx += (mx - rx) * 0.18;
       ry += (my - ry) * 0.18;
-      if (ring.current) ring.current.style.transform = `translate(${rx}px, ${ry}px)`;
+      if (ring.current) ring.current.style.transform = ringTransform(rx, ry);
       raf = requestAnimationFrame(loop);
     };
 
