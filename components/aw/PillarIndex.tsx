@@ -21,6 +21,21 @@ const ALIGN = {
   center: "text-center justify-center",
 } as const;
 
+/** The row's door mark — same stroke and weight as the arrow on the Flasche band. */
+function ChevronRight() {
+  return (
+    <svg
+      viewBox="0 0 14 14"
+      fill="none"
+      className="h-3.5 w-3.5"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <path d="M4.98 11.12 9.48 6.62 4.98 2.12" stroke="currentColor" strokeWidth="1.3" />
+    </svg>
+  );
+}
+
 /**
  * Die Säulen — five giant words, each the door to its chapter. Hovering a
  * word floats its photograph under the cursor (spring-trailed, tilted) while
@@ -104,7 +119,7 @@ export function PillarIndex() {
                     className={`group flex flex-wrap items-baseline gap-x-6 gap-y-1 border-b border-night/12 py-3 transition-colors duration-500 lg:py-1 ${ALIGN[p.align]}`}
                   >
                     <span
-                      className={`t-poster text-[clamp(2.8rem,11.5vw,9.5rem)] transition-[color,opacity] duration-500 ${
+                      className={`t-poster text-[clamp(2.8rem,11.5vw,9.5rem)] uppercase transition-[color,opacity] duration-500 ${
                         dim ? "text-night/25" : "text-night"
                       }`}
                     >
@@ -116,6 +131,14 @@ export function PillarIndex() {
                       }`}
                     >
                       {p.note}
+                    </span>
+                    {/* The door, drawn only when the row is addressed: fades up
+                        from the left and settles on the row's right edge. */}
+                    <span
+                      aria-hidden
+                      className="ml-auto hidden h-12 w-12 shrink-0 -translate-x-3 self-center items-center justify-center rounded-full bg-night text-cream opacity-0 transition-[opacity,transform] duration-500 ease-deep group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 lg:inline-flex"
+                    >
+                      <ChevronRight />
                     </span>
                   </Link>
                 </Reveal>

@@ -20,11 +20,11 @@ typography:
     lineHeight: 0.92
     letterSpacing: "-0.01em"
   headline:
-    fontFamily: "'Whyte', system-ui, Arial, sans-serif"
+    fontFamily: "'Grand Slang Roman', Georgia, serif"
     fontSize: "clamp(1.9rem, 4vw, 3.2rem)"
-    fontWeight: 500
-    lineHeight: 1.04
-    letterSpacing: "-0.025em"
+    fontWeight: 400
+    lineHeight: 1.12
+    letterSpacing: "-0.014em"
   wordmark:
     fontFamily: "'Grand Slang Roman', Georgia, serif"
     fontSize: "clamp(2rem, 5.6vw, 7.5rem)"
@@ -104,7 +104,7 @@ This is a warmer, softer reading of the same estate that `redesign/v3-editorial`
 - One continuous scroll in banded chapters, each lifting over the last on a rounded top seam — never a hard page break
 - Photographs float free of the grid — cursor-trailing, tilted specimens, not locked frames
 - Two depth vocabularies used for different jobs: frosted glass-blur for UI riding over held photography, soft directional shadow for genuinely floating objects
-- Giant Grand Slang B-Side numerals and words do the visual shouting, set in their own case; the running statement voice stays calm, sentence-case Whyte Medium, and Hanken Grotesk handles everything small
+- Giant Grand Slang B-Side numerals and words do the visual shouting; the running statement voice stays calm and sentence-case in Grand Slang Roman, and Hanken Grotesk handles everything small
 - Soft rounding everywhere a surface is touched or transitions (buttons, status chips, section seams, cards); the reading body of a pillar chapter stays flat and hairline-bordered, closer to the sibling branch's restraint
 - The same "no invented values" discipline as the rest of the product — this branch's own internal documentation calls it the "Substanz-Sperre"
 
@@ -136,22 +136,23 @@ The same ten-token Pantone-derived palette as the rest of the codebase (`tailwin
 ## Typography
 
 **Display Font:** Grand Slang (self-hosted, `app/fonts.css`) in three distinct cuts — **B-Side** (giant numerals and pillar words), **Roman** (the WARMBACH wordmark, the footer's "by"), **Italic** (accent phrases). Each is registered under its own family name because B-Side is a genuinely different letterform, not a style variant of Roman.
-**Statement Font:** Whyte (self-hosted), Medium weight only — the calm sentence-case headline voice (`.t-hero`).
 **Body/UI Font:** Hanken Grotesk (`next/font/google`, `app/fonts.ts`) — body copy, labels, nav, buttons, spec registers.
 
-**Character:** Three faces, three clearly separated jobs. Grand Slang does all the shouting and all the flourish: the ghosted `1464`, the five pillar words, the day-count figure, and — in its Italic cut — the single emphasised phrase that closes a headline (`— *Premiere Edition*`, `Kommen Sie an den *Tisch*`). Whyte Medium carries the calm statement sentences that sit under those flourishes. Hanken Grotesk handles everything small and structural, and never appears large. A headline is never set in the body face, and the italic accent never carries a sentence on its own.
+**Two families, and only two.** Every header, statement, numeral and accent is a cut of Grand Slang; everything small and structural is Hanken Grotesk. Whyte, which previously carried the statement headlines, was retired and its `@font-face` rules removed.
+
+**Character:** Three faces, three clearly separated jobs. Grand Slang does all the shouting and all the flourish: the ghosted `1464`, the five pillar words, the day-count figure, and — in its Italic cut — the single emphasised phrase that closes a headline (`— *Premiere Edition*`, `Kommen Sie an den *Tisch*`). Grand Slang Roman carries the calm statement sentences that sit under those flourishes — the same family, a quieter cut. Hanken Grotesk handles everything small and structural, and never appears large. A headline is never set in the body face, and the italic accent never carries a sentence on its own.
 
 ### Hierarchy
-- **Display** (Grand Slang B-Side, 400, `clamp(2.8rem, 11.5vw, 9.5rem)`, set in the type's own case — never forced uppercase, line-height 0.92): giant structural words and numerals — each pillar's name in the index, the "next pillar" doorway, the chronicle's background year, the countdown's day/hour/minute/second figures. Never a sentence, always a word or number.
-- **Headline** (500, `clamp(1.9rem, 4vw, 3.2rem)`–`clamp(2.6rem, 7.4vw, 6.5rem)` for the hero, sentence case, line-height 1.04, letter-spacing -0.025em): the calm narrative voice for every section's opening statement — almost always pairs one **Accent**-tier italic phrase inline.
+- **Display** (Grand Slang B-Side, 400, `clamp(2.8rem, 11.5vw, 9.5rem)`, line-height 0.92): giant structural words and numerals. The Säulen index sets its five words in caps; the numerals have no case to set — each pillar's name in the index, the "next pillar" doorway, the chronicle's background year, the countdown's day/hour/minute/second figures. Never a sentence, always a word or number.
+- **Headline** (Grand Slang Roman, 400, `clamp(1.9rem, 4vw, 3.2rem)`–`clamp(2.6rem, 7.4vw, 6.5rem)` for the hero, sentence case, line-height 1.12, letter-spacing -0.014em): the calm narrative voice for every section's opening statement — almost always pairs one **Accent**-tier italic phrase inline.
 - **Wordmark** (Grand Slang Roman, 400, `clamp(2rem, 5.6vw, 7.5rem)`): the WARMBACH lockup over the hero still, and the footer signature's lowercase "by". The Roman cut appears only in the wordmark — never in running text.
 - **Accent** (Grand Slang Italic, 400, inherits surrounding size): the one emphasized phrase inside a Headline or a pillar tagline — never a standalone block, always riding inside a Headline-tier sentence.
 - **Label** (600, 0.6rem–0.7rem, uppercase, letter-spacing 0.22em–0.24em): the numbered chapter marker (`( 01 ) Manifest`), spec-register keys (`ArtifactBand`'s `dl`), status-capsule and button microcopy.
-- **Rail** (Whyte, uppercase, letter-spacing 0.3em, 0.6rem, `writing-mode: vertical-rl`): coordinates and provenance notes pinned to the frame edge, rotated — a device unique to this branch, not present on the sibling.
-- **Body** (500, ~0.9375rem, line-height 1.6, measure `max-w-xs`–`max-w-lg`): set at 60–80% opacity on its ground color, slightly heavier weight (500 vs. the sibling's 400) to hold up against Whyte's own display-tier boldness elsewhere on the same page.
+- **Rail** (Hanken Grotesk, uppercase, letter-spacing 0.3em, 0.6rem, `writing-mode: vertical-rl`): coordinates and provenance notes pinned to the frame edge, rotated — a device unique to this branch, not present on the sibling.
+- **Body** (500, ~0.9375rem, line-height 1.6, measure `max-w-xs`–`max-w-lg`): set at 60–80% opacity on its ground color, slightly heavier weight (500 vs. the sibling's 400) to hold up against the display tier's scale elsewhere on the same page.
 
 ### Named Rules
-**The One Aside Rule.** The italic accent phrase appears at most once per sentence, inline, never as its own block — it punctuates a Whyte sentence, it does not replace one.
+**The One Aside Rule.** The italic accent phrase appears at most once per sentence, inline, never as its own block — it punctuates a Grand Slang Roman sentence, it does not replace one.
 
 ## Layout
 
@@ -190,6 +191,11 @@ A `rounded-full` frosted chip combining a message and a solid door in one object
 - **Background:** Bronze Green at reduced opacity + `backdrop-blur-sm`, riding over a sticky-held photograph behind the whole section.
 - **Reveal:** cards translate in from the right and fade the first time they cross into view (`IntersectionObserver`, threshold 0.15), then hold their resting state permanently — never re-animate on re-entry.
 
+### Säulen Row
+- **Type:** the pillar's name in Display tier, set in caps, with the chapter list beside it in Label tier Oxblood Red. Rows alternate alignment left / right / centre / left / right down the index.
+- **Addressed state:** the hovered (or keyboard-focused) row holds full ink while the other four drop to `text-night/25`; the floating specimen appears under the pointer.
+- **The door:** a 48px Bronze Green disc holding a chevron, pinned to the row's right edge. It rests at `opacity-0` and 12px to the left, then fades up and settles into place over 500ms on `ease-deep`. Pointer-width only (`lg:`) — it is a hover affordance, and touch taps the whole row. Keyboard focus triggers the same arrival, so the door is never mouse-only.
+
 ### Floating Specimen (signature component)
 A cursor-trailing photograph (`PillarIndex`) — spring-eased position (`stiffness 190, damping 24`), a slight tilt that reverses direction on exit, a hard rectangular frame (no rounding), and the one genuine drop shadow in the system. Fine-pointer only; on touch and under `prefers-reduced-motion` it never mounts at all, and the five giant words stand alone, still fully legible without it.
 
@@ -210,7 +216,7 @@ The `( 01 )`/`( 02 )` numbered label preceding every section's title — Label-t
 ### Do:
 - **Do** round a corner only where it is touched (a button, a chip, a card) or where the page itself folds (a section seam) — never on running content.
 - **Do** use frosted glass-blur for any UI riding over held photography, and reserve real directional shadow for the one thing in the system that actually floats free of the layout (the cursor-trailing specimen).
-- **Do** keep the italic Garamond accent to one phrase inside a Whyte sentence — never a standalone italic block.
+- **Do** keep the italic Grand Slang accent to one phrase inside a Roman-cut sentence — never a standalone italic block.
 - **Do** resolve every color by its hex value in `tailwind.config.ts`, not by its Tailwind key name.
 - **Do** provide a full static fallback for every scroll-locked or cursor-driven effect (the pinned chronicle rail, the sticky Manufaktur rail, the floating specimen) — this branch's own component comments repeat the same performance/reduced-motion contract almost verbatim across every signature piece.
 

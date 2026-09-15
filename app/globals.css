@@ -5,10 +5,10 @@
 @tailwind utilities;
 
 :root {
-  /* Grand Slang — display/numeral/wordmark face (self-hosted, fonts.css),
-     three distinct cuts per the Figma source. Hanken Grotesk (next/font/
-     google, app/fonts.ts) carries body/label/UI text. Whyte (self-hosted)
-     stays the calm statement-headline voice (.t-hero) — unchanged. */
+  /* Two families, and only two: Grand Slang (self-hosted, fonts.css) in its
+     three cuts carries every display, header, numeral and accent role, and
+     Hanken Grotesk (next/font/google, app/fonts.ts) carries body, label and
+     UI text. */
   --font-display: 'Grand Slang Roman', Georgia, serif;
   --font-display-bside: 'Grand Slang B-Side', Georgia, serif;
   --font-accent: 'Grand Slang Italic', Georgia, serif;
@@ -94,21 +94,23 @@ html.cursor-hover .cursor-ring { border-color: var(--color-gold); }
 .t-label { font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.7rem; color: var(--color-gold); font-weight: 500; }
 
 /* Poster display — Grand Slang B-Side, the giant numeral/word voice (pillar
-   words, chronicle year, countdown digits). Figma sets these in the type's
-   own case, never forced uppercase — case is the caller's choice. */
+   words, chronicle year, countdown digits). Case is the caller's choice:
+   the Säulen index sets caps, the numerals have no case to set. */
 .t-poster {
   font-family: var(--font-display-bside, Georgia, serif);
   font-weight: 400;
   line-height: 0.92;
   letter-spacing: -0.01em;
 }
-/* Hero voice — Whyte at medium weight, sentence case: calm, not shouted.
-   Pairs with .t-accent (Grand Slang italic) for the emphasised phrase. */
+/* Statement voice — Grand Slang Roman, sentence case: calm, not shouted.
+   Pairs with .t-accent (the Italic cut) for the emphasised phrase. Headers
+   share the display face with .t-poster so the page carries two families
+   in total, not three. */
 .t-hero {
-  font-family: 'Whyte', var(--font-body, system-ui), sans-serif;
-  font-weight: 500;
-  line-height: 1.04;
-  letter-spacing: -0.025em;
+  font-family: var(--font-display, Georgia, serif);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.014em;
 }
 .t-accent {
   font-family: var(--font-accent, Georgia, serif);

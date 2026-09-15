@@ -5,7 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 /**
  * Pillar hero — the same title sheet as the homepage, tuned for a chapter:
- * a full-bleed photograph, the Säule numeral on a rail, the name in Whyte
+ * a full-bleed photograph, the Säule numeral on a rail, the name in Grand Slang
  * with its tagline resolving in Garamond italic.
  */
 export function PillarHero({
