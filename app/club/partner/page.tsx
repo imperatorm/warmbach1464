@@ -1,6 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { MagneticLink } from "@/components/v3/MagneticLink";
+import { AllocationLedger } from "@/components/club/AllocationLedger";
+import { PartnerPath, type Step } from "@/components/club/PartnerPath";
 
 export const metadata = {
   title: "1464 Partner — Vertrieb | 1464byW",
@@ -15,16 +18,7 @@ const segments = [
   { k: "Distribution", body: "Markt- und Gebietspartner — exklusive Zuteilung, gemeinsame Markenführung, abgestimmte Logistik." },
 ];
 
-const benefits = [
-  { t: "Planbare Allokation", b: "Limitiert je Edition und Jahrgang — transparent reserviert, nicht überzeichnet." },
-  { t: "Markenhoheit", b: "Kontrollierter Vertrieb statt Graumarkt. Wer führt, wird ausgewählt." },
-  { t: "Echtheit", b: "Jede Flasche nummeriert, mit Echtheitszertifikat und Wachssiegel." },
-  { t: "Konditionen", b: "Partnerspezifische Staffeln und Zahlungsziele — im Portal hinterlegt." },
-  { t: "Verkaufsmaterial", b: "Bildwelt, Datenblätter und Tasting-Material zum Abruf." },
-  { t: "Direktdraht", b: "Vertriebs-Concierge — persönliche Antwort binnen 48 Stunden." },
-];
-
-const steps = [
+const steps: Step[] = [
   { n: "I", t: "Anfrage", b: "Sie stellen sich und Ihr Haus vor — Segment, Gebiet, Sortiment." },
   { n: "II", t: "Prüfung & Freigabe", b: "Wir prüfen Passung und Gebietslage. Nicht jede Anfrage führt zur Aufnahme." },
   { n: "III", t: "Konditionen", b: "Partnerspezifische Staffeln und Vertrag werden festgelegt." },
@@ -33,244 +27,246 @@ const steps = [
 ];
 
 const modules = [
-  { ix: "i", title: "Bestellungen", body: "Neue Order, offene & vergangene Bestellungen, Nachbestellen mit einem Klick." },
-  { ix: "ii", title: "Allokation", body: "Zugeteiltes Kontingent je Edition & Jahrgang — abgerufen und verbleibend." },
-  { ix: "iii", title: "Konditionen", body: "EK-Preise, Staffeln, Zahlungsziele — partnerspezifisch hinterlegt." },
-  { ix: "iv", title: "Lieferung", body: "Lieferadressen, Versandstatus & Tracking, Wunschtermine." },
-  { ix: "v", title: "Dokumente", body: "Rechnungen, Echtheitszertifikate, Datenblätter, Marketing-Assets." },
-  { ix: "vi", title: "Einstellungen", body: "Firmenprofil, Besteller & Kontakte, Rechnungs- und Lieferpräferenzen." },
+  { title: "Bestellungen", body: "Neue Order, offene & vergangene Bestellungen, Nachbestellen mit einem Klick." },
+  { title: "Allokation", body: "Zugeteiltes Kontingent je Edition & Jahrgang — abgerufen und verbleibend." },
+  { title: "Konditionen", body: "EK-Preise, Staffeln, Zahlungsziele — partnerspezifisch hinterlegt." },
+  { title: "Lieferung", body: "Lieferadressen, Versandstatus & Tracking, Wunschtermine." },
+  { title: "Dokumente", body: "Rechnungen, Echtheitszertifikate, Datenblätter, Marketing-Assets." },
+  { title: "Einstellungen", body: "Firmenprofil, Besteller & Kontakte, Rechnungs- und Lieferpräferenzen." },
 ];
 
-// Demo-Daten — Platzhalter bis zum Vertriebs-Backend (lib/partner/data.ts).
-const allocation = [
-  { edition: "Apfel Brand", total: 200, used: 120, status: "aktiv" },
-  { edition: "Ambassador Edition", total: 6, used: 6, status: "Warteliste" },
-];
-const orders = [
-  { id: "WB-2027-021", edition: "Apfel Brand", menge: "24", termin: "Okt 2027", status: "in Bearbeitung", open: true },
-  { id: "WB-2027-014", edition: "Apfel Brand", menge: "36", termin: "geliefert", status: "abgeschlossen", open: false },
-  { id: "WB-2027-009", edition: "Ambassador Edition", menge: "6", termin: "—", status: "Warteliste", open: false },
-];
-
+/**
+ * 1464 Partner — the trade door, composed around the one thing that actually
+ * governs it: allocation. The register leads, the four trade routes are claims
+ * against it, the way in is a path you cross rather than a row of cards, and
+ * the portal sits on the light band where an instrument belongs.
+ *
+ * No contingent figure appears anywhere, because none has been set. The
+ * register says so in the place the number will go.
+ */
 export default function PartnerPage() {
   return (
     <div>
-      {/* Hero */}
-      <section className="relative flex min-h-[80vh] items-end overflow-hidden px-6 pb-20 pt-40 lg:px-10">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_28%_22%,_rgba(57,77,58,0.5)_0%,_rgba(29,41,29,0.95)_62%)]" />
-        <div className="relative mx-auto w-full max-w-[1400px]">
+      {/* Hero — the house's own bar, held behind the claim */}
+      <section className="relative -mb-8 flex min-h-[86svh] items-end overflow-hidden px-6 pb-28 pt-40 lg:px-10">
+        <Image
+          src="/gallery/warmbach/img_0065.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div aria-hidden className="absolute inset-0 bg-night/[0.72]" />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-t from-night via-night/40 to-night/70"
+        />
+
+        <div className="relative mx-auto w-full max-w-[1500px]">
           <Reveal>
-            <Link href="/club" data-cursor className="t-label text-gold/80 hover:text-gold">&larr; Club · Der Zugang</Link>
+            <Link
+              href="/club"
+              data-cursor
+              className="text-[0.6rem] uppercase tracking-[0.24em] text-gold transition-colors hover:text-cream"
+            >
+              &larr; Club · Der Zugang
+            </Link>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="t-display mt-6 text-cream">1464 Partner</h1>
+            <p className="t-poster mt-8 text-[clamp(2.8rem,11vw,8.5rem)] uppercase leading-[0.92] text-cream">
+              Partner
+            </p>
           </Reveal>
           <Reveal delay={0.16}>
-            <p className="t-h3 mt-6 max-w-2xl italic text-cream/85">Vertrieb mit Markenhoheit.</p>
+            <h1 className="t-hero mt-6 max-w-[20ch] text-[clamp(1.6rem,3.4vw,2.8rem)] text-cream">
+              Nicht jedes Haus führt 1464. <span className="t-accent">Das ist der Punkt.</span>
+            </h1>
           </Reveal>
           <Reveal delay={0.24}>
-            <p className="t-lead mt-8 max-w-2xl">
+            <p className="mt-8 max-w-xl text-sm leading-relaxed text-cream/80">
               Der kontrollierte Weg unseres Edelbrands in den Handel — limitiert, nummeriert, mit
-              Echtheitszertifikat. Hier führen Besteller ihre Bestellungen und Einstellungen selbst aus.
+              Echtheitszertifikat. Kein Graumarkt, keine offene Distribution: wer führt, wird
+              ausgewählt.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <MagneticLink href="#login" className="btn-primary">Partner-Login <span aria-hidden>&rarr;</span></MagneticLink>
-              <Link href="#anfrage" data-cursor className="link-underline text-xs uppercase tracking-[0.18em] text-cream/70">Partner werden</Link>
+            <div className="mt-10 flex flex-wrap items-center gap-5">
+              <MagneticLink href="#zugang" className="btn-primary">
+                Partner-Login <span aria-hidden>&rarr;</span>
+              </MagneticLink>
+              <Link
+                href="#zugang"
+                data-cursor
+                className="link-underline text-[0.62rem] uppercase tracking-[0.2em] text-cream/75"
+              >
+                Partner werden
+              </Link>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Für wen — Segmente */}
-      <section className="border-t border-hairline/10 px-6 py-20 lg:px-10 lg:py-28">
-        <div className="mx-auto max-w-[1400px]">
+      {/* ( 01 ) The register — the spine of the page */}
+      <section className="relative z-10 rounded-t-[28px] bg-kalk px-6 py-24 text-night lg:px-10 lg:py-32">
+        <div className="mx-auto max-w-[1500px]">
           <Reveal>
-            <p className="t-label mb-4 text-gold">Für wen</p>
-            <h2 className="t-h1 mb-14 max-w-3xl text-cream">Vier Wege in den Handel.</h2>
-          </Reveal>
-          <div className="grid gap-px overflow-hidden border border-hairline/15 bg-hairline/10 sm:grid-cols-2 lg:grid-cols-4">
-            {segments.map((s) => (
-              <Reveal key={s.k} className="flex flex-col bg-night p-7">
-                <h3 className="t-h3 text-cream">{s.k}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-cream/70">{s.body}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Was Partner erhalten */}
-      <section className="border-t border-hairline/10 px-6 py-20 lg:px-10 lg:py-28">
-        <div className="mx-auto max-w-[1400px]">
-          <Reveal>
-            <p className="t-label mb-4 text-gold">Das Angebot</p>
-            <h2 className="t-h1 mb-14 max-w-3xl text-cream">Was Partner erhalten.</h2>
-          </Reveal>
-          <div className="grid gap-px overflow-hidden border border-hairline/15 bg-hairline/10 sm:grid-cols-2 lg:grid-cols-3">
-            {benefits.map((b) => (
-              <Reveal key={b.t} className="flex flex-col bg-night p-7">
-                <h3 className="t-h3 text-cream">{b.t}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-cream/70">{b.b}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* So werden Sie Partner — Onboarding */}
-      <section className="border-t border-hairline/10 px-6 py-20 lg:px-10 lg:py-28">
-        <div className="mx-auto max-w-[1400px]">
-          <Reveal>
-            <p className="t-label mb-4 text-gold">So werden Sie Partner</p>
-            <h2 className="t-h1 mb-14 max-w-3xl text-cream">Fünf Schritte zum Zugang.</h2>
-          </Reveal>
-          <ol className="grid gap-px overflow-hidden border border-hairline/15 bg-hairline/10 sm:grid-cols-2 lg:grid-cols-5">
-            {steps.map((s) => (
-              <Reveal key={s.n} className="flex flex-col bg-night p-7">
-                <span className="font-display text-2xl italic text-gold/70">{s.n}</span>
-                <h3 className="t-h3 mt-3 text-cream">{s.t}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-cream/70">{s.b}</p>
-              </Reveal>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* Das Portal — Module */}
-      <section className="border-t border-hairline/10 px-6 py-20 lg:px-10 lg:py-28">
-        <div className="mx-auto max-w-[1400px]">
-          <Reveal>
-            <p className="t-label mb-4 text-gold">Das Partner-Portal</p>
-            <h2 className="t-h1 mb-4 max-w-3xl text-cream">Sechs Module, ein Konto.</h2>
-            <p className="t-lead mb-14 max-w-2xl">Funktional auf den Vertrieb ausgelegt — klar, schnell, ohne Reibung.</p>
-          </Reveal>
-          <div className="grid gap-px overflow-hidden border border-hairline/15 bg-hairline/10 sm:grid-cols-2 lg:grid-cols-3">
-            {modules.map((m) => (
-              <Reveal key={m.title} className="flex flex-col bg-night p-7">
-                <p className="font-display text-2xl italic text-gold/70">{m.ix}</p>
-                <h3 className="t-h3 mt-3 text-cream">{m.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-cream/70">{m.body}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Dashboard-Vorschau */}
-      <section className="border-t border-hairline/10 px-6 py-20 lg:px-10 lg:py-28">
-        <div className="mx-auto max-w-[1200px]">
-          <Reveal>
-            <p className="t-label mb-4 text-gold">Vorschau · Im Portal</p>
-            <h2 className="t-h1 mb-12 max-w-3xl text-cream">Allokation & Bestellungen auf einen Blick.</h2>
-          </Reveal>
-          <Reveal>
-            <div className="overflow-hidden rounded-xl border border-hairline/20 bg-soot/30">
-              <div className="flex items-center justify-between border-b border-hairline/15 bg-night/60 px-6 py-4">
-                <span className="font-display text-lg text-cream">1464 Partner · Konto-Übersicht</span>
-                <span className="rounded-full border border-gold/40 px-3 py-1 text-xs uppercase tracking-[0.14em] text-gold">Demo</span>
-              </div>
-
-              {/* Allokation */}
-              <div className="grid gap-px bg-hairline/10 lg:grid-cols-2">
-                {allocation.map((a) => {
-                  const pct = Math.min(100, Math.round((a.used / a.total) * 100));
-                  return (
-                    <div key={a.edition} className="bg-night p-6">
-                      <div className="flex items-baseline justify-between gap-4">
-                        <h3 className="font-display text-xl text-cream">{a.edition}</h3>
-                        <span className={`rounded-full px-3 py-1 text-xs ${a.status === "aktiv" ? "bg-gold/20 text-gold" : "bg-hairline/15 text-stone"}`}>{a.status}</span>
-                      </div>
-                      <p className="mt-2 text-xs uppercase tracking-[0.18em] text-stone">
-                        Allokation 2027 · {a.used} / {a.total} abgerufen
-                      </p>
-                      <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-hairline/15">
-                        <div className="h-full rounded-full bg-gold" style={{ width: `${pct}%` }} />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Offene Bestellungen */}
-              <div className="border-t border-hairline/15 px-6 py-5">
-                <p className="t-label mb-4 text-stone">Bestellungen</p>
-                <div className="overflow-x-auto">
-                  <table className="w-full min-w-[640px] border-collapse text-left text-sm">
-                    <thead>
-                      <tr className="text-xs uppercase tracking-[0.14em] text-stone">
-                        <th className="border-b border-hairline/15 pb-3 pr-4 font-medium">Bestell-Nr.</th>
-                        <th className="border-b border-hairline/15 pb-3 pr-4 font-medium">Edition</th>
-                        <th className="border-b border-hairline/15 pb-3 pr-4 font-medium">Menge</th>
-                        <th className="border-b border-hairline/15 pb-3 pr-4 font-medium">Liefertermin</th>
-                        <th className="border-b border-hairline/15 pb-3 font-medium">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {orders.map((o) => (
-                        <tr key={o.id} className="text-cream/85">
-                          <td className="border-b border-hairline/10 py-3.5 pr-4 font-mono text-xs text-cream/70">{o.id}</td>
-                          <td className="border-b border-hairline/10 py-3.5 pr-4">{o.edition}</td>
-                          <td className="border-b border-hairline/10 py-3.5 pr-4">{o.menge}</td>
-                          <td className="border-b border-hairline/10 py-3.5 pr-4 text-cream/70">{o.termin}</td>
-                          <td className="border-b border-hairline/10 py-3.5">
-                            <span className={`rounded-full px-3 py-1 text-xs ${o.open ? "bg-gold/20 text-gold" : "bg-hairline/15 text-stone"}`}>{o.status}</span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+            <div className="flex flex-wrap items-end justify-between gap-8 border-b border-night/20 pb-6">
+              <h2 className="t-hero max-w-[16ch] text-[clamp(1.9rem,4vw,3.2rem)] text-night">
+                ( 01 ) Was zugeteilt wird
+              </h2>
+              <p className="max-w-xs text-sm leading-relaxed text-night/75">
+                Zwei Editionen, jede Flasche nummeriert. Die Menge je Jahrgang wird zugeteilt —
+                nicht ausgeschrieben.
+              </p>
             </div>
-            <p className="mt-4 text-xs text-stone">Demo-Ansicht · Werte sind Platzhalter, bis das Vertriebs-Backend angebunden ist.</p>
+          </Reveal>
+          <AllocationLedger />
+        </div>
+      </section>
+
+      {/* ( 02 ) Four routes into the trade, over a held photograph */}
+      <section className="relative -mb-8 overflow-hidden px-6 py-24 lg:px-10 lg:py-32">
+        <Image
+          src="/gallery/warmbach/img_0086.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div aria-hidden className="absolute inset-0 bg-night/[0.88]" />
+
+        <div className="relative mx-auto max-w-[1500px]">
+          <Reveal>
+            <h2 className="t-hero max-w-[16ch] text-[clamp(1.9rem,4vw,3.2rem)] text-cream">
+              ( 02 ) Vier Wege in den Handel
+            </h2>
+          </Reveal>
+          <ul className="mt-16 flex flex-col">
+            {segments.map((s, i) => (
+              <li key={s.k}>
+                <Reveal delay={i * 0.05}>
+                  <div className="grid grid-cols-1 gap-4 border-t border-hairline/25 py-8 lg:grid-cols-12 lg:gap-10 lg:py-10">
+                    <p className="text-[0.58rem] uppercase tracking-[0.24em] text-gold lg:col-span-1">
+                      {String(i + 1).padStart(2, "0")}
+                    </p>
+                    <h3 className="t-hero text-[clamp(1.4rem,2.8vw,2.1rem)] text-cream lg:col-span-4">
+                      {s.k}
+                    </h3>
+                    <p className="max-w-xl text-sm leading-relaxed text-cream/80 lg:col-span-6 lg:col-start-7">
+                      {s.body}
+                    </p>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ( 03 ) The path in — pinned */}
+      <PartnerPath steps={steps} />
+
+      {/* ( 04 ) The portal, on the light band where an instrument belongs */}
+      <section className="relative z-10 rounded-t-[28px] bg-kalk px-6 py-24 text-night lg:px-10 lg:py-32">
+        <div className="mx-auto max-w-[1500px]">
+          <Reveal>
+            <div className="flex flex-wrap items-end justify-between gap-8 border-b border-night/20 pb-6">
+              <h2 className="t-hero max-w-[18ch] text-[clamp(1.9rem,4vw,3.2rem)] text-night">
+                ( 04 ) Das Portal
+              </h2>
+              <p className="max-w-xs text-sm leading-relaxed text-night/75">
+                Sechs Module, ein Konto. Auf den Vertrieb ausgelegt — klar, schnell, ohne Reibung.
+              </p>
+            </div>
+          </Reveal>
+
+          <ul className="mt-14 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+            {modules.map((m, i) => (
+              <li key={m.title}>
+                <Reveal delay={(i % 3) * 0.05}>
+                  <h3 className="border-t border-night/20 pt-4 text-[0.95rem] font-semibold text-night">
+                    {m.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-night/75">{m.body}</p>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+
+          <Reveal>
+            <p className="mt-20 max-w-xl text-sm leading-relaxed text-night/75">
+              So sieht die Kontoübersicht aus, sobald ein Jahrgang eröffnet und Ihr Zugang
+              freigeschaltet ist.
+            </p>
+            <figure className="mt-8 overflow-hidden rounded-[24px] border border-night/15 bg-cream">
+              <figcaption className="flex items-center justify-between gap-4 border-b border-night/15 px-6 py-4">
+                <span className="t-hero text-[1.05rem] text-night">
+                  1464 Partner · Konto-Übersicht
+                </span>
+                <span className="rounded-full bg-night px-3 py-1 text-[0.55rem] uppercase tracking-[0.2em] text-cream">
+                  Beispielansicht
+                </span>
+              </figcaption>
+              <div className="px-6 py-8">
+                <p className="text-[0.58rem] uppercase tracking-[0.24em] text-terrakotta">
+                  Allokation · laufender Jahrgang
+                </p>
+                <p className="t-hero mt-4 max-w-[26ch] text-[clamp(1.2rem,2.4vw,1.7rem)] text-night">
+                  Noch kein Jahrgang eröffnet — hier stehen Zuteilung, Abruf und Restmenge je
+                  Edition.
+                </p>
+                <p className="mt-6 max-w-lg text-sm leading-relaxed text-night/75">
+                  Darunter laufen Bestellungen mit Bestell-Nummer, Menge, Liefertermin und Status.
+                  Die Werte kommen aus dem Vertriebs-Backend, sobald es angebunden ist — bis dahin
+                  zeigt diese Seite keine.
+                </p>
+              </div>
+            </figure>
           </Reveal>
         </div>
       </section>
 
-      {/* Login + Anfrage */}
-      <section id="login" className="scroll-mt-24 border-t border-hairline/10 px-6 py-20 lg:px-10 lg:py-28">
-        <div className="mx-auto grid max-w-[1100px] gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Login */}
+      {/* ( 05 ) The door */}
+      <section id="zugang" className="scroll-mt-24 bg-night px-6 py-24 text-cream lg:px-10 lg:py-32">
+        <div className="mx-auto grid max-w-[1200px] gap-16 lg:grid-cols-2 lg:gap-24">
           <Reveal>
-            <p className="t-label mb-4 text-gold">Partner-Zugang</p>
-            <h2 className="t-h2 mb-6 text-cream">Anmelden.</h2>
-            <form className="flex flex-col gap-4" action="#" method="post" aria-label="Partner-Login">
-              <label className="flex flex-col gap-2 text-sm text-cream/80">
+            <h2 className="t-hero text-[clamp(1.9rem,4vw,3.2rem)] text-cream">( 05 ) Anmelden</h2>
+            <form className="mt-10 flex flex-col gap-6" action="#" method="post" aria-label="Partner-Login">
+              <label className="flex flex-col gap-2 text-[0.6rem] uppercase tracking-[0.22em] text-gold">
                 Partner-Nummer oder E-Mail
                 <input
                   type="text"
                   name="partner"
                   autoComplete="username"
-                  className="min-h-[48px] border border-hairline/30 bg-night px-4 py-3 text-cream focus:border-gold focus:outline-none"
+                  className="min-h-[48px] border-b border-hairline/30 bg-transparent py-3 text-base normal-case tracking-normal text-cream focus:border-gold focus:outline-none"
                 />
               </label>
-              <label className="flex flex-col gap-2 text-sm text-cream/80">
+              <label className="flex flex-col gap-2 text-[0.6rem] uppercase tracking-[0.22em] text-gold">
                 Passwort
                 <input
                   type="password"
                   name="password"
                   autoComplete="current-password"
-                  className="min-h-[48px] border border-hairline/30 bg-night px-4 py-3 text-cream focus:border-gold focus:outline-none"
+                  className="min-h-[48px] border-b border-hairline/30 bg-transparent py-3 text-base normal-case tracking-normal text-cream focus:border-gold focus:outline-none"
                 />
               </label>
-              <button type="button" className="btn-primary mt-1 justify-center">Eintreten <span aria-hidden>&rarr;</span></button>
+              <button type="button" className="btn-primary mt-2 self-start">
+                Eintreten <span aria-hidden>&rarr;</span>
+              </button>
             </form>
-            <p className="mt-5 text-xs text-stone">
+            <p className="mt-6 max-w-sm text-xs leading-relaxed text-stone">
               Prototyp — Login und Bestell-Mechanik werden mit dem Vertriebs-Backend angebunden.
             </p>
           </Reveal>
 
-          {/* Anfrage */}
-          <Reveal delay={0.1} id="anfrage" className="scroll-mt-24 flex flex-col border-l border-hairline/15 pl-12 lg:pl-16">
-            <p className="t-label mb-4 text-gold">Noch kein Konto</p>
-            <h2 className="t-h2 mb-6 text-cream">Partner werden.</h2>
-            <p className="t-lead mb-8 max-w-md">
-              Stellen Sie sich und Ihr Haus vor — wir prüfen Passung, Gebiet und Sortiment und melden uns
-              persönlich. Aufnahme nur nach Freigabe.
+          <Reveal delay={0.1} className="flex flex-col lg:border-l lg:border-hairline/20 lg:pl-24">
+            <h2 className="t-hero text-[clamp(1.9rem,4vw,3.2rem)] text-cream">Partner werden</h2>
+            <p className="mt-8 max-w-md text-sm leading-relaxed text-cream/80">
+              Stellen Sie sich und Ihr Haus vor — wir prüfen Passung, Gebiet und Sortiment und
+              melden uns persönlich innerhalb von 48 Stunden. Aufnahme nur nach Freigabe.
             </p>
-            <MagneticLink href="/contact" className="btn-primary self-start">
+            <MagneticLink href="/contact" className="btn-primary mt-10 self-start">
               Anfrage an den Vertrieb <span aria-hidden>&rarr;</span>
             </MagneticLink>
           </Reveal>
