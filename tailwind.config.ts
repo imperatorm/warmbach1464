@@ -18,6 +18,20 @@ const config: Config = {
         terrakotta: "#713940", // Oxblood Red 19-1524
         oxblood:    "#713940",
         merlot:     "#422628", // oxblood 900 — dark red band
+        // /v4 study (Farm Minerals reference): the same four hues, each
+        // brought out a step — deeper-but-livelier greens, a warmer beige,
+        // a copper and an oxblood with more pigment. Scoped under `fm-*` so
+        // nothing above changes.
+        fm: {
+          night:   "#243622", // bronze green, lifted
+          green:   "#324a26", // the main green — hero ground, chronicle band
+          moss:    "#4f6f3e", // headline green on beige
+          leaf:    "#6e924f", // the light green band and product tiles
+          beige:   "#f4ede4", // warm page ground
+          sand:    "#ebe2d6", // cards on beige
+          copper:  "#d07a4e", // warm accent, more pigment
+          oxblood: "#7f343e", // chapter markers on beige
+        },
       },
       fontFamily: {
         display: ["var(--font-display)", "Georgia", "serif"],
