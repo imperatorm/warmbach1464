@@ -70,7 +70,7 @@ export function LivingCount() {
         {/* The figure, centred under the monogram (Figma 53:7) */}
         <Reveal>
           <div className="flex flex-col items-center">
-            <Monogram className="h-10 w-auto" />
+            <Monogram on="dark" className="h-10 w-auto" />
             <div className="mt-12 w-full max-w-[464px] border-t border-cream/20 pt-6 text-center">
               <p className="t-poster text-[clamp(3rem,9.6vw,7.75rem)] leading-[0.83] text-cream tabular-nums">
                 {mounted ? formatInt(days) : "—"}

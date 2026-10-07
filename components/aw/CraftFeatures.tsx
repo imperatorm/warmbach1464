@@ -163,7 +163,7 @@ export function CraftFeatures() {
                       : "translate-y-10 opacity-0 lg:translate-x-16 lg:translate-y-0"
                   }`}
                 >
-                  <Monogram className="h-9 w-auto text-cream/80" />
+                  <Monogram on="dark" className="h-9 w-auto" />
                   <h3 className="mt-6 text-xl font-medium text-cream md:text-2xl">{c.title}</h3>
                   <div className="relative mt-6 aspect-[16/10] overflow-hidden rounded-[16px] bg-night/40">
                     <Image

@@ -21,7 +21,9 @@ export function middleware(req: NextRequest) {
     pathname.startsWith("/_next") ||
     pathname === "/favicon.ico" ||
     pathname === "/icon.png" ||
-    pathname === "/logo-w.png";
+    // The mark, both grounds: the gate page itself shows it before anyone holds the cookie.
+    pathname === "/warmbach_wy_logo_w.svg" ||
+    pathname === "/warmbach_wy_logo_b.svg";
 
   if (isOpen) return NextResponse.next();
   if (req.cookies.get(COOKIE)?.value === TOKEN) return NextResponse.next();

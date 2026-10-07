@@ -42,7 +42,7 @@ export default function ClubPage() {
           <Reveal delay={0.16}>
             <div className="mt-5 flex items-center justify-center gap-2.5">
               <span className="text-xs uppercase tracking-[0.4em] text-stone [margin-inline-end:-0.4em]">by</span>
-              <Monogram className="h-6 w-auto" />
+              <Monogram on="dark" className="h-6 w-auto" />
             </div>
           </Reveal>
           <Reveal delay={0.24}>

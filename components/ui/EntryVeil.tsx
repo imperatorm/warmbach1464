@@ -50,7 +50,8 @@ export function EntryVeil() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Monogram className="h-14 w-14 text-gold" />
+            {/* 124px at a 1440px viewport, easing between 88px and 148px either side of it */}
+            <Monogram on="dark" className="h-[clamp(88px,calc(6vw_+_38px),148px)] w-auto" />
           </motion.div>
         </motion.div>
       )}

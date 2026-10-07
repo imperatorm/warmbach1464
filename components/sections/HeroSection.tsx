@@ -49,7 +49,7 @@ export function HeroSection() {
         </motion.h1>
         <motion.div {...rise(0.22)} className="mt-5 flex items-center gap-3 sm:mt-7">
           <span className="text-sm uppercase tracking-[0.4em] text-gold sm:text-base [margin-inline-end:-0.4em]">by</span>
-          <Monogram className="h-9 w-auto sm:h-11" />
+          <Monogram on="dark" className="h-9 w-auto sm:h-11" />
         </motion.div>
         <motion.p {...rise(0.36)} className="mt-6 text-[0.6rem] uppercase tracking-[0.42em] text-cream/55 sm:text-[0.7rem]">
           distilled in Kitzbühel

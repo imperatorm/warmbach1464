@@ -36,7 +36,7 @@ export function MemberGate() {
       >
         <span className="font-display text-xl leading-none text-cream [font-variation-settings:'opsz'_48]">1464</span>
         <span className="text-[0.6rem] uppercase tracking-[0.22em] text-gold [margin-inline-end:-0.22em]">by</span>
-        <Monogram className="h-5 w-auto transition-transform duration-500 hover:scale-105" />
+        <Monogram on="dark" className="h-5 w-auto transition-transform duration-500 hover:scale-105" />
       </Link>
       <div className="w-full max-w-5xl grid gap-14 lg:grid-cols-2 lg:items-center">
         {/* The wall of 1464 seats */}
