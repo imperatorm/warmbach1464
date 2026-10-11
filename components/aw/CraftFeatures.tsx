@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { Monogram } from "@/components/ui/Monogram";
 
 const CARDS = [
   {
@@ -163,8 +162,7 @@ export function CraftFeatures() {
                       : "translate-y-10 opacity-0 lg:translate-x-16 lg:translate-y-0"
                   }`}
                 >
-                  <Monogram className="h-9 w-auto text-cream/80" />
-                  <h3 className="mt-6 text-xl font-medium text-cream md:text-2xl">{c.title}</h3>
+                  <h3 className="text-xl font-medium text-cream md:text-2xl">{c.title}</h3>
                   <div className="relative mt-6 aspect-[16/10] overflow-hidden rounded-[16px] bg-night/40">
                     <Image
                       src={c.src}

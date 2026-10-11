@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { Monogram } from "./Monogram";
@@ -18,16 +18,24 @@ export function EntryVeil() {
   const pathname = usePathname();
   const reduce = useReducedMotion();
   const [show, setShow] = useState(false);
+  // The "is this the session's first arrival?" verdict is memoised in a ref so
+  // it survives StrictMode's simulated remount. Without it, run 1 claims the
+  // session flag and arms the timer, the cleanup clears the timer, and run 2
+  // sees the flag and bails — leaving the veil up with nothing to lift it.
+  const firstArrival = useRef<boolean | null>(null);
 
   useEffect(() => {
     if (reduce) return;
     if (pathname !== "/" && pathname !== "/v3") return;
-    try {
-      if (sessionStorage.getItem(KEY)) return;
-      sessionStorage.setItem(KEY, "1");
-    } catch {
-      return;
+    if (firstArrival.current === null) {
+      try {
+        firstArrival.current = !sessionStorage.getItem(KEY);
+        if (firstArrival.current) sessionStorage.setItem(KEY, "1");
+      } catch {
+        firstArrival.current = false;
+      }
     }
+    if (!firstArrival.current) return;
     setShow(true);
     const t = window.setTimeout(() => setShow(false), 950);
     return () => window.clearTimeout(t);

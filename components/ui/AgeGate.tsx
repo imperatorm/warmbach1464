@@ -14,6 +14,11 @@ const FIELDS = [
 
 type FieldKey = (typeof FIELDS)[number]["key"];
 
+/** Temporarily disabled. Must gate the *opening*, not the render — an open gate
+ *  sets `inert` on the app root, so returning null with `open` still true would
+ *  leave the whole page unclickable. */
+const HIDDEN = true;
+
 /**
  * The age threshold as a title sheet of its own (Suno's birthday step,
  * reframed in the house style): a dark full-viewport page, one serif
@@ -29,7 +34,7 @@ export function AgeGate() {
   const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (HIDDEN || typeof window === "undefined") return;
     // localStorage hier nur für Age-Gate (gesetzlich erforderlich, kein Tracking)
     try {
       if (!localStorage.getItem(AGE_STORAGE_KEY)) setOpen(true);
