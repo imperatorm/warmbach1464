@@ -24,9 +24,10 @@ type Surface = {
 /**
  * Every version of every surface, in one place.
  *
- * Parallel designs kept accumulating across branches — three readings of the
- * Zeit pillar, four of the gallery, three of the homepage's middle sections —
- * and the only way to compare them was to know the routes by heart. They are
+ * Parallel designs kept accumulating across branches — whole homepages, the
+ * homepage's middle sections, three readings of the Zeit pillar, eight of the
+ * gallery, a second Journal, Club, Mitglied-werden and Besuch, two entry veils
+ * — and the only way to compare them was to know the routes by heart. They are
  * all on this branch now, each at its own address, listed here.
  *
  * Staging only: this page and every version route it points at are noindex and
@@ -36,12 +37,30 @@ type Surface = {
 const SURFACES: Surface[] = [
   {
     surface: "Startseite",
-    question: "Wie lesen sich Manufaktur und Flasche in der Mitte der Seite?",
+    question: "Welche Haltung trägt die ganze Seite?",
     versions: [
       { name: "Aktuell", href: "/", note: "Die gebaute Fassung — Panorama-Lauf, gesetztes Hero-Lockup.", live: true },
+      { name: "v4 · Farm Minerals", href: "/v4", note: "Das Objekt im grünen Lichtraum, Faktenleiste, flache Elementkarten, Salbuch-Ledger — die Hausfarben einen Schritt angehoben." },
+      { name: "v3 · Sanduhr", href: "/v3", note: "Zweifarbiger Hero, das Sanduhr-Statement, Flasche als Blaupause, Chronik in großen Jahreszahlen, Polaroid-Galerie." },
+      { name: "Experience", href: "/experience", note: "Die cineastische Fassung — Alpenfilm mit Onyx-Flasche, Statement über der Landschaft, die Türen, die Zeitleiste." },
+    ],
+  },
+  {
+    surface: "Startseite · Mitte",
+    question: "Wie lesen sich Manufaktur und Flasche in der Mitte der Seite?",
+    versions: [
+      { name: "Aktuell", href: "/", note: "Panorama-Lauf durch die Manufaktur, danach die Flasche.", live: true },
       { name: "A · Index", href: "/design/sections?v=a", note: "Handwerk als Index, Flasche annotiert." },
       { name: "B · Gallery", href: "/design/sections?v=b", note: "Handwerk als Galerie, Flasche als Studie." },
       { name: "C · Panorama", href: "/design/sections?v=c", note: "Handwerk als Panorama, Flasche geteilt." },
+    ],
+  },
+  {
+    surface: "Eingang",
+    question: "Was hält der Vorhang, bevor sich die Startseite hebt?",
+    versions: [
+      { name: "Monogramm", href: "/", note: "Das W// allein auf Nacht, unter einer Sekunde. Erscheint einmal pro Sitzung.", live: true },
+      { name: "Sanduhr", href: "/design/loader", note: "Das W// über einer Sanduhr aus fallendem Licht, 1,5 s — hier beliebig oft abspielbar." },
     ],
   },
   {
@@ -55,12 +74,40 @@ const SURFACES: Surface[] = [
   },
   {
     surface: "Galerie",
-    question: "Was ist eine Galerie, wenn sie kein Raster ist?",
+    question: "Was ist eine Galerie, wenn sie kein Raster ist — und was, wenn doch?",
     versions: [
       { name: "Raster", href: "/galerie", note: "Laufendes Band, danach Abschnitte.", live: true },
       { name: "Der Tisch", href: "/galerie/tisch", note: "Alle Aufnahmen als lose Abzüge auf einer Fläche, die man zieht." },
       { name: "Der Hang", href: "/galerie/hang", note: "Die Aufnahmen am Osthang, Scroll als Fahrt." },
       { name: "Die Kammer", href: "/galerie/kammer", note: "Ein Korridor, durch den man hindurchgeht." },
+      { name: "Das Register", href: "/galerie/register", note: "Redaktioneller Index auf Kalk — mitlaufendes Inhaltsverzeichnis, beschriftetes Mauerwerk." },
+      { name: "Die Bühne", href: "/galerie/buehne", note: "Ein Bild auf der Bühne, Kapitel-Chips, Filmstreifen; Tasten und Wischen blättern." },
+      { name: "Das Mosaik", href: "/galerie/mosaik", note: "Randlose Wand auf Nacht, nichts beschnitten, jedes Kapitel im Plakatschnitt angekündigt." },
+      { name: "Das Archiv", href: "/galerie/archiv", note: "Der Raumfilter ist der Seitentitel — Hof, Bar, Brennerei, Lounge — darunter ein bündiges Raster." },
+    ],
+  },
+  {
+    surface: "Journal",
+    question: "Wie sieht eine Chronik aus, die gerade erst anfängt?",
+    versions: [
+      { name: "Einträge", href: "/journal", note: "Die Einträge untereinander.", live: true },
+      { name: "Index", href: "/journal/v2", note: "Masthead mit Zählung, der jüngste Eintrag als Aufmacher, darunter nach Jahren geordnet." },
+    ],
+  },
+  {
+    surface: "Club 1464",
+    question: "Wie lädt man in einen Kreis ein, der nicht jeden aufnimmt?",
+    versions: [
+      { name: "Aktuell", href: "/club", note: "Zwei Türen, die drei Schritte, sieben Privilegien als Register.", live: true },
+      { name: "v2", href: "/club/v2", note: "Bänder im Wechsel Nacht und Kalk, die Privilegien als nummeriertes Register auf Haarlinien." },
+    ],
+  },
+  {
+    surface: "Club · Mitglied werden",
+    question: "Wie fühlt sich eine Vorstellung an, die keine Kasse ist?",
+    versions: [
+      { name: "Aktuell", href: "/club/mitglied-werden", note: "Fünf Kriterien, die Kandidatur in Feldern.", live: true },
+      { name: "v2", href: "/club/mitglied-werden/v2", note: "Felder auf Grundlinien, Mikro-Versalien, die drei Fragen als eigener Block, cremefarbene Pille." },
     ],
   },
   {
@@ -73,6 +120,14 @@ const SURFACES: Surface[] = [
         note: "Die Allokation als Rückgrat, der Weg hinein als Strecke.",
         live: true,
       },
+    ],
+  },
+  {
+    surface: "Besuch & Concierge",
+    question: "Ist Besuch ein Formular oder ein Ort?",
+    versions: [
+      { name: "Aktuell", href: "/contact", note: "Nummerierte Abschnitte, die Anfrage in Feldern.", live: true },
+      { name: "v2", href: "/contact/v2", note: "Der Hof randlos mit Koordinaten, drei feste Angaben als Register, das Formular auf Nacht." },
     ],
   },
 ];
