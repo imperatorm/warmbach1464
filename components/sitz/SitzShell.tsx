@@ -29,7 +29,7 @@ export function SitzShell({ member, children }: { member: Member; children: Reac
         <Link href="/" data-cursor className="flex items-center gap-1.5">
           <span className="font-display text-2xl text-cream [font-variation-settings:'opsz'_48]">1464</span>
           <span className="text-[0.6rem] uppercase tracking-[0.22em] text-gold [margin-inline-end:-0.22em]">by</span>
-          <Monogram className="h-5 w-auto" />
+          <Monogram on="dark" className="h-5 w-auto" />
         </Link>
         <p className="t-label mt-2 text-stone">Sitz N°{String(member.seatNo).padStart(4, "0")}</p>
 

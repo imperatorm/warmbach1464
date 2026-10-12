@@ -533,3 +533,30 @@ html.cursor-grabbing .cursor-ring {
     transition: none !important;
   }
 }
+
+/* ---- /v4 study, Farm Minerals reference (components/v4/*) ----------------
+   One sans voice at every size, as on the reference: headlines in Hanken
+   Grotesk medium, tight-tracked; running copy set small, uppercase, barely
+   tracked. The serif of the house stays out of this study on purpose. */
+.fm-h {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+.fm-up {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+/* The giant ghosted word that runs off the floor of the object band */
+.fm-ghost {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.8;
+}

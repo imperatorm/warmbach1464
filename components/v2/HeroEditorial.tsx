@@ -123,7 +123,7 @@ export function HeroEditorial() {
           </motion.p>
           <motion.div {...rise(0.24)} className="flex items-center gap-3">
             <span className="text-sm uppercase tracking-[0.4em] text-gold sm:text-base [margin-inline-end:-0.4em]">by</span>
-            <Monogram className="h-9 w-auto sm:h-11" />
+            <Monogram on="dark" className="h-9 w-auto sm:h-11" />
           </motion.div>
           <motion.p {...rise(0.38)} className="mt-5 font-display text-base italic text-cream/70 sm:text-lg">
             From our Soil to your Soul.

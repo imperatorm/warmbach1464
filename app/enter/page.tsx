@@ -22,7 +22,7 @@ export default function EnterPage({
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(197,126,91,0.10),_transparent_60%)]" />
 
       <div className="relative w-full max-w-sm text-center">
-        <Monogram className="mx-auto mb-9 h-14 w-14" />
+        <Monogram on="dark" className="mx-auto mb-9 h-14 w-14" />
         <p className="t-label mb-5">Privater Zugang</p>
         <h1
           aria-label="1464 by W"
@@ -31,7 +31,7 @@ export default function EnterPage({
           <span aria-hidden="true">1464</span>
           <span aria-hidden="true" className="italic text-gold">by</span>
           <span aria-hidden="true">
-            <Monogram className="h-9 w-auto" />
+            <Monogram on="dark" className="h-9 w-auto" />
           </span>
         </h1>
         <p className="mt-5 text-sm leading-relaxed text-stone">

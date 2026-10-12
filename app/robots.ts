@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/v3", "/enter", "/sitz/", "/api/"],
+      disallow: ["/v3", "/v4", "/enter", "/sitz/", "/api/"],
     },
     sitemap: "https://warmbachhof.com/sitemap.xml",
   };

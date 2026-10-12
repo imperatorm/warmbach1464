@@ -3,27 +3,36 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 
 /**
- * The botanical specimen a row carries under the cursor (Figma 53:115).
- * One drawing stands in for all five Säulen for now; each is getting its own.
- * Point a row at its own file when it arrives — nothing else needs to change,
- * because the reveal keys on the file rather than on the row (see below).
+ * The drawing each row carries under the cursor (Figma 53:115). Each Säule
+ * owns its own: the hourglass, the soil in hand, the apple tree, the copper
+ * still, and the fruiting branch. Files are trimmed WebP cut-outs exported at
+ * twice the hover size (public/saeulen); `w`/`h` are the CSS size each one
+ * renders at, fitted inside a 280 × 340 box so a tall drawing and a wide one
+ * read at the same weight.
  */
-const SPECIMEN = "/figma/saeulen-branch.png";
+const SPECIMEN = {
+  zeit: { src: "/saeulen/zeit.webp", w: 220, h: 340 },
+  boden: { src: "/saeulen/boden.webp", w: 275, h: 340 },
+  baeume: { src: "/saeulen/baeume.webp", w: 280, h: 308 },
+  manufaktur: { src: "/saeulen/manufaktur.webp", w: 228, h: 340 },
+  flasche: { src: "/saeulen/flasche.webp", w: 221, h: 340 },
+} as const;
 
 const PILLARS = [
-  { slug: "zeit", word: "Zeit", note: "Der Hof, die Stadt, die Chronik", specimen: SPECIMEN, align: "left" },
-  { slug: "boden", word: "Boden", note: "Tiefenschnitt, Geologie, Wasser", specimen: SPECIMEN, align: "right" },
-  { slug: "baeume", word: "Bäume", note: "Der lebendige Baum, Früchte & Düfte", specimen: SPECIMEN, align: "center" },
-  { slug: "manufaktur", word: "Manufaktur", note: "Das Kupfer, das Feuer", specimen: SPECIMEN, align: "left" },
-  { slug: "flasche", word: "Flasche", note: "Tradition, Hand, Siegel", specimen: SPECIMEN, align: "right" },
+  { slug: "zeit", word: "Zeit", note: "Der Hof, die Stadt, die Chronik", specimen: SPECIMEN.zeit, align: "left" },
+  { slug: "boden", word: "Boden", note: "Tiefenschnitt, Geologie, Wasser", specimen: SPECIMEN.boden, align: "right" },
+  { slug: "baeume", word: "Bäume", note: "Der lebendige Baum, Früchte & Düfte", specimen: SPECIMEN.baeume, align: "center" },
+  { slug: "manufaktur", word: "Manufaktur", note: "Das Kupfer, das Feuer", specimen: SPECIMEN.manufaktur, align: "left" },
+  { slug: "flasche", word: "Flasche", note: "Tradition, Hand, Siegel", specimen: SPECIMEN.flasche, align: "right" },
 ] as const;
 
-/** Distinct drawings to warm — one today, five once each Säule has its own. */
-const SPECIMENS = Array.from(new Set(PILLARS.map((p) => p.specimen)));
+/** Every drawing, to warm before the first hover. */
+const SPECIMENS = Object.values(SPECIMEN);
 
 /**
  * The index is staggered, not stacked: rows sit left / right / centre / left /
@@ -54,13 +63,11 @@ function ChevronRight() {
 
 /**
  * Die Säulen — five giant words, each the door to its chapter. Addressing a
- * row floats its botanical specimen under the cursor (spring-trailed, tilted)
- * while the other four recede.
+ * row floats its own drawing under the cursor (spring-trailed, tilted) while
+ * the other four recede.
  *
- * The reveal keys on the drawing, not the row: while every Säule shares the
- * one specimen, moving between rows carries it rather than re-drawing it, and
- * once each row has its own the same key makes every drawing animate in on
- * arrival. No change needed here when the other four land.
+ * The reveal keys on the drawing's file, so moving from one row to the next
+ * lets the old drawing tip away as the new one is picked up.
  *
  * Pointer-only — on touch and under prefers-reduced-motion the words stand
  * alone and stay fully legible.
@@ -82,18 +89,28 @@ export function PillarIndex() {
 
   const hoverEnabled = fine && !reduce;
 
+  // The drawing lives in the viewport, not in the section: it is portalled to
+  // <body> and fixed, and its spring follows the pointer's client position
+  // everywhere, all the time. So scrolling never moves it, and by the time a
+  // row is picked up the spring is already resting under the pointer — there
+  // is no stale position to correct and nothing ever has to snap.
+  const tracking = useRef(false);
   useEffect(() => {
     if (!hoverEnabled) return;
-    const el = sectionRef.current;
-    if (!el) return;
-    const onMove = (e: MouseEvent) => {
-      const r = el.getBoundingClientRect();
-      mx.set(e.clientX - r.left);
-      my.set(e.clientY - r.top);
+    const onMove = (e: PointerEvent) => {
+      if (e.pointerType === "touch") return;
+      if (!tracking.current) {
+        // The very first reading: start the spring where the pointer is.
+        tracking.current = true;
+        x.jump(e.clientX);
+        y.jump(e.clientY);
+      }
+      mx.set(e.clientX);
+      my.set(e.clientY);
     };
-    el.addEventListener("mousemove", onMove);
-    return () => el.removeEventListener("mousemove", onMove);
-  }, [hoverEnabled, mx, my]);
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onMove);
+  }, [hoverEnabled, mx, my, x, y]);
 
   const current = PILLARS.find((p) => p.slug === active);
 
@@ -172,45 +189,58 @@ export function PillarIndex() {
 
       {/* The specimen — trails the cursor, tilts as it is picked up. It has no
           frame or shadow: the cut-out sits directly on the sheet. */}
-      {hoverEnabled && (
-        <motion.div
-          aria-hidden
-          style={{ x, y }}
-          className="pointer-events-none absolute left-0 top-0 z-20"
-        >
-          <AnimatePresence>
-            {current && (
-              <motion.div
-                key={current.specimen}
-                initial={{ opacity: 0, scale: 0.88, rotate: -6 }}
-                animate={{ opacity: 1, scale: 1, rotate: 2.3 }}
-                exit={{ opacity: 0, scale: 0.92, rotate: 6 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="relative -translate-x-1/2 -translate-y-1/2"
-              >
-                <Image
-                  src={current.specimen}
-                  alt=""
-                  width={280}
-                  height={431}
-                  className="h-auto w-[220px] select-none lg:w-[280px]"
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      )}
+      {hoverEnabled &&
+        createPortal(
+          <motion.div
+            aria-hidden
+            style={{ x, y }}
+            className="pointer-events-none fixed left-0 top-0 z-30"
+          >
+            <AnimatePresence>
+              {current && (
+                <motion.div
+                  key={current.specimen.src}
+                  initial={{ opacity: 0, scale: 0.88, rotate: -6 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 2.3 }}
+                  exit={{ opacity: 0, scale: 0.92, rotate: 6 }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  // Every drawing sits on the same anchor (absolute), so the
+                  // one arriving and the one tipping away overlap. As block
+                  // children they stacked: the new drawing was laid out under
+                  // the exiting one and popped up when that one unmounted.
+                  // Centring goes through motion's transform, because its
+                  // scale/rotate overwrite a Tailwind translate class.
+                  style={{ x: "-50%", y: "-50%" }}
+                  className="absolute left-0 top-0"
+                >
+                  <Image
+                    src={current.specimen.src}
+                    alt=""
+                    width={current.specimen.w}
+                    height={current.specimen.h}
+                    style={{ width: current.specimen.w, height: current.specimen.h }}
+                    className="max-w-none select-none"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>,
+          document.body,
+        )}
 
       {/* Warm the drawings at the size the hover actually renders, so the first
           pick-up never flashes. Same width prop ⇒ same optimized source. */}
       {hoverEnabled &&
-        SPECIMENS.map((src) => (
+        SPECIMENS.map((sp) => (
           <Image
-            key={src}
-            src={src}
+            key={sp.src}
+            src={sp.src}
             alt=""
-            width={280}
-            height={431}
+            width={sp.w}
+            height={sp.h}
+            // Eager: a lazy 1px image parked off-screen never enters the
+            // viewport, so it would never load and the warm-up would be a no-op.
+            loading="eager"
             aria-hidden
             className="pointer-events-none absolute h-px w-px opacity-0"
           />
