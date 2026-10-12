@@ -30,6 +30,11 @@ type Surface = {
  * — and the only way to compare them was to know the routes by heart. They are
  * all on this branch now, each at its own address, listed here.
  *
+ * The homepages that were rebuilt in place, rather than beside each other, are
+ * here too: each as a static snapshot of the whole site on the day it stood
+ * (public/archive, built by scripts/archive-snapshot.sh), with its own nav, type
+ * and palette, and every page of that version one click away.
+ *
  * Staging only: this page and every version route it points at are noindex and
  * stay out of sitemap.ts. The one marked "live" on each row is the version the
  * public navigation actually reaches.
@@ -43,6 +48,19 @@ const SURFACES: Surface[] = [
       { name: "v4 · Farm Minerals", href: "/v4", note: "Das Objekt im grünen Lichtraum, Faktenleiste, flache Elementkarten, Salbuch-Ledger — die Hausfarben einen Schritt angehoben." },
       { name: "v3 · Sanduhr", href: "/v3", note: "Zweifarbiger Hero, das Sanduhr-Statement, Flasche als Blaupause, Chronik in großen Jahreszahlen, Polaroid-Galerie." },
       { name: "Experience", href: "/experience", note: "Die cineastische Fassung — Alpenfilm mit Onyx-Flasche, Statement über der Landschaft, die Türen, die Zeitleiste." },
+    ],
+  },
+  {
+    surface: "Frühere Fassungen",
+    question: "Wie ist die Seite hierher gekommen? Jede öffnet die ganze Website, wie sie an dem Tag stand.",
+    versions: [
+      { name: "30.06. · Erstfassung", href: "/archive/erstfassung", note: "Der Ausgangspunkt: Natur-Palette mit Kalk und Terrakotta, die fünf Säulen, die Zeit-Plakette, die Kristallflaschen-Vitrine." },
+      { name: "03.07. · Markenbuch", href: "/archive/editorial", note: "Die Startseite als nummeriertes Markenbuch — Titelblatt, Manifest, Materialpalette, Wortmarke im Scrolltempo — in der Pantone-Palette." },
+      { name: "07.07. · Floema", href: "/archive/floema", note: "Die Säulen als gepinnte Bahn mit gescrubbten Bildwischern, dazu die Gooey-Pill-Navigation." },
+      { name: "20.07. · Editorial-Hero", href: "/archive/v3-editorial", note: "Film und Cremefläche im Split, »1464« randlos über die volle Breite, die Elemente als Sticky Steps, Footer-Parallaxe." },
+      { name: "20.07. · Dekanter", href: "/archive/dekanter", note: "Der Hero als Scroll-Szene: die Karaffe schwebt in 3D über der Jahreszahl, dreht sich mit dem Scroll, der Film dunkelt zur Nacht." },
+      { name: "20.07. · Plakat", href: "/archive/escape", note: "Typo als Bild: geteilte Statements, die Säulen als verstreute Plakatwörter, ein dunkles Flaschenband, eine große Tür." },
+      { name: "15.09. · Living Scroll", href: "/archive/living-scroll", note: "Ein durchgehendes Band mit weichen Nähten: Fotos am Cursor, Chronik als Jahrhundert-Schiene, Boden als Bohrkern-Abstieg." },
     ],
   },
   {
@@ -132,6 +150,19 @@ const SURFACES: Surface[] = [
   },
 ];
 
+/** The archive snapshots are separate static apps: they need a full page load, not a client transition. */
+function VersionLink({ href, className, children }: { href: string; className: string; children: React.ReactNode }) {
+  return href.startsWith("/archive/") ? (
+    <a href={href} data-cursor className={className}>
+      {children}
+    </a>
+  ) : (
+    <Link href={href} data-cursor className={className}>
+      {children}
+    </Link>
+  );
+}
+
 export default function DesignVersionsPage() {
   return (
     <div className="min-h-screen bg-kalk px-6 pb-32 pt-36 text-night lg:px-10 lg:pt-44">
@@ -162,9 +193,8 @@ export default function DesignVersionsPage() {
               <ul className="mt-8 flex flex-col">
                 {s.versions.map((v) => (
                   <li key={v.href}>
-                    <Link
+                    <VersionLink
                       href={v.href}
-                      data-cursor
                       className="group grid grid-cols-1 items-baseline gap-x-8 gap-y-2 border-b border-night/15 py-6 lg:grid-cols-12"
                     >
                       <span className="flex items-baseline gap-3 lg:col-span-4">
@@ -186,7 +216,7 @@ export default function DesignVersionsPage() {
                       >
                         &rarr;
                       </span>
-                    </Link>
+                    </VersionLink>
                   </li>
                 ))}
               </ul>

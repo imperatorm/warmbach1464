@@ -1,0 +1,6 @@
+# Built snapshots (scripts/archive-snapshot.sh): keep them byte-exact. The .txt
+# RSC payloads carry byte lengths, so a line-ending rewrite on checkout breaks them.
+public/archive/** -text
+
+# Shell scripts run under bash, which reads a CRLF as part of the command.
+*.sh text eol=lf

@@ -27,6 +27,23 @@ const nextConfig = {
     }
     return config;
   },
+  async rewrites() {
+    // public/archive/<name> holds static exports of earlier versions of the whole
+    // site (built by scripts/archive-snapshot.sh). Every page there is a .html file, and
+    // Next serves public files only at their exact path, so a clean URL is mapped
+    // onto its file once nothing else has matched — chunks and payloads that do
+    // exist are served before these run.
+    return {
+      afterFiles: [
+        { source: "/archive/:snap", destination: "/archive/:snap/index.html" },
+        { source: "/archive/:snap/:path*", destination: "/archive/:snap/:path*.html" },
+      ],
+    };
+  },
+  async headers() {
+    // The snapshots carry their own era's metadata, which never said noindex.
+    return [{ source: "/archive/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] }];
+  },
   async redirects() {
     // Säulen-V2: alte Seitenlogik → neue Säulen-Struktur (301, sichert Bestands-URLs).
     return [
