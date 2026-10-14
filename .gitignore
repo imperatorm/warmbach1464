@@ -12,3 +12,6 @@ next-env.d.ts
 
 # Lighthouse: keep the self-contained HTML reports, drop the bulky JSON
 docs/*.report.json
+
+# Generator intermediates (scripts/gen-zeit-images.mjs keeps the PNG as the next plate's reference)
+public/zeit-v4/*.png

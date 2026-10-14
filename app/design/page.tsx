@@ -88,6 +88,7 @@ const SURFACES: Surface[] = [
       { name: "Leseraum", href: "/zeit", note: "Statement, drei Türen, Chronik nach Jahrhundert gruppiert.", live: true },
       { name: "Deck", href: "/zeit/v2", note: "Kapitel-Deck — Hof, Chronik, Stadt, Heute." },
       { name: "Korridor", href: "/zeit/v3", note: "Die Chronik auf echter Zeit: jeder Eintrag an seinem Jahr, die Lücken so lang wie sie waren." },
+      { name: "Klappbuch", href: "/zeit/v4", note: "Der Osthang gemalt, und der Hof, der sich beim Scrollen darauf aufstellt — vom alten zum neuen; fünf Blätter, die sich öffnen." },
     ],
   },
   {
