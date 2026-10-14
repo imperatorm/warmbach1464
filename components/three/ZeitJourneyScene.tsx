@@ -4,6 +4,7 @@ import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import * as THREE from "three";
+import { WetPaint } from "./WetPaint";
 
 /**
  * Zeit v5 — the diorama.
@@ -161,19 +162,28 @@ function Cutout({ url, width, at, billboard, rotationY = 0, fade, grow, progress
   );
 }
 
+const TILES = 7;
+const TILE_W = 185;
+const TILE_D = 123.5;
+
 function Ground() {
-  const tex = useTexture("/zeit-v4/boden-aerial.webp");
+  // boden-tile is the meadow painting with its white paper margin cropped off
+  // (boden-aerial, 8 % each side). Mirrored repeat makes every tile meet its
+  // neighbour on the same painted edge, so the floor runs seamlessly out to
+  // the horizon, where the fog takes it — no edge is ever in view.
+  const tex = useTexture("/zeit-v4/boden-tile.webp");
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = 8;
-  // The painting dissolves into white paper at its edges; the mapping crops
-  // that margin so the floor is grass to its last metre.
-  tex.repeat.set(0.84, 0.84);
-  tex.offset.set(0.08, 0.08);
-  // The painted track ends at the centre of the sheet; the plane is placed
-  // so that end lies in front of the house footprint at (14, -18).
+  tex.wrapS = tex.wrapT = THREE.MirroredRepeatWrapping;
+  // An odd count of 185 × 123.5 m tiles, offset by one, puts the centre of an
+  // un-mirrored tile — where the painted track ends — at (10, -8), in front
+  // of the house footprint at (14, -18).
+  tex.repeat.set(TILES, TILES);
+  tex.offset.set(1, 1);
+  tex.needsUpdate = true;
   return (
     <mesh rotation-x={-Math.PI / 2} position={[10, 0, -8]}>
-      <planeGeometry args={[220, 147]} />
+      <planeGeometry args={[TILE_W * TILES, TILE_D * TILES]} />
       <meshBasicMaterial map={tex} toneMapped={false} />
     </mesh>
   );
@@ -289,6 +299,7 @@ export default function ZeitJourneyScene({
         <World progress={progress} />
       </Suspense>
       <CameraRig progress={progress} reduce={reduce} />
+      <WetPaint reduce={reduce} />
     </Canvas>
   );
 }

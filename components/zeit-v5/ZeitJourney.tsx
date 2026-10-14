@@ -14,6 +14,7 @@ import {
 } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { scrollTo } from "@/lib/smoothScroll";
+import { HeroInk } from "./HeroInk";
 import type { JourneyProgress } from "@/components/three/ZeitJourneyScene";
 
 const ZeitJourneyScene = dynamic(() => import("@/components/three/ZeitJourneyScene"), { ssr: false });
@@ -53,7 +54,8 @@ const POIS: Poi[] = [
   {
     id: "land",
     at: 0,
-    win: [-0.01, 0, 0.09, 0.13],
+    // enters as the title has flowed out
+    win: [0.06, 0.08, 0.1, 0.13],
     kicker: "Von oben · 1464",
     title: "Ein Osthang über Kitzbühel.",
     body: "760 Meter, Verwitterungsboden aus den Kalkalpen, eine Quelle, die nie versiegt. Im Salbuch verzeichnet: Jörg Frey vom Warmbach, eine Mark Pfennige an die Kirche.",
@@ -160,6 +162,9 @@ export function ZeitJourney() {
         <div className="absolute inset-0 bg-cream">
           <ZeitJourneyScene progress={progress} active={inView} reduce={reduce} />
         </div>
+
+        {/* the title, in the open meadow; it flows out before the first station speaks */}
+        <HeroInk progress={scrollYProgress} reduce={reduce} />
 
         {/* the context, one point of interest at a time */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 px-6 pb-14 lg:px-10 lg:pb-16">
