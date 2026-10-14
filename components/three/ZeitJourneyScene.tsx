@@ -38,11 +38,14 @@ const CREAM = "#f0efeb";
 type Key = { at: number; pos: [number, number, number]; look: [number, number, number] };
 
 /** The flight. `at` is scroll progress; the captions in ZeitJourney are timed to the same numbers. */
+// The cut-outs are painted from a little above eye level, so the camera never
+// looks down at more than ~30°: the opening is high but oblique, and by the
+// time the house stands the eye is at balcony height.
 const KEYS: Key[] = [
-  { at: 0.0, pos: [0, 110, 40], look: [4, 0, -10] },
-  { at: 0.14, pos: [40, 42, 30], look: [14, 5, -18] },
-  { at: 0.32, pos: [44, 20, 8], look: [14, 6, -18] },
-  { at: 0.5, pos: [40, 11, -1], look: [14, 8, -18] },
+  { at: 0.0, pos: [34, 40, 46], look: [8, 0, -16] },
+  { at: 0.14, pos: [42, 22, 28], look: [14, 4, -18] },
+  { at: 0.32, pos: [44, 16, 12], look: [14, 6, -18] },
+  { at: 0.5, pos: [40, 13, -1], look: [14, 7, -18] },
   { at: 0.62, pos: [14, 3.5, 16], look: [-12, 2.5, 2] },
   { at: 0.76, pos: [-12, 1.7, 26], look: [-30, 1.8, 8] },
   { at: 0.9, pos: [-30, 1.7, 16], look: [-45, 1.8, 3] },
@@ -192,12 +195,15 @@ function World({ progress }: { progress: JourneyProgress }) {
     <>
       <Ground />
 
-      {/* backdrop and wings */}
-      <Cutout url="/zeit-v4/kaiser.webp" width={360} at={[20, -6, -170]} progress={progress} />
-      <Cutout url="/zeit-v4/wald.webp" width={70} at={[-70, 0, -60]} billboard progress={progress} />
-      <Cutout url="/zeit-v4/wald.webp" width={60} at={[78, 0, -70]} billboard progress={progress} />
-      <Cutout url="/zeit-v4/wald.webp" width={50} at={[-62, 0, 10]} billboard progress={progress} />
-      <Cutout url="/zeit-v4/wald.webp" width={44} at={[60, 0, 24]} billboard progress={progress} />
+      {/* backdrop and wings — the ridge is drawn first, the forest always over it */}
+      <Cutout url="/zeit-v4/kaiser.webp" width={360} at={[20, -6, -170]} progress={progress} renderOrder={-20} />
+      <Cutout url="/zeit-v4/wald.webp" width={70} at={[-70, 0, -60]} billboard progress={progress} renderOrder={-10} />
+      <Cutout url="/zeit-v4/wald.webp" width={64} at={[-20, 0, -95]} billboard progress={progress} renderOrder={-10} />
+      <Cutout url="/zeit-v4/wald.webp" width={60} at={[78, 0, -70]} billboard progress={progress} renderOrder={-10} />
+      <Cutout url="/zeit-v4/wald.webp" width={55} at={[-66, 0, -25]} billboard progress={progress} renderOrder={-10} />
+      <Cutout url="/zeit-v4/wald.webp" width={50} at={[-62, 0, 10]} billboard progress={progress} renderOrder={-10} />
+      <Cutout url="/zeit-v4/wald.webp" width={46} at={[-58, 0, 40]} billboard progress={progress} renderOrder={-10} />
+      <Cutout url="/zeit-v4/wald.webp" width={44} at={[60, 0, 24]} billboard progress={progress} renderOrder={-10} />
 
       {/* the Hof, old to new, on one footprint */}
       <Cutout
@@ -227,10 +233,10 @@ function World({ progress }: { progress: JourneyProgress }) {
         progress={progress}
       />
 
-      {/* the tree that already stood */}
-      <Cutout url="/zeit-v4/apfelbaum-frucht.webp" width={12} at={[-10, 0, -2]} billboard progress={progress} />
+      {/* the tree that already stood — right of the Hof and behind it, out of the foreground */}
+      <Cutout url="/zeit-v4/apfelbaum-frucht.webp" width={11} at={[22, 0, -34]} billboard progress={progress} />
 
-      {/* the orchard grows as the camera comes down to it */}
+      {/* the orchard grows as the camera comes down to it; nothing shows before it is planted */}
       {ORCHARD.map(([x, z], i) => (
         <Cutout
           key={i}
@@ -238,6 +244,7 @@ function World({ progress }: { progress: JourneyProgress }) {
           width={3.2 + ((i * 7) % 5) * 0.12}
           at={[x, 0, z]}
           billboard
+          fade={(p) => ramp(p, 0.57, 0.6)}
           grow={(p) => 0.05 + 0.95 * ease(ramp(p, 0.58 + (i % 6) * 0.012, 0.7 + (i % 6) * 0.012))}
           progress={progress}
         />
@@ -276,7 +283,8 @@ export default function ZeitJourneyScene({
       style={{ position: "absolute", inset: 0 }}
     >
       <color attach="background" args={[CREAM]} />
-      <fog attach="fog" args={[CREAM, 90, 300]} />
+      {/* light enough that the ridge at 180 m still reads as rock, not as a wall of haze */}
+      <fog attach="fog" args={[CREAM, 150, 460]} />
       <Suspense fallback={null}>
         <World progress={progress} />
       </Suspense>
