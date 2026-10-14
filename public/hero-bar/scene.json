@@ -1,0 +1,535 @@
+{
+ "lut": {
+  "size": 33,
+  "lo": -12.5,
+  "hi": 4.5
+ },
+ "vignette": [
+  0.88,
+  0.45,
+  1
+ ],
+ "cameras": {
+  "Camera": {
+   "position": [
+    0.14575,
+    1.32675,
+    7.60763
+   ],
+   "quaternion": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "lensMm": 60,
+   "sensorMm": 40,
+   "fStop": 2.4000000953674316,
+   "focusM": 5.18840217590332,
+   "exposureEv": 3.1107,
+   "near": 0.10000000149011612
+  },
+  "Camera.001": {
+   "position": [
+    0.56171,
+    0.48677,
+    4.44676
+   ],
+   "quaternion": [
+    0.066417,
+    0.128527,
+    -0.008627,
+    0.989442
+   ],
+   "lensMm": 60,
+   "sensorMm": 40,
+   "fStop": 1.399999976158142,
+   "focusM": 2.1097710132598877,
+   "exposureEv": 2.9463,
+   "near": 0.10000000149011612
+  }
+ },
+ "lights": {
+  "bottle light": {
+   "type": "AREA",
+   "color": [
+    0.2412,
+    1,
+    0.4027
+   ],
+   "watts": 56,
+   "position": [
+    0.0713,
+    1.6376,
+    2.4484
+   ],
+   "quaternion": [
+    -0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "size": 0.9000000357627869,
+   "spot": null,
+   "blend": null
+  },
+  "bottle light.001": {
+   "type": "SPOT",
+   "color": [
+    1,
+    0.7378,
+    0.1082
+   ],
+   "watts": 47,
+   "position": [
+    -2.4455,
+    1.5556,
+    1.7178
+   ],
+   "quaternion": [
+    -0.12249,
+    -0.79656,
+    0.00754,
+    0.59197
+   ],
+   "size": null,
+   "spot": 1.7216272354125977,
+   "blend": 1
+  },
+  "left inner": {
+   "type": "AREA",
+   "color": [
+    0.0273,
+    0.2232,
+    0.0015
+   ],
+   "watts": 9,
+   "position": [
+    -1.6765,
+    1.3473,
+    -2.6061
+   ],
+   "quaternion": [
+    -0.5,
+    -0.5,
+    0.5,
+    0.5
+   ],
+   "size": 0.09190265834331512,
+   "spot": null,
+   "blend": null
+  },
+  "low": {
+   "type": "AREA",
+   "color": [
+    0.0504,
+    0.0972,
+    0.0967
+   ],
+   "watts": 19,
+   "position": [
+    2.4289,
+    0.0984,
+    -1.9771
+   ],
+   "quaternion": [
+    0.70711,
+    0,
+    0,
+    0.70711
+   ],
+   "size": 0.13136905431747437,
+   "spot": null,
+   "blend": null
+  },
+  "low.001": {
+   "type": "AREA",
+   "color": [
+    0.0504,
+    0.0972,
+    0.0967
+   ],
+   "watts": 19,
+   "position": [
+    4.0048,
+    0.0984,
+    -1.9771
+   ],
+   "quaternion": [
+    0.70711,
+    0,
+    0,
+    0.70711
+   ],
+   "size": 0.13136905431747437,
+   "spot": null,
+   "blend": null
+  },
+  "low 2": {
+   "type": "AREA",
+   "color": [
+    0.0504,
+    0.0972,
+    0.0967
+   ],
+   "watts": 40,
+   "position": [
+    -2.2974,
+    0.0984,
+    -1.9771
+   ],
+   "quaternion": [
+    0.70711,
+    0,
+    0,
+    0.70711
+   ],
+   "size": 0.13136905431747437,
+   "spot": null,
+   "blend": null
+  },
+  "low 2.001": {
+   "type": "AREA",
+   "color": [
+    0.0504,
+    0.0972,
+    0.0967
+   ],
+   "watts": 40,
+   "position": [
+    -4.2334,
+    0.0984,
+    -1.9771
+   ],
+   "quaternion": [
+    0.70711,
+    0,
+    0,
+    0.70711
+   ],
+   "size": 0.13136905431747437,
+   "spot": null,
+   "blend": null
+  },
+  "right inner ": {
+   "type": "AREA",
+   "color": [
+    0.0273,
+    0.2232,
+    0.0015
+   ],
+   "watts": 9,
+   "position": [
+    1.6823,
+    1.3473,
+    -2.6061
+   ],
+   "quaternion": [
+    -0.5,
+    0.5,
+    -0.5,
+    0.5
+   ],
+   "size": 0.09190265834331512,
+   "spot": null,
+   "blend": null
+  },
+  "Spot": {
+   "type": "SPOT",
+   "color": [
+    0.1907,
+    0.464,
+    0.1575
+   ],
+   "watts": 357,
+   "position": [
+    0.0329,
+    5.106,
+    0.7173
+   ],
+   "quaternion": [
+    -0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "size": null,
+   "spot": 1.7603391408920288,
+   "blend": 0.15000000596046448
+  },
+  "top inner": {
+   "type": "AREA",
+   "color": [
+    0.003,
+    0.3143,
+    0.0014
+   ],
+   "watts": 19,
+   "position": [
+    0.0376,
+    2.6857,
+    -2.5313
+   ],
+   "quaternion": [
+    -0.70711,
+    0,
+    0,
+    0.70711
+   ],
+   "size": 0.13136905431747437,
+   "spot": null,
+   "blend": null
+  },
+  "top inner.001": {
+   "type": "AREA",
+   "color": [
+    0.0504,
+    0.0972,
+    0.0967
+   ],
+   "watts": 162,
+   "position": [
+    0.0376,
+    0.0984,
+    -1.9771
+   ],
+   "quaternion": [
+    0.70711,
+    0,
+    0,
+    0.70711
+   ],
+   "size": 0.13136905431747437,
+   "spot": null,
+   "blend": null
+  }
+ },
+ "textures": {
+  "businessman-in-suit": {
+   "range": 0.25,
+   "size": 2048
+  },
+  "candle-set-001": {
+   "range": 1,
+   "size": 1024
+  },
+  "candle-set-002": {
+   "range": 1,
+   "size": 1024
+  },
+  "liquor-bottle": {
+   "range": 0.5,
+   "size": 2048
+  },
+  "marble-kitchen-counter": {
+   "range": 0.03125,
+   "size": 2048
+  },
+  "plane": {
+   "range": 0.015625,
+   "size": 2048
+  },
+  "stool-001": {
+   "range": 0.015625,
+   "size": 1024
+  },
+  "stool-002": {
+   "range": 0.015625,
+   "size": 1024
+  },
+  "stool-003": {
+   "range": 0.015625,
+   "size": 1024
+  },
+  "stool": {
+   "range": 0.015625,
+   "size": 1024
+  },
+  "velvet-armchair-001": {
+   "range": 0.03125,
+   "size": 1024
+  },
+  "velvet-armchair-002": {
+   "range": 0.03125,
+   "size": 1024
+  },
+  "velvet-armchair-003": {
+   "range": 0.03125,
+   "size": 1024
+  },
+  "velvet-armchair-004": {
+   "range": 0.03125,
+   "size": 1024
+  },
+  "velvet-armchair": {
+   "range": 0.0625,
+   "size": 1024
+  },
+  "wooden-bench": {
+   "range": 0.125,
+   "size": 2048
+  },
+  "wooden-fireplace": {
+   "range": 0.25,
+   "size": 4096
+  },
+  "wooden-slatted-screen-001": {
+   "range": 0.03125,
+   "size": 512
+  },
+  "wooden-slatted-screen-002": {
+   "range": 0.03125,
+   "size": 512
+  },
+  "wooden-slatted-screen-003": {
+   "range": 0.03125,
+   "size": 512
+  },
+  "wooden-slatted-screen-004": {
+   "range": 0.03125,
+   "size": 512
+  },
+  "wooden-slatted-screen-005": {
+   "range": 0.03125,
+   "size": 512
+  },
+  "wooden-slatted-screen-006": {
+   "range": 0.03125,
+   "size": 512
+  },
+  "wooden-slatted-screen-007": {
+   "range": 0.03125,
+   "size": 512
+  },
+  "wooden-slatted-screen-008": {
+   "range": 0.0625,
+   "size": 512
+  },
+  "wooden-slatted-screen-009": {
+   "range": 0.03125,
+   "size": 512
+  },
+  "wooden-slatted-screen-010": {
+   "range": 0.03125,
+   "size": 512
+  },
+  "wooden-slatted-screen-011": {
+   "range": 0.03125,
+   "size": 512
+  },
+  "wooden-slatted-screen-012": {
+   "range": 0.03125,
+   "size": 512
+  },
+  "wooden-slatted-screen-013": {
+   "range": 0.03125,
+   "size": 512
+  },
+  "wooden-slatted-screen": {
+   "range": 0.015625,
+   "size": 512
+  }
+ },
+ "materials": {
+  "businessman-in-suit": [
+   "tripo_mat_867ee447"
+  ],
+  "candle-set-001": [
+   "light emissive",
+   "tripo_mat_1752d5c0"
+  ],
+  "candle-set-002": [
+   "light emissive",
+   "tripo_mat_1752d5c0"
+  ],
+  "drinking-glass": [
+   "glass_v3_01"
+  ],
+  "liquor-bottle": [
+   "glass_v3_01",
+   "tripo_mat_0086d3fc"
+  ],
+  "marble-kitchen-counter": [
+   "tripo_mat_f0e009b8"
+  ],
+  "plane": [
+   "Material"
+  ],
+  "stool": [
+   "tripo_mat_410feed0"
+  ],
+  "stool-001": [
+   "tripo_mat_410feed0"
+  ],
+  "stool-002": [
+   "tripo_mat_410feed0"
+  ],
+  "stool-003": [
+   "tripo_mat_410feed0"
+  ],
+  "velvet-armchair": [
+   "tripo_mat_ddade5b6"
+  ],
+  "velvet-armchair-001": [
+   "tripo_mat_ddade5b6"
+  ],
+  "velvet-armchair-002": [
+   "tripo_mat_ddade5b6"
+  ],
+  "velvet-armchair-003": [
+   "tripo_mat_ddade5b6"
+  ],
+  "velvet-armchair-004": [
+   "tripo_mat_ddade5b6"
+  ],
+  "wooden-bench": [
+   "tripo_mat_5dca31ec",
+   "brushed_metal_03"
+  ],
+  "wooden-fireplace": [
+   "tripo_mat_b2f30f1c.001"
+  ],
+  "wooden-slatted-screen": [
+   "tripo_mat_682d43b7"
+  ],
+  "wooden-slatted-screen-001": [
+   "tripo_mat_682d43b7"
+  ],
+  "wooden-slatted-screen-002": [
+   "tripo_mat_682d43b7"
+  ],
+  "wooden-slatted-screen-003": [
+   "tripo_mat_682d43b7"
+  ],
+  "wooden-slatted-screen-004": [
+   "tripo_mat_682d43b7"
+  ],
+  "wooden-slatted-screen-005": [
+   "tripo_mat_682d43b7"
+  ],
+  "wooden-slatted-screen-006": [
+   "tripo_mat_682d43b7"
+  ],
+  "wooden-slatted-screen-007": [
+   "tripo_mat_682d43b7"
+  ],
+  "wooden-slatted-screen-008": [
+   "tripo_mat_682d43b7"
+  ],
+  "wooden-slatted-screen-009": [
+   "tripo_mat_682d43b7"
+  ],
+  "wooden-slatted-screen-010": [
+   "tripo_mat_682d43b7"
+  ],
+  "wooden-slatted-screen-011": [
+   "tripo_mat_682d43b7"
+  ],
+  "wooden-slatted-screen-012": [
+   "tripo_mat_682d43b7"
+  ],
+  "wooden-slatted-screen-013": [
+   "tripo_mat_682d43b7"
+  ]
+ }
+}
