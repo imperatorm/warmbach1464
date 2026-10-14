@@ -74,6 +74,8 @@ const ramp = (p: number, a: number, b: number) => Math.max(0, Math.min(1, (p - a
 const span = (p: number, a: number, b: number, c: number, d: number) =>
   p < c ? ramp(p, a, b) : 1 - ramp(p, c, d);
 const ease = (t: number) => t * t * (3 - 2 * t);
+/** The forest wings, gone by the time the branch is fully in (0.86–0.93). */
+const forestFade = (p: number) => 1 - ease(ramp(p, 0.87, 0.95));
 
 function CameraRig({ progress, reduce }: { progress: JourneyProgress; reduce: boolean }) {
   const { posCurve, lookCurve } = useMemo(
@@ -129,9 +131,11 @@ type CutoutProps = {
   grow?: (p: number) => number;
   progress: JourneyProgress;
   renderOrder?: number;
+  /** Mirror the painting left to right, so a reused cut-out doesn't read as a copy. */
+  flip?: boolean;
 };
 
-function Cutout({ url, width, at, billboard, rotationY = 0, fade, grow, progress, renderOrder = 0 }: CutoutProps) {
+function Cutout({ url, width, at, billboard, rotationY = 0, fade, grow, progress, renderOrder = 0, flip }: CutoutProps) {
   const tex = useTexture(url);
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = 8;
@@ -154,7 +158,7 @@ function Cutout({ url, width, at, billboard, rotationY = 0, fade, grow, progress
 
   return (
     <group ref={group} position={at} rotation-y={rotationY}>
-      <mesh position={[0, height / 2, 0]} renderOrder={renderOrder}>
+      <mesh position={[0, height / 2, 0]} scale-x={flip ? -1 : 1} renderOrder={renderOrder}>
         <planeGeometry args={[width, height]} />
         <meshBasicMaterial ref={mat} map={tex} transparent alphaTest={0.02} depthWrite={false} toneMapped={false} />
       </mesh>
@@ -189,6 +193,16 @@ function Ground() {
   );
 }
 
+/** The further ranges: [base, width, mirrored]. Bases sit below the floor, so only the peaks rise over it. */
+const RANGES: { at: [number, number, number]; width: number; flip?: boolean }[] = [
+  { at: [-215, -16, -150], width: 300, flip: true }, // straight behind the branch
+  { at: [-250, -18, -40], width: 280 },
+  { at: [-230, -16, 70], width: 260, flip: true },
+  { at: [-110, -18, -230], width: 320 },
+  { at: [150, -16, -215], width: 300, flip: true },
+  { at: [230, -18, -90], width: 280 },
+];
+
 /** The orchard: five rows of six, planted west of the house, nearer the eye. */
 const ORCHARD: [number, number][] = [];
 for (let r = 0; r < 5; r++) {
@@ -205,15 +219,30 @@ function World({ progress }: { progress: JourneyProgress }) {
     <>
       <Ground />
 
-      {/* backdrop and wings — the ridge is drawn first, the forest always over it */}
+      {/* backdrop and wings — the ridge is drawn first, the forest always over it; the
+          forest steps back to bare paper as the branch comes up, so the fruit has the frame */}
       <Cutout url="/zeit-v4/kaiser.webp" width={360} at={[20, -6, -170]} progress={progress} renderOrder={-20} />
-      <Cutout url="/zeit-v4/wald.webp" width={70} at={[-70, 0, -60]} billboard progress={progress} renderOrder={-10} />
-      <Cutout url="/zeit-v4/wald.webp" width={64} at={[-20, 0, -95]} billboard progress={progress} renderOrder={-10} />
-      <Cutout url="/zeit-v4/wald.webp" width={60} at={[78, 0, -70]} billboard progress={progress} renderOrder={-10} />
-      <Cutout url="/zeit-v4/wald.webp" width={55} at={[-66, 0, -25]} billboard progress={progress} renderOrder={-10} />
-      <Cutout url="/zeit-v4/wald.webp" width={50} at={[-62, 0, 10]} billboard progress={progress} renderOrder={-10} />
-      <Cutout url="/zeit-v4/wald.webp" width={46} at={[-58, 0, 40]} billboard progress={progress} renderOrder={-10} />
-      <Cutout url="/zeit-v4/wald.webp" width={44} at={[60, 0, 24]} billboard progress={progress} renderOrder={-10} />
+      {/* more ranges round the horizon, further out so the fog pales them — the land
+          never ends in bare paper, least of all behind the branch at the end (west) */}
+      {RANGES.map((r, i) => (
+        <Cutout
+          key={`range${i}`}
+          url="/zeit-v4/kaiser.webp"
+          width={r.width}
+          at={r.at}
+          flip={r.flip}
+          billboard
+          progress={progress}
+          renderOrder={-30}
+        />
+      ))}
+      <Cutout url="/zeit-v4/wald.webp" width={70} at={[-70, 0, -60]} billboard fade={forestFade} progress={progress} renderOrder={-10} />
+      <Cutout url="/zeit-v4/wald.webp" width={64} at={[-20, 0, -95]} billboard fade={forestFade} progress={progress} renderOrder={-10} />
+      <Cutout url="/zeit-v4/wald.webp" width={60} at={[78, 0, -70]} billboard fade={forestFade} progress={progress} renderOrder={-10} />
+      <Cutout url="/zeit-v4/wald.webp" width={55} at={[-66, 0, -25]} billboard fade={forestFade} progress={progress} renderOrder={-10} />
+      <Cutout url="/zeit-v4/wald.webp" width={50} at={[-62, 0, 10]} billboard fade={forestFade} progress={progress} renderOrder={-10} />
+      <Cutout url="/zeit-v4/wald.webp" width={46} at={[-58, 0, 40]} billboard fade={forestFade} progress={progress} renderOrder={-10} />
+      <Cutout url="/zeit-v4/wald.webp" width={44} at={[60, 0, 24]} billboard fade={forestFade} progress={progress} renderOrder={-10} />
 
       {/* the Hof, old to new, on one footprint */}
       <Cutout
