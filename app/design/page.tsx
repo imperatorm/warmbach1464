@@ -89,6 +89,7 @@ const SURFACES: Surface[] = [
       { name: "Deck", href: "/zeit/v2", note: "Kapitel-Deck — Hof, Chronik, Stadt, Heute." },
       { name: "Korridor", href: "/zeit/v3", note: "Die Chronik auf echter Zeit: jeder Eintrag an seinem Jahr, die Lücken so lang wie sie waren." },
       { name: "Klappbuch", href: "/zeit/v4", note: "Der Osthang gemalt, und der Hof, der sich beim Scrollen darauf aufstellt — vom alten zum neuen; fünf Blätter, die sich öffnen." },
+      { name: "Flug", href: "/zeit/v5", note: "Eine Kamerafahrt durch das gemalte Land, ohne Schnitt: von oben über den Bau des Hofs hinunter zwischen die Bäume, bis zum Apfel am Zweig." },
     ],
   },
   {

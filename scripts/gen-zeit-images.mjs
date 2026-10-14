@@ -110,6 +110,51 @@ const PIECES = [
     prompt: `${STYLE} ${CUTOUT_GROUND} A single hundred-year-old apple tree in full blossom, gnarled trunk leaning slightly, broad crown, seen from slightly below eye level. One object, the tree alone.`,
     refs: [],
   },
+  // ── v5, the diorama: what a camera flying through the world needs ──────
+  {
+    id: "boden-aerial",
+    kind: "plate",
+    aspect: "3:2",
+    // The floor of the diorama, 200 m across: nothing on it may carry a
+    // scale of its own (a boulder, a yard), only the grass and the track.
+    prompt: `${STYLE} An alpine meadow seen from directly above, from very high up, painted edge to edge with no white margin at all — the paint reaches every edge of the frame. Only grass: soft patches of green and ochre, the faint stripes of mown and unmown ground, the texture small and even like a map. One thin pale cart track, two faint wheel lines, curving from the bottom left edge to the centre of the frame and ending there. No boulders, no yard, no gravel, no buildings, no trees, no people, no text. Flat, even daylight, no shadows.`,
+    refs: [],
+  },
+  {
+    id: "kaiser",
+    kind: "cutout",
+    aspect: "16:9",
+    prompt: `${STYLE} ${CUTOUT_GROUND} The jagged grey limestone wall of the Wilder Kaiser massif seen from the south across the valley: a long serrated ridge of pale grey rock with snow in the gullies, dark green forested foothills along its base. One object: the whole ridge with its foothills as a wide strip, its top edge the sky line, its bottom edge the foothills — wider than tall.`,
+    refs: ["gallery/warmbach/img_0027.jpg"],
+  },
+  {
+    id: "wald",
+    kind: "cutout",
+    aspect: "16:9",
+    prompt: `${STYLE} ${CUTOUT_GROUND} A dense stand of tall dark spruce trees seen from the side at eye level, their tops uneven, a few lighter larches among them, the trunks hidden in shadow at the base. One object: the stand of trees as a wide strip, wider than tall.`,
+    refs: [],
+  },
+  {
+    id: "apfelbaum-frucht",
+    kind: "cutout",
+    aspect: "1:1",
+    prompt: `${STYLE} ${CUTOUT_GROUND} A single hundred-year-old apple tree in early autumn, gnarled trunk leaning slightly, broad crown of green leaves heavy with small red and yellow apples, seen from eye level. One object, the tree alone.`,
+    refs: [],
+  },
+  {
+    id: "jungbaum",
+    kind: "cutout",
+    aspect: "3:4",
+    prompt: `${STYLE} ${CUTOUT_GROUND} A young apple tree a few years old, slender trunk tied to a pale wooden stake, a small round crown of green leaves with a handful of red apples, seen from eye level. One object, the young tree with its stake.`,
+    refs: [],
+  },
+  {
+    id: "apfelzweig",
+    kind: "cutout",
+    aspect: "4:3",
+    prompt: `${STYLE} ${CUTOUT_GROUND} A close view of one apple-tree branch coming in from the left, with four ripe apples hanging from it, red streaked with yellow, a few leaves, one apple catching the light. One object: the branch with its apples and leaves, nothing beyond where the branch leaves the frame.`,
+    refs: [],
+  },
   // ── the record and the craft ───────────────────────────────────────────
   {
     id: "salbuch",
